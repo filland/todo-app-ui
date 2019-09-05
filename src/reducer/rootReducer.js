@@ -1,8 +1,7 @@
 import {combineReducers} from 'redux';
-import {loadTodosReducer, addTodoReducer, showFullTodo} from './TodoReducer'
+import {todosReducer, addTodoReducer} from './TodoReducer'
 
 export const rootReducer = combineReducers({
-    todos: loadTodosReducer,
-    showFullTodo: showFullTodo,
+    todos: todosReducer,
     addedTodo: addTodoReducer
 });

@@ -2,31 +2,34 @@ import React from "react";
 import { connect } from "react-redux";
 import Todo from "./Todo";
 
-import { GET_TODOS_REQUEST, GET_TODOS_SUCCESS, SHOW_FULL_TODO_SUCCESS, SHOW_FULL_TODO_REQUEST } from "../reducer/TodoReducer";
+import {
+  GET_TODOS_REQUEST,
+  GET_TODOS_SUCCESS,
+  SHOW_FULL_TODO_SUCCESS,
+  SHOW_FULL_TODO_REQUEST
+} from "../reducer/TodoReducer";
 
-class TodoMainPageContainer extends React.Component {
+class TodosListContainer extends React.Component {
   componentDidMount() {
     this.props.getTodos();
   }
 
-  handleGetFullTodo = (todoID) => {
-    console.log("show full todo for todoID ="+todoID);
-    this.props.showFullTodo(todoID);
-  }
+  setShowFullTodo = (todoID, isShown) => {
+    this.props.setShowFullTodo(todoID, isShown);
+  };
 
   render() {
-    const { todos, showFullTodoID } = this.props.todos;
-
-    console.log(this.props);
+    const { todos } = this.props.todos;
 
     if (todos) {
       const todosTemplate = todos.map(todo => {
-
-        if(todo.id === showFullTodoID){
-          todo.shouldShowFullTodo = true;
-        }
-
-        return <Todo key={todo.id} todo={todo} handleShowFullTodo={this.handleShowFullTodo}></Todo>;
+        return (
+          <Todo
+            key={todo.id}
+            todo={todo}
+            handleSetShowFullTodo={this.setShowFullTodo}
+          ></Todo>
+        );
       });
 
       return todosTemplate;
@@ -38,7 +41,6 @@ class TodoMainPageContainer extends React.Component {
 
 const getTodos = () => {
   return dispatch => {
-
     const todos = [
       {
         id: 1,
@@ -64,8 +66,7 @@ const getTodos = () => {
     ];
 
     dispatch({
-      type: GET_TODOS_REQUEST,
-      areLoading: true
+      type: GET_TODOS_REQUEST
     });
 
     setTimeout(() => {
@@ -80,19 +81,25 @@ const getTodos = () => {
   };
 };
 
-const showFullTodo = todoID => {
-  return dispatch => { 
-    
-    dispatch({type: SHOW_FULL_TODO_REQUEST});
+const setShowFullTodo = (todoID, isShown) => {
+  return (dispatch, getState) => {
 
-    let fullTodo = {
-      
-    }
+    dispatch({ type: SHOW_FULL_TODO_REQUEST });
 
-    setTimeout(() => {
-      dispatch({type: SHOW_FULL_TODO_SUCCESS, payload: todoID})
-    }, 3000);
-  }
+    let todos = getState().todos.todos;
+
+    todos.forEach(todo => {
+
+      // only one todo can be fully shown at the time
+      todo.shouldShowFullTodo = false;
+
+      if (todo.id === todoID) {
+        todo.shouldShowFullTodo = isShown;
+      }
+    });
+
+    dispatch({ type: SHOW_FULL_TODO_SUCCESS, payload: todos });
+  };
 };
 
 const mapStateToProps = store => {
@@ -103,7 +110,7 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    showFullTodo: todoID => dispatch(showFullTodo(todoID)),
+    setShowFullTodo: (todoID, isShown) => dispatch(setShowFullTodo(todoID, isShown)),
     getTodos: () => dispatch(getTodos())
   };
 };
@@ -111,4 +118,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(TodoMainPageContainer);
+)(TodosListContainer);

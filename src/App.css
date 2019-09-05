@@ -15,13 +15,27 @@ p {
   width: 500px;
 }
 
-.todo {
+#breadcrumbs {
   background: #ffffff;
-  width: 450px;
+}
+
+.common {
   padding: 5px;
   margin-bottom: 10px;
 }
 
-.todo-full{
-  border: solid 1px;
+.todo {
+  background: #ffffff;
+}
+
+.todo-title {
+  font-weight: 500;
+}
+
+.todo-full {
+  background: #3ac58b;
+}
+
+.todo-edit {
+  background: #ffffff;
 }

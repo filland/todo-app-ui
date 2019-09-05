@@ -1,13 +1,26 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "./App.css";
-import TodoMainPageContainer from "./component/TodoMainPageContainer";
+import TodosListContainer from "./component/TodosListContainer";
+import BreadcrumbsContainer from "./component/BreadcrumbsContainer";
+import TodoEditContainer from "./component/TodoEditContainer";
 
-function App() {
-  return (
-    <div className='main'>
-      <TodoMainPageContainer></TodoMainPageContainer>
-    </div>
-  );
+class App extends React.Component {
+  todoEdit = ({ match }) => {
+    return <TodoEditContainer todoID={match.params.id}></TodoEditContainer>;
+  };
+
+  render() {
+    return (
+      <Router>
+        <div className="main">
+          <BreadcrumbsContainer />
+          <Route exact path="/" component={TodosListContainer}></Route>
+          <Route path="/todo/:id" component={this.todoEdit}></Route>
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;
