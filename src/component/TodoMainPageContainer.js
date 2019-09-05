@@ -2,21 +2,31 @@ import React from "react";
 import { connect } from "react-redux";
 import Todo from "./Todo";
 
-import { GET_TODOS_REQUEST, GET_TODOS_SUCCESS } from "../reducer/TodoReducer";
+import { GET_TODOS_REQUEST, GET_TODOS_SUCCESS, SHOW_FULL_TODO_SUCCESS, SHOW_FULL_TODO_REQUEST } from "../reducer/TodoReducer";
 
 class TodoMainPageContainer extends React.Component {
   componentDidMount() {
     this.props.getTodos();
   }
 
+  handleGetFullTodo = (todoID) => {
+    console.log("show full todo for todoID ="+todoID);
+    this.props.showFullTodo(todoID);
+  }
+
   render() {
-    const { todos } = this.props.todos;
-    // console.log(todos);
+    const { todos, showFullTodoID } = this.props.todos;
+
     console.log(this.props);
 
     if (todos) {
       const todosTemplate = todos.map(todo => {
-        return <Todo todo={todo}></Todo>;
+
+        if(todo.id === showFullTodoID){
+          todo.shouldShowFullTodo = true;
+        }
+
+        return <Todo key={todo.id} todo={todo} handleShowFullTodo={this.handleShowFullTodo}></Todo>;
       });
 
       return todosTemplate;
@@ -28,13 +38,28 @@ class TodoMainPageContainer extends React.Component {
 
 const getTodos = () => {
   return dispatch => {
-    console.log("getTodos called");
 
     const todos = [
       {
+        id: 1,
         title: "JUST DO IT",
         description: "sode description",
-        isDone: false
+        isDone: false,
+        shouldShowFullTodo: false
+      },
+      {
+        id: 2,
+        title: "JUST DO IT",
+        description: "sode description",
+        isDone: false,
+        shouldShowFullTodo: false
+      },
+      {
+        id: 3,
+        title: "JUST DO IT",
+        description: "sode description",
+        isDone: false,
+        shouldShowFullTodo: false
       }
     ];
 
@@ -55,15 +80,19 @@ const getTodos = () => {
   };
 };
 
-const getFullTodoInfo = todoID => {
-  console.log("get full doto info called");
+const showFullTodo = todoID => {
+  return dispatch => { 
+    
+    dispatch({type: SHOW_FULL_TODO_REQUEST});
 
-  return dispatch => {
-    dispatch({
-      type: GET_TODOS_REQUEST,
-      areLoading: true
-    });
-  };
+    let fullTodo = {
+      
+    }
+
+    setTimeout(() => {
+      dispatch({type: SHOW_FULL_TODO_SUCCESS, payload: todoID})
+    }, 3000);
+  }
 };
 
 const mapStateToProps = store => {
@@ -74,7 +103,7 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getFullTodoInfo: todoID => dispatch(getFullTodoInfo(todoID)),
+    showFullTodo: todoID => dispatch(showFullTodo(todoID)),
     getTodos: () => dispatch(getTodos())
   };
 };

@@ -19,4 +19,9 @@ p {
   background: #ffffff;
   width: 450px;
   padding: 5px;
+  margin-bottom: 10px;
+}
+
+.todo-full{
+  border: solid 1px;
 }
