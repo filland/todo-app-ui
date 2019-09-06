@@ -1,14 +1,12 @@
 import React from "react";
+import TodoEdit from "./TodoEdit";
 
 class TodoEditContainer extends React.Component {
-  todoEditComponent = (todoID) => {
-    return <div className="common todo-edit">editable todo {todoID}</div>;
-  };
 
   render() {
     const { todoID } = this.props;
 
-    return this.todoEditComponent(todoID);
+    return <TodoEdit todoID={todoID}></TodoEdit>;
   }
 }
 

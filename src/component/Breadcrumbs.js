@@ -12,21 +12,21 @@ class Breadcrumbs extends React.Component {
     let template = links.map((link, index) => {
       return (
         <span key={link.id}>
-          <a
+          <Link
             id={link.id}
-            href={link.url}
+            to={link.url}
             onClick={e => {
-            //   e.preventDefault();
+              //   e.preventDefault();
               this.handleBreadcrumbClick(link.id, link.url);
             }}
           >
             {link.text}
-          </a>
+          </Link>
           {links.length - 1 != index ? (
             <this.arrowComponent></this.arrowComponent>
           ) : (
-            ""
-          )}
+              ""
+            )}
         </span>
       );
     });

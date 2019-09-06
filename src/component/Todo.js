@@ -1,5 +1,6 @@
 import React from "react";
 import "../App.css";
+import {Link} from 'react-router-dom';
 
 class Todo extends React.Component {
 
@@ -21,7 +22,7 @@ class Todo extends React.Component {
             Created: <span id="createdDate"></span>
           </p>
           <p>Tags: tag1, tag2, tag3</p>
-          <a href={"/todo/"+todo.id} onClick = {this.handleEditClick}>Edit</a>
+          <Link to={"/todo/"+todo.id} onClick = {this.handleEditClick}>Edit</Link>
         </div>
       );
     } else {

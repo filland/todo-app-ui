@@ -39,3 +39,16 @@ p {
 .todo-edit {
   background: #ffffff;
 }
+
+.common-input {
+  padding: 3px;
+  margin-bottom: 5px;
+}
+
+.input-text {
+
+}
+
+.input-text-label {
+  padding-right: 5px;
+}

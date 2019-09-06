@@ -1,6 +1,7 @@
 TODO:
 
-1
+1. Create components for text, checkbox inputs and button. These components should have two states: view and edit so
+we can easily create edit forms from view when nessecesary.
 
 QUESTIONS:
 
@@ -11,3 +12,7 @@ What I found on the internet that people using conditioning to do this.
 2. How to create breadcrumbs component? When I am using react-router I need to import components that are on the
 page specified in the breadcrumbs (it looks really hard to overcome and definitely not the best way
 to solve this problem).
+
+3. How to stop opening new page when clicking a link ?
+I used to use <a> tag for links. To stop opening new pages I just replaced
+<a> with <Link>
