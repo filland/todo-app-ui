@@ -7,6 +7,8 @@ class Todo extends React.Component {
   handleEditClick = (e) => {
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();
+
+    this.props.handleEditLinkClick(this.props.todo.id);
   }
 
   todoTemplate = () => {

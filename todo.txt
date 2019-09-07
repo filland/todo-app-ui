@@ -3,6 +3,8 @@ TODO:
 1. Create components for text, checkbox inputs and button. These components should have two states: view and edit so
 we can easily create edit forms from view when nessecesary.
 
+2. Add prop types to components.
+
 QUESTIONS:
 
 1. Do I need to create View and Edit components or create generic component that takes

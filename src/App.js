@@ -4,6 +4,7 @@ import "./App.css";
 import TodosListContainer from "./component/TodosListContainer";
 import BreadcrumbsContainer from "./component/BreadcrumbsContainer";
 import TodoEditContainer from "./component/TodoEditContainer";
+import AddTodoContainer from "./component/AddTodoContainer";
 
 class App extends React.Component {
   todoEdit = ({ match }) => {
@@ -15,6 +16,7 @@ class App extends React.Component {
       <Router>
         <div className="main">
           <BreadcrumbsContainer />
+          <Route exact path="/" component={AddTodoContainer}></Route>
           <Route exact path="/" component={TodosListContainer}></Route>
           <Route path="/todo/:id" component={this.todoEdit}></Route>
         </div>

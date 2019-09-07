@@ -6,8 +6,10 @@ import {
   GET_TODOS_REQUEST,
   GET_TODOS_SUCCESS,
   SHOW_FULL_TODO_SUCCESS,
-  SHOW_FULL_TODO_REQUEST
+  SHOW_FULL_TODO_REQUEST,
+  SET_TODO_ID_FOR_UPDATE
 } from "../reducer/TodoReducer";
+import AddTodo from "./AddTodo";
 
 class TodosListContainer extends React.Component {
   componentDidMount() {
@@ -18,19 +20,27 @@ class TodosListContainer extends React.Component {
     this.props.setShowFullTodo(todoID, isShown);
   };
 
+  handleTodoEditLinkClick = (todoID) => {
+      this.props.setTodoIDForEdit(todoID);
+  };
+
   render() {
     const { todos } = this.props.todos;
 
     if (todos) {
-      const todosTemplate = todos.map(todo => {
+      const todosTemplate = todos.map((todo, index) => {
         return (
           <Todo
             key={todo.id}
             todo={todo}
             handleSetShowFullTodo={this.setShowFullTodo}
+            handleEditLinkClick={this.handleTodoEditLinkClick}
           ></Todo>
         );
       });
+
+      console.log(todosTemplate);
+      
 
       return todosTemplate;
     } else {
@@ -83,13 +93,11 @@ const getTodos = () => {
 
 const setShowFullTodo = (todoID, isShown) => {
   return (dispatch, getState) => {
-
     dispatch({ type: SHOW_FULL_TODO_REQUEST });
 
     let todos = getState().todos.todos;
 
     todos.forEach(todo => {
-
       // only one todo can be fully shown at the time
       todo.shouldShowFullTodo = false;
 
@@ -102,6 +110,15 @@ const setShowFullTodo = (todoID, isShown) => {
   };
 };
 
+const setTodoIDForEdit = (todoID) => {
+  return (dispatch) => {
+    dispatch({
+      type: SET_TODO_ID_FOR_UPDATE,
+      payload: todoID
+    })
+  }
+}
+
 const mapStateToProps = store => {
   return {
     todos: store.todos
@@ -110,8 +127,10 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setShowFullTodo: (todoID, isShown) => dispatch(setShowFullTodo(todoID, isShown)),
-    getTodos: () => dispatch(getTodos())
+    setShowFullTodo: (todoID, isShown) =>
+      dispatch(setShowFullTodo(todoID, isShown)),
+    getTodos: () => dispatch(getTodos()),
+    setTodoIDForEdit: (todoID) => dispatch(setTodoIDForEdit(todoID))
   };
 };
 
