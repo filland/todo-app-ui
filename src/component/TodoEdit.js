@@ -9,20 +9,28 @@ class TodoEdit extends React.Component {
   constructor() {
     super();
     // for storing edited todo to send it up when Save button clicked
-    this.editedTodo = {};
+    this.state = {
+      todo: {}
+    };
   }
 
-  componentDidMount() {
-    this.editedTodo = Object.assign({}, this.props.todo);
+  componentDidUpdate(){
+    console.log("componentDidUpdate");
+    
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState){
+    console.log("getDerivedStateFromProps");
+    return nextProps;
   }
 
   handleTitleChange = newTitle => {
     this.editedTodo = Object.assign({}, this.editedTodo, { title: newTitle });
   };
 
-  handleDescChange = newDesc => {
+  handleDescChange = desc => {
     this.editedTodo = Object.assign({}, this.editedTodo, {
-      description: newDesc
+      description: desc
     });
   };
 

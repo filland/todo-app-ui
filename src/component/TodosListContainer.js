@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Todo from "./Todo";
+import TodoService from "../service/TodoService";
 
 import {
   GET_TODOS_REQUEST,
@@ -9,7 +10,6 @@ import {
   SHOW_FULL_TODO_REQUEST,
   SET_TODO_ID_FOR_UPDATE
 } from "../reducer/TodoReducer";
-import AddTodo from "./AddTodo";
 
 class TodosListContainer extends React.Component {
   componentDidMount() {
@@ -39,8 +39,7 @@ class TodosListContainer extends React.Component {
         );
       });
 
-      console.log(todosTemplate);
-      
+      console.log(todosTemplate);      
 
       return todosTemplate;
     } else {
@@ -49,31 +48,10 @@ class TodosListContainer extends React.Component {
   }
 }
 
-const getTodos = () => {
+const fetchTodos = () => {
   return dispatch => {
-    const todos = [
-      {
-        id: 1,
-        title: "JUST DO IT",
-        description: "sode description",
-        isDone: false,
-        shouldShowFullTodo: false
-      },
-      {
-        id: 2,
-        title: "JUST DO IT",
-        description: "sode description",
-        isDone: false,
-        shouldShowFullTodo: false
-      },
-      {
-        id: 3,
-        title: "JUST DO IT",
-        description: "sode description",
-        isDone: false,
-        shouldShowFullTodo: false
-      }
-    ];
+    
+    const todos = TodoService.fetchTodos();
 
     dispatch({
       type: GET_TODOS_REQUEST
@@ -129,7 +107,7 @@ const mapDispatchToProps = dispatch => {
   return {
     setShowFullTodo: (todoID, isShown) =>
       dispatch(setShowFullTodo(todoID, isShown)),
-    getTodos: () => dispatch(getTodos()),
+    getTodos: () => dispatch(fetchTodos()),
     setTodoIDForEdit: (todoID) => dispatch(setTodoIDForEdit(todoID))
   };
 };
