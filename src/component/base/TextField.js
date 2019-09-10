@@ -3,16 +3,10 @@ import "../../App.css";
 
 class TextField extends React.Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       value: props.settings.value
     };
-  }
-
-  componentWillReceiveProps() {
-    this.setState({
-      value: this.props.settings.value
-    });
   }
 
   handleTextFieldChange = e => {

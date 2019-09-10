@@ -16,6 +16,12 @@ class TodosListContainer extends React.Component {
     this.props.getTodos();
   }
 
+  componentDidUpdate(){
+    if(this.props.todos.length == 0){
+      this.props.getTodos();
+    }
+  }
+
   setShowFullTodo = (todoID, isShown) => {
     this.props.setShowFullTodo(todoID, isShown);
   };

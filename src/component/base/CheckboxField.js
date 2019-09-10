@@ -2,17 +2,11 @@ import React from "react";
 import "../../App.css";
 
 class CheckboxField extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      checked: false
+      checked: props.settings.value
     };
-  }
-
-  componentWillReceiveProps() {
-    this.setState({
-      checked: this.props.settings.value
-    });
   }
 
   handleCheck = e => {

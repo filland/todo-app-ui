@@ -6,47 +6,49 @@ import Button from "./base/Button";
 import "../App.css";
 
 class TodoEdit extends React.Component {
-  constructor() {
-    super();
-    // for storing edited todo to send it up when Save button clicked
+  constructor(props) {
+    super(props);
     this.state = {
-      todo: {}
+      todo: props.todo,
+      newTodo: Object.assign({}, props.todo)
     };
   }
 
   componentDidUpdate(){
     console.log("componentDidUpdate");
-    
-  }
-
-  static getDerivedStateFromProps(nextProps, prevState){
-    console.log("getDerivedStateFromProps");
-    return nextProps;
   }
 
   handleTitleChange = newTitle => {
-    this.editedTodo = Object.assign({}, this.editedTodo, { title: newTitle });
-  };
-
-  handleDescChange = desc => {
-    this.editedTodo = Object.assign({}, this.editedTodo, {
-      description: desc
+    this.setState({
+      newTodo: Object.assign({}, this.state.newTodo, { title: newTitle })
     });
   };
 
+  handleDescChange = desc => {
+    this.setState({
+        newTodo: Object.assign({}, this.state.newTodo, {description: desc})
+      });
+  };
+
+  handleIsDoneChange = isDone => {
+    this.setState({
+      newTodo: Object.assign({}, this.state.newTodo, {isDone: isDone})
+    });
+  }
+
   saveTodo = () => {
-    // this.props.updateTodo(this.editedTodo);
+    this.props.updateTodo(this.state.newTodo);
   };
 
   render() {
     const { todo } = this.props;
 
-    const todoIDFieldSettings = {
-      id: "todo-id" + todo.id,
-      label: "Todo ID",
-      value: todo.id,
-      isView: true
-    };
+    // const todoIDFieldSettings = {
+    //   id: "todo-id" + todo.id,
+    //   label: "Todo ID",
+    //   value: todo.id,
+    //   isView: true
+    // };
 
     const titleFieldSettings = {
       id: "todo-title" + todo.id,
@@ -69,7 +71,7 @@ class TodoEdit extends React.Component {
       label: "Todo is done",
       value: todo.isDone,
       isView: true,
-      handler: () => {}
+      handler: this.handleIsDoneChange
     };
 
     const saveButtonSettings = {
@@ -81,7 +83,7 @@ class TodoEdit extends React.Component {
 
     return (
       <div className="common todo-edit">
-        <TextField settings={todoIDFieldSettings}></TextField>
+        {/* <TextField settings={todoIDFieldSettings}></TextField> */}
         <TextField settings={titleFieldSettings}></TextField>
         <TextField settings={descFieldSettings}></TextField>
         <CheckboxField settings={isDoneFieldSettings}></CheckboxField>

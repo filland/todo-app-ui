@@ -7,6 +7,10 @@ p {
   padding: 0;
 }
 
+.error {
+  background: #e2a7aa;
+}
+
 .main {
   margin-top: 10px;
   margin-left: auto;

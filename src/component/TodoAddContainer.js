@@ -1,16 +1,17 @@
 import React from "react";
-import AddTodo from "./AddTodo";
+import TodoAdd from "./TodoAdd";
 import "../App.css";
 import { connect } from "react-redux";
 import {ADD_TODO_REQUEST, ADD_TODO_SUCCESS} from '../reducer/TodoReducer'
+import TodoService from "../service/TodoService";
 
-class AddTodoContainer extends React.Component {
+class TodoAddContainer extends React.Component {
   addTodo = (title, desc) => {
       this.props.addTodo(title, desc);
   };
 
   render() {
-    return <AddTodo addTodo={this.addTodo}></AddTodo>;
+    return <TodoAdd addTodo={this.addTodo}></TodoAdd>;
   }
 }
 
@@ -26,7 +27,11 @@ const addTodo = (title, desc) => {
             description: desc,
             isDone: false,
             shouldShowFullTodo: false
-        }
+        };
+
+        const todoID = TodoService.addTodo(todo);
+
+        todo.id = todoID;
 
         dispatch({
             type: ADD_TODO_SUCCESS,
@@ -50,4 +55,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AddTodoContainer);
+)(TodoAddContainer);

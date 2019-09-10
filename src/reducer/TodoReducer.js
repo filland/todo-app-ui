@@ -21,7 +21,6 @@ export const UPDATE_TODO_REQUEST = "UPDATE_TODO_REQUEST";
 const initialLoadTodosState = {
   todos: [],
   areLoading: false,
-  editTodoID: -1,
   error: null
 };
 

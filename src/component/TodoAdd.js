@@ -1,9 +1,9 @@
 import React from "react";
 import "../App.css";
 
-class AddTodo extends React.Component {
-  constructor() {
-    super();
+class TodoAdd extends React.Component {
+  constructor(props) {
+    super(props);
 
     this.state = {
       titile: "",
@@ -58,4 +58,4 @@ class AddTodo extends React.Component {
   }
 }
 
-export default AddTodo
+export default TodoAdd
