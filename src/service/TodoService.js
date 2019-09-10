@@ -35,6 +35,9 @@ class TodoServiceImp {
   };
 
   fetchTodos = () => {
+    this.todos.sort(function(a, b) {
+      return a.id > b.id ? -1 : b.id > a.id ? 1 : 0;
+    });
     return this.todos.slice();
   };
 
@@ -58,9 +61,6 @@ class TodoServiceImp {
   };
 
   findLatestID = () => {
-    this.todos.sort(function(a, b) {
-      return a.id > b.id ? 1 : b.id > a.id ? -1 : 0;
-    });
     let newID = this.todos[this.todos.length - 1].id + 1;
     return newID;
   };
