@@ -1,10 +1,14 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import TodosListContainer from "./component/TodosListContainer";
-import BreadcrumbsContainer from "./component/BreadcrumbsContainer";
+// import BreadcrumbsContainer from "./component/BreadcrumbsContainer";
 import TodoEditContainer from "./component/TodoEditContainer";
 import TodoAddContainer from "./component/TodoAddContainer";
+import PrivateRoute from "./component/base/PrivateRoute";
+import Navbar from "./component/Navbar";
+import Login from "./component/Login";
+import Logout from "./component/Logout";
 
 class App extends React.Component {
   todoEdit = ({ match }) => {
@@ -15,10 +19,24 @@ class App extends React.Component {
     return (
       <Router>
         <div className="main">
-          <BreadcrumbsContainer />
-          <Route exact path="/" component={TodoAddContainer}></Route>
-          <Route exact path="/" component={TodosListContainer}></Route>
-          <Route path="/todo/:id" component={this.todoEdit}></Route>
+          <PrivateRoute component={Navbar}></PrivateRoute>
+          <Route exact path="/login" component={Login}></Route>
+          <PrivateRoute path="/logout" component={Logout}></PrivateRoute>
+          {/* <BreadcrumbsContainer /> */}
+          <PrivateRoute
+            exact
+            path="/"
+            component={TodoAddContainer}
+          ></PrivateRoute>
+          <PrivateRoute
+            exact
+            path="/"
+            component={TodosListContainer}
+          ></PrivateRoute>
+          <PrivateRoute
+            path="/todo/:id"
+            component={this.todoEdit}
+          ></PrivateRoute>
         </div>
       </Router>
     );

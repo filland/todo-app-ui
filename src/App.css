@@ -15,32 +15,35 @@ p {
   margin-top: 10px;
   margin-left: auto;
   margin-right: auto;
-  padding: 10px;
+  /* padding: 10px; */
   width: 500px;
 }
 
-#breadcrumbs {
-  background: #ffffff;
+.navbar {
 }
 
-.green-button {
-  background-color: #4caf50; /* Green */
-  border: none;
-  color: white;
-  padding: 4px 8px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
+.navbar-link {
+  padding: 3px;
+  margin-right: 5px;
+}
+
+#breadcrumbs {
+}
+
+
+.common-menu {
+  background: #ffffff;
+  padding: 7px;
+  margin-bottom: 12px;
 }
 
 .common {
   padding: 7px;
-  margin-bottom: 10px;
+  margin-bottom: 7px;
+  background: #ffffff;
 }
 
 .todo {
-  background: #ffffff;
 }
 
 .todo-title {
@@ -72,4 +75,15 @@ p {
 }
 
 .text-input-value {
+}
+
+.green-button {
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 4px 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }

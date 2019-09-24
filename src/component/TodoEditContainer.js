@@ -50,6 +50,7 @@ const updateTodo = todo => {
       type: UPDATE_TODO_REQUEST,
       payload: {todo: todo}
     });
+    
   };
 };
 
