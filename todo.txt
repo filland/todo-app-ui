@@ -1,11 +1,17 @@
 TODO:
 
+
+0. Preserve the state between page reloadings. See - 
+https://egghead.io/lessons/javascript-redux-persisting-the-state-to-the-local-storage
+
 1. Create components for text, checkbox inputs and button. These components should have two states: view and edit so
 we can easily create edit forms from view when nessecesary.
 
 2. Add prop types to components.
 
 3. Create two tabs: done and not done TODOs. Make checkbox of todo on the main page editable.
+
+4. Implement pagination for todosList 
 
 QUESTIONS:
 
@@ -20,3 +26,6 @@ to solve this problem).
 3. How to stop opening new page when clicking a link ?
 I used to use <a> tag for links. To stop opening new pages I just replaced
 <a> with <Link>
+
+4. Is it possible to keep all the code for the interaction with REST API in one separate file ?
+If you use callbacks then YES.

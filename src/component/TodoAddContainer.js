@@ -2,12 +2,12 @@ import React from "react";
 import TodoAdd from "./TodoAdd";
 import "../App.css";
 import { connect } from "react-redux";
-import {ADD_TODO_REQUEST, ADD_TODO_SUCCESS} from '../reducer/TodoReducer'
+import { ADD_TODO_REQUEST, ADD_TODO_SUCCESS } from "../reducer/TodoReducer";
 import TodoService from "../service/TodoService";
 
 class TodoAddContainer extends React.Component {
   addTodo = (title, desc) => {
-      this.props.addTodo(title, desc);
+    this.props.addTodo(title, desc);
   };
 
   render() {
@@ -16,34 +16,30 @@ class TodoAddContainer extends React.Component {
 }
 
 const addTodo = (title, desc) => {
-    return dispatch => {
-        dispatch({
-            type: ADD_TODO_REQUEST
-        })
+  return dispatch => {
+    dispatch({
+      type: ADD_TODO_REQUEST
+    });
 
-        let todo = {
-            id: null,
-            title: title,
-            description: desc,
-            isDone: false,
-            shouldShowFullTodo: false
-        };
+    let todo = {
+      id: null,
+      title: title,
+      description: desc,
+      done: false,
+      shouldShowFullTodo: false
+    };
 
-        const todoID = TodoService.addTodo(todo);
-
-        todo.id = todoID;
-
-        dispatch({
-            type: ADD_TODO_SUCCESS,
-            payload: todo
-        })
-    }
-}
+    TodoService.addTodo(todo, todo => {
+      dispatch({
+        type: ADD_TODO_SUCCESS,
+        payload: todo
+      });
+    });
+  };
+};
 
 const mapStateToProps = store => {
-  return {
-      
-  };
+  return {};
 };
 
 const mapDispatchToProps = dispatch => {

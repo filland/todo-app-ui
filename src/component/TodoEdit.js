@@ -14,10 +14,6 @@ class TodoEdit extends React.Component {
     };
   }
 
-  componentDidUpdate(){
-    console.log("componentDidUpdate");
-  }
-
   handleTitleChange = newTitle => {
     this.setState({
       newTodo: Object.assign({}, this.state.newTodo, { title: newTitle })
@@ -30,9 +26,9 @@ class TodoEdit extends React.Component {
       });
   };
 
-  handleIsDoneChange = isDone => {
+  handleDoneChange = done => {
     this.setState({
-      newTodo: Object.assign({}, this.state.newTodo, {isDone: isDone})
+      newTodo: Object.assign({}, this.state.newTodo, {done: done})
     });
   }
 
@@ -66,12 +62,12 @@ class TodoEdit extends React.Component {
       handler: this.handleDescChange
     };
 
-    const isDoneFieldSettings = {
+    const doneFieldSettings = {
       id: "todo-is-done" + todo.id,
       label: "Todo is done",
-      value: todo.isDone,
+      value: todo.done,
       isView: true,
-      handler: this.handleIsDoneChange
+      handler: this.handleDoneChange
     };
 
     const saveButtonSettings = {
@@ -86,7 +82,7 @@ class TodoEdit extends React.Component {
         {/* <TextField settings={todoIDFieldSettings}></TextField> */}
         <TextField settings={titleFieldSettings}></TextField>
         <TextField settings={descFieldSettings}></TextField>
-        <CheckboxField settings={isDoneFieldSettings}></CheckboxField>
+        <CheckboxField settings={doneFieldSettings}></CheckboxField>
         <Button settings={saveButtonSettings}></Button>
       </div>
     );

@@ -35,7 +35,7 @@ class TodoAdd extends React.Component {
             Title:
             <input
               type="text"
-              value={this.state.title}
+              defaultValue={this.state.title}
               onChange={this.todoTitleChange}
             ></input>
           </label>
@@ -45,7 +45,7 @@ class TodoAdd extends React.Component {
             Description:
             <input
               type="text"
-              value={this.state.description}
+              defaultValue={this.state.description}
               onChange={this.todoDescriptionChange}
             ></input>
           </label>

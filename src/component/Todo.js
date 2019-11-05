@@ -1,6 +1,7 @@
 import React from "react";
 import "../App.css";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 class Todo extends React.Component {
   handleEditClick = e => {
@@ -22,7 +23,7 @@ class Todo extends React.Component {
         >
           <p className="todo-title">{todo.title}</p>
           <p>{todo.description}</p>
-          <p>This todo is done: {todo.isDone ? "yes" : "no"}</p>
+          <p>This todo is done: {todo.done ? "yes" : "no"}</p>
           <p>
             Created: <span id="createdDate"></span>
           </p>
@@ -43,7 +44,7 @@ class Todo extends React.Component {
         >
           <p className="todo-title">{todo.title}</p>
           <p>{todo.description}</p>
-          <p>This todo is done: {todo.isDone ? "yes" : "no"}</p>
+          <p>This todo is done: {todo.done ? "yes" : "no"}</p>
         </div>
       );
     }
@@ -52,6 +53,12 @@ class Todo extends React.Component {
   render() {
     return this.todoTemplate();
   }
+}
+
+Todo.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  done: PropTypes.bool.isRequired
 }
 
 export default Todo;

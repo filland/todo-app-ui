@@ -17,10 +17,12 @@ export const SHOW_FULL_TODO_FAIL = "SHOW_FULL_TODO_FAIL";
 export const SET_TODO_ID_FOR_UPDATE = "SET_TODO_ID_FOR_UPDATE";
 
 export const UPDATE_TODO_REQUEST = "UPDATE_TODO_REQUEST";
+export const UPDATE_TODO_SUCCESS = "UPDATE_TODO_SUCCESS";
 
 const initialLoadTodosState = {
   todos: [],
   areLoading: false,
+  isUpdatingTodo: false,
   error: null
 };
 
@@ -32,10 +34,10 @@ export function todosReducer(state = initialLoadTodosState, action) {
       let newState = Object.assign({}, state);
       let todos = newState.todos;
 
+      let newTodo = action.payload;
       // find next id
-      action.payload.id = todos.length + 1;
-
-      todos.unshift(action.payload);
+      newTodo.id = todos.length + 1;
+      todos.unshift(newTodo);
 
       return Object.assign({}, state, {
         isAdding: false,
@@ -92,14 +94,19 @@ export function todosReducer(state = initialLoadTodosState, action) {
     case SET_TODO_ID_FOR_UPDATE:
       return Object.assign({}, state, { editTodoID: action.payload });
     case UPDATE_TODO_REQUEST:
-      let newState1 = Object.assign({}, state);
+      return Object.assign({}, state, { isUpdating: true });
+    case UPDATE_TODO_SUCCESS:
+      let stateAfterSuccessTodoUpdate = Object.assign({}, state);
 
-      newState1.todos.forEach(todo => {
+      stateAfterSuccessTodoUpdate.todos.forEach(todo => {
         if (todo.id === action.payload.todo.id) {
           todo = action.payload.todo;
         }
       });
-      return newState1;
+
+      stateAfterSuccessTodoUpdate.isUpdating = false;
+
+      return stateAfterSuccessTodoUpdate;
     default:
       console.log("returning default todos");
 

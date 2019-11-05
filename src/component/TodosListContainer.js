@@ -16,8 +16,8 @@ class TodosListContainer extends React.Component {
     this.props.getTodos();
   }
 
-  componentDidUpdate(){
-    if(this.props.todos.length == 0){
+  componentDidUpdate() {
+    if (this.props.todos.length === 0) {
       this.props.getTodos();
     }
   }
@@ -26,8 +26,8 @@ class TodosListContainer extends React.Component {
     this.props.setShowFullTodo(todoID, isShown);
   };
 
-  handleTodoEditLinkClick = (todoID) => {
-      this.props.setTodoIDForEdit(todoID);
+  handleTodoEditLinkClick = todoID => {
+    this.props.setTodoIDForEdit(todoID);
   };
 
   render() {
@@ -45,7 +45,7 @@ class TodosListContainer extends React.Component {
         );
       });
 
-      console.log(todosTemplate);      
+      // console.log(todosTemplate);
 
       return todosTemplate;
     } else {
@@ -56,21 +56,16 @@ class TodosListContainer extends React.Component {
 
 const fetchTodos = () => {
   return dispatch => {
-    
-    const todos = TodoService.fetchTodos();
 
     dispatch({
       type: GET_TODOS_REQUEST
     });
 
-    setTimeout(() => {
-      dispatch(
-        {
-          type: GET_TODOS_SUCCESS,
-          payload: todos
-        },
-        3000
-      );
+    TodoService.fetchTodos(1,40, todos => {
+      dispatch({
+        type: GET_TODOS_SUCCESS,
+        payload: todos
+      });
     });
   };
 };
@@ -94,14 +89,14 @@ const setShowFullTodo = (todoID, isShown) => {
   };
 };
 
-const setTodoIDForEdit = (todoID) => {
-  return (dispatch) => {
+const setTodoIDForEdit = todoID => {
+  return dispatch => {
     dispatch({
       type: SET_TODO_ID_FOR_UPDATE,
       payload: todoID
-    })
-  }
-}
+    });
+  };
+};
 
 const mapStateToProps = store => {
   return {
@@ -114,7 +109,7 @@ const mapDispatchToProps = dispatch => {
     setShowFullTodo: (todoID, isShown) =>
       dispatch(setShowFullTodo(todoID, isShown)),
     getTodos: () => dispatch(fetchTodos()),
-    setTodoIDForEdit: (todoID) => dispatch(setTodoIDForEdit(todoID))
+    setTodoIDForEdit: todoID => dispatch(setTodoIDForEdit(todoID))
   };
 };
 

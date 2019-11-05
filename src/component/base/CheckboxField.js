@@ -15,7 +15,8 @@ class CheckboxField extends React.Component {
         checked: !this.state.checked
       },
       () => {
-        this.props.settings.handler(this.state.checked);
+        let flag = this.state.checked;
+        this.props.settings.handler(flag);
       }
     );
   };
