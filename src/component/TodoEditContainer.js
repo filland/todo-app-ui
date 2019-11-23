@@ -7,45 +7,34 @@ import {
   UPDATE_TODO_REQUEST,
   UPDATE_TODO_SUCCESS
 } from "../reducer/TodoReducer";
+import Loading from "./Loading";
 
 class TodoEditContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       todo: null,
-      todoID: props.match.params.id
+      todoID: props.match.params.id,
+      loading: true
     };
   }
 
   componentDidMount() {
     TodoService.fetchOneTodo(this.state.todoID, todo => {
       this.setState({
-        todo: todo
+        todo: todo,
+        loading: false
       });
     });
   }
 
-  // fetchTodo = () => {
-  //   const { todoID } = this.state;
-  //   const apiRootUrl = "http://localhost:8080";
-  //   const url = apiRootUrl + `/todos/${todoID}`;
-  //   fetch(url)
-  //     .then(function(response) {
-  //       return response.text();
-  //     })
-  //     .then(json => {
-  //       console.log(json);
-
-  //       let todo = JSON.parse(json);
-  //       this.setState({
-  //         todo: todo
-  //       });
-  //     });
-  // };
-
   render() {
     const { updateTodo } = this.props;
     const { todo, todoID } = this.state;
+
+    if(this.state.loading == true) {
+      return <Loading componentName="todo"></Loading>
+    }
 
     if (todo) {
       return <TodoEdit todo={todo} updateTodo={updateTodo} />;

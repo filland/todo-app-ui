@@ -1,32 +1,6 @@
-const apiRootUrl = "http://localhost:8080";
+const apiRootUrl = "http://localhost:8080/api/v1";
 
 class TodoServiceImp {
-  constructor() {
-    this.todos = [
-      {
-        id: 1,
-        title: "JUST DO IT",
-        description: "sode description",
-        isDone: false,
-        shouldShowFullTodo: false
-      },
-      {
-        id: 3,
-        title: "JUST DO IT",
-        description: "sode description",
-        isDone: false,
-        shouldShowFullTodo: false
-      },
-      {
-        id: 2,
-        title: "JUST DO IT",
-        description: "sode description",
-        isDone: false,
-        shouldShowFullTodo: false
-      }
-    ];
-  }
-
   addTodo = (todo, addTodoCallback) => {
     const url = apiRootUrl + "/todos";
     fetch(url, {
@@ -43,15 +17,10 @@ class TodoServiceImp {
         todo.id = json;
         addTodoCallback(todo);
       });
-
-    // const newID = this.findLatestID();
-    // todo.id = newID;
-    // this.todos.push(todo);
-    // return newID;
   };
 
   fetchTodos = (page, limit, fetchTodosCallback) => {
-    const url =apiRootUrl + `/todos/?page=${page}&limit=${limit}`;
+    const url = apiRootUrl + `/todos/?page=${page}&limit=${limit}`;
     fetch(url)
       .then(function(response) {
         return response.text();
@@ -67,7 +36,7 @@ class TodoServiceImp {
       });
   };
 
-  fetchOneTodo = (todoID, fetchOneTodoCallback) =>{
+  fetchOneTodo = (todoID, fetchOneTodoCallback) => {
     const url = apiRootUrl + `/todos/${todoID}`;
     fetch(url)
       .then(function(response) {
@@ -76,22 +45,13 @@ class TodoServiceImp {
       .then(json => {
         // console.log(json);
         let todo = JSON.parse(json);
-        fetchOneTodoCallback(todo);
+        setInterval(() => {
+          fetchOneTodoCallback(todo);
+        }, 500);
       });
-  }
-
-  // fetchOneTodoLocal = todoID => {
-  //   let result = null;
-  //   this.todos.forEach(todo => {
-  //     if (todo.id == todoID) {
-  //       result = todo;
-  //     }
-  //   });
-  //   return result;
-  // };
+  };
 
   updateTodo = (newTodo, updateTodoCallback) => {
-
     const url = apiRootUrl + `/todos`;
     fetch(url, {
       method: "PUT",
@@ -106,18 +66,6 @@ class TodoServiceImp {
       .then(function(updatedTodo) {
         updateTodoCallback(updatedTodo);
       });
-
-    // this.todos = this.todos.map(todo => {
-    //   if (todo.id == updatedTodo.id) {
-    //     todo = updatedTodo;
-    //   }
-    //   return todo;
-    // });
-  };
-
-  findLatestID = () => {
-    let newID = this.todos[this.todos.length - 1].id + 1;
-    return newID;
   };
 }
 

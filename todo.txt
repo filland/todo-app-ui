@@ -13,6 +13,8 @@ we can easily create edit forms from view when nessecesary.
 
 4. Implement pagination for todosList 
 
+5. Use storybook.js.org ? (I believe that reportportal use this framework)
+
 QUESTIONS:
 
 1. Do I need to create View and Edit components or create generic component that takes

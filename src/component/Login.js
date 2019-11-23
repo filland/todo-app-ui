@@ -1,7 +1,7 @@
 import React from "react";
 import "../App.css";
 import {
-  BrowserRouter as 
+  // BrowserRouter
   // Router,
   // Route,
   // Link,

@@ -8,5 +8,4 @@ function Logout() {
   return <Redirect to="/"></Redirect>;
 }
 
-
 export default Logout;
