@@ -1,5 +1,6 @@
-TODO:
+Current: 7. Add functionality for deleting todos (soft delete).
 
+TODO: 
 
 0. Preserve the state between page reloadings. See - 
 https://egghead.io/lessons/javascript-redux-persisting-the-state-to-the-local-storage
@@ -14,6 +15,10 @@ we can easily create edit forms from view when nessecesary.
 4. Implement pagination for todosList 
 
 5. Use storybook.js.org ? (I believe that reportportal use this framework)
+
+6. Replace basic authentication with OAuth authentication in the AuthService.js
+
+7. Add functionality for deleting todos (soft delete).
 
 QUESTIONS:
 

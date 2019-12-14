@@ -93,3 +93,7 @@ p {
 .green-button:hover {
   background-color: #149b4c; /* Green */
 }
+
+.link {
+  margin: 3px;
+}

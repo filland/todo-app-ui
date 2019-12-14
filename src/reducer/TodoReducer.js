@@ -19,6 +19,9 @@ export const SET_TODO_ID_FOR_UPDATE = "SET_TODO_ID_FOR_UPDATE";
 export const UPDATE_TODO_REQUEST = "UPDATE_TODO_REQUEST";
 export const UPDATE_TODO_SUCCESS = "UPDATE_TODO_SUCCESS";
 
+export const DELETE_TODO_REQUEST = "DELETE_TODO_REQUEST";
+export const DELETE_TODO_SUCCESS = "DELETE_TODO_SUCCESS";
+
 const initialLoadTodosState = {
   todos: [],
   areLoading: false,
@@ -97,16 +100,24 @@ export function todosReducer(state = initialLoadTodosState, action) {
       return Object.assign({}, state, { isUpdating: true });
     case UPDATE_TODO_SUCCESS:
       let stateAfterSuccessTodoUpdate = Object.assign({}, state);
-
       stateAfterSuccessTodoUpdate.todos.forEach(todo => {
         if (todo.id === action.payload.todo.id) {
           todo = action.payload.todo;
         }
       });
-
       stateAfterSuccessTodoUpdate.isUpdating = false;
-
       return stateAfterSuccessTodoUpdate;
+    case DELETE_TODO_REQUEST:
+        let newState3 = Object.assign({}, state);
+        return newState3;
+    case DELETE_TODO_SUCCESS:
+      let newState4 = Object.assign({}, state);
+      newState4.todos.forEach(t => {
+        if (t.id === action.payload) {
+          t.active = false;
+        }
+      });
+      return newState4;
     default:
       console.log("returning default todos");
 

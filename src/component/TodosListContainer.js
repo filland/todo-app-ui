@@ -8,7 +8,9 @@ import {
   GET_TODOS_SUCCESS,
   SHOW_FULL_TODO_SUCCESS,
   SHOW_FULL_TODO_REQUEST,
-  SET_TODO_ID_FOR_UPDATE
+  SET_TODO_ID_FOR_UPDATE,
+  DELETE_TODO_REQUEST,
+  DELETE_TODO_SUCCESS
 } from "../reducer/TodoReducer";
 
 class TodosListContainer extends React.Component {
@@ -30,20 +32,27 @@ class TodosListContainer extends React.Component {
     this.props.setTodoIDForEdit(todoID);
   };
 
+  handleDeleteTodoLinkClick = todoID => {
+    this.props.deleteTodo(todoID);
+  };
+
   render() {
     const { todos } = this.props.todos;
 
     if (todos) {
-      const todosTemplate = todos.map((todo, index) => {
-        return (
-          <Todo
-            key={todo.id}
-            todo={todo}
-            handleSetShowFullTodo={this.setShowFullTodo}
-            handleEditLinkClick={this.handleTodoEditLinkClick}
-          ></Todo>
-        );
-      });
+      const todosTemplate = todos
+        .filter(todo => todo.active === true)
+        .map((todo, index) => {
+          return (
+            <Todo
+              key={todo.id}
+              todo={todo}
+              handleSetShowFullTodo={this.setShowFullTodo}
+              handleEditLinkClick={this.handleTodoEditLinkClick}
+              handleDeleteTodoLinkClick={this.handleDeleteTodoLinkClick}
+            ></Todo>
+          );
+        });
 
       // console.log(todosTemplate);
 
@@ -56,12 +65,11 @@ class TodosListContainer extends React.Component {
 
 const fetchTodos = () => {
   return dispatch => {
-
     dispatch({
       type: GET_TODOS_REQUEST
     });
 
-    TodoService.fetchTodos(1,40, todos => {
+    TodoService.fetchTodos(1, 40, todos => {
       dispatch({
         type: GET_TODOS_SUCCESS,
         payload: todos
@@ -98,6 +106,16 @@ const setTodoIDForEdit = todoID => {
   };
 };
 
+const deleteTodo = todoID => {
+  return dispatch => {
+    dispatch({ type: DELETE_TODO_REQUEST });
+
+    TodoService.deleteTodo(todoID, () => {
+      dispatch({ type: DELETE_TODO_SUCCESS, payload: todoID });
+    });
+  };
+};
+
 const mapStateToProps = store => {
   return {
     todos: store.todos
@@ -109,11 +127,9 @@ const mapDispatchToProps = dispatch => {
     setShowFullTodo: (todoID, isShown) =>
       dispatch(setShowFullTodo(todoID, isShown)),
     getTodos: () => dispatch(fetchTodos()),
-    setTodoIDForEdit: todoID => dispatch(setTodoIDForEdit(todoID))
+    setTodoIDForEdit: todoID => dispatch(setTodoIDForEdit(todoID)),
+    deleteTodo: todoID => dispatch(deleteTodo(todoID))
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TodosListContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(TodosListContainer);

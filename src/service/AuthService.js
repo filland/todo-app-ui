@@ -1,19 +1,57 @@
-const key = "authenticated";
+import { ROOT_URL, API_ROOT_URL, BASIC_AUTH_CREDS } from "./Constants";
+
+const authenticated = "authenticated";
+
 const AuthService = {
   login: (username, password) => {
-    const par1 = localStorage.getItem(key) === null;
-    const par2 = localStorage.getItem(key) === "false";
+    console.log("not implemented.");
+  },
+  /* This method is a kind of stub for authenticating using 
+    regular form with basic http authentication.
+    User is authenticated when server returned the todo with the id = 1
+    and the json in the response contains id and title
+    this should be replaces with OAuth authentication !
+  */
+  login_basic_auth: (username, password) => {
+    const loginPath = API_ROOT_URL + "/todos/1";
+    const loginAndPassInBase64 = btoa(username + ":" + password);
+    const basicLoginAndPassInBase64 = "Basic " + loginAndPassInBase64;
+
+    fetch(loginPath, {
+      method: "GET",
+      headers: {
+        Authorization: basicLoginAndPassInBase64
+      }
+    })
+      .then(response => {
+        return response.text();
+      })
+      .then(data => {
+        let todo = JSON.parse(data);
+        if (todo.id && todo.title) {
+          localStorage.setItem(authenticated, true);
+          localStorage.setItem(BASIC_AUTH_CREDS, basicLoginAndPassInBase64);
+        }
+      })
+      .catch(e => console.log(e));
+  },
+  login_old: (username, password) => {
+    const par1 = localStorage.getItem(authenticated) === null;
+    const par2 = localStorage.getItem(authenticated) === "false";
     if (par1 || par2) {
       if (username === "Alex" && password === "123") {
-        localStorage.setItem(key, true);
+        localStorage.setItem(authenticated, true);
       } else {
-        localStorage.setItem(key, false);
+        localStorage.setItem(authenticated, false);
       }
     }
   },
   isLogged: () => {
-    return localStorage.getItem(key) === "true";
-    // return true;
+    return localStorage.getItem(authenticated) === "true";
+  },
+  logout: () => {
+    localStorage.removeItem(authenticated);
+    localStorage.removeItem(BASIC_AUTH_CREDS);
   }
 };
 

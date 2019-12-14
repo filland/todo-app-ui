@@ -20,7 +20,7 @@ class Login extends React.Component {
   handleLogin = e => {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
-    AuthService.login(username, password);
+    AuthService.login_basic_auth(username, password);
     if (AuthService.isLogged()) {
       this.setState({ redirectToRefferer: true, loginFailMessage: "" });
     } else {
@@ -40,13 +40,13 @@ class Login extends React.Component {
         <div>
           <label>
             username:{" "}
-            <input type="text" id="username" defaultValue="Alex"></input>{" "}
+            <input type="text" id="username" defaultValue="user"></input>{" "}
           </label>
         </div>
         <div>
           <label>
             password:{" "}
-            <input type="text" id="password" defaultValue="123"></input>{" "}
+            <input type="text" id="password" defaultValue="123123"></input>{" "}
           </label>
         </div>
         <div>

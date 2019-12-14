@@ -1,13 +1,21 @@
-const apiRootUrl = "http://localhost:8080/api/v1";
+import { API_ROOT_URL as apiRootUrl, BASIC_AUTH_CREDS } from "./Constants";
 
 class TodoServiceImp {
+  addBasicAuthorizationHeader(headers) {
+    headers["Authorization"] = localStorage.getItem(BASIC_AUTH_CREDS);
+  }
+
   addTodo = (todo, addTodoCallback) => {
     const url = apiRootUrl + "/todos";
+
+    let headers = {
+      "Content-Type": "application/json"
+    };
+    this.addBasicAuthorizationHeader(headers);
+
     fetch(url, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: headers,
       body: JSON.stringify(todo)
     })
       .then(function(response) {
@@ -21,7 +29,14 @@ class TodoServiceImp {
 
   fetchTodos = (page, limit, fetchTodosCallback) => {
     const url = apiRootUrl + `/todos/?page=${page}&limit=${limit}`;
-    fetch(url)
+
+    let headers = {};
+    this.addBasicAuthorizationHeader(headers);
+
+    fetch(url, {
+      method: "GET",
+      headers: headers
+    })
       .then(function(response) {
         return response.text();
       })
@@ -38,13 +53,22 @@ class TodoServiceImp {
 
   fetchOneTodo = (todoID, fetchOneTodoCallback) => {
     const url = apiRootUrl + `/todos/${todoID}`;
-    fetch(url)
+
+    let headers = {};
+    this.addBasicAuthorizationHeader(headers);
+
+    fetch(url, {
+      method: "GET",
+      headers: headers
+    })
       .then(function(response) {
         return response.text();
       })
       .then(json => {
-        // console.log(json);
+        console.log(json);
         let todo = JSON.parse(json);
+
+        // add some delay to simulate loading
         setInterval(() => {
           fetchOneTodoCallback(todo);
         }, 500);
@@ -53,11 +77,15 @@ class TodoServiceImp {
 
   updateTodo = (newTodo, updateTodoCallback) => {
     const url = apiRootUrl + `/todos`;
+
+    let headers = {
+      "Content-Type": "application/json"
+    };
+    this.addBasicAuthorizationHeader(headers);
+
     fetch(url, {
       method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: headers,
       body: JSON.stringify(newTodo)
     })
       .then(function(response) {
@@ -67,6 +95,23 @@ class TodoServiceImp {
         updateTodoCallback(updatedTodo);
       });
   };
+
+  deleteTodo = (todoID, deleteTodoCallback) => {
+    const url = apiRootUrl + `/todos/${todoID}`;
+
+    let headers = {};
+    this.addBasicAuthorizationHeader(headers);
+
+    fetch(url, {
+      method: "DELETE",
+      headers: headers
+    })
+      .then(function(response) {
+        if(response.status == 200) {
+          deleteTodoCallback();
+        }
+      });
+  }
 }
 
 const TodoService = new TodoServiceImp();

@@ -11,6 +11,13 @@ class Todo extends React.Component {
     this.props.handleEditLinkClick(this.props.todo.id);
   };
 
+  handleDeleteTodoClick = e => {
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
+
+    this.props.handleDeleteTodoLinkClick(this.props.todo.id);
+  }
+
   todoTemplate = () => {
     const { todo, handleSetShowFullTodo } = this.props;
 
@@ -28,9 +35,10 @@ class Todo extends React.Component {
             Created: <span id="createdDate"></span>
           </p>
           <p>Tags: tag1, tag2, tag3</p>
-          <Link to={"/todo/" + todo.id} onClick={this.handleEditClick}>
+          <Link to={"/todo/" + todo.id} onClick={this.handleEditClick} className="link">
             Edit
           </Link>
+          <Link to="#" onClick={this.handleDeleteTodoClick} className="link">Delete</Link>
         </div>
       );
     } else {
@@ -58,7 +66,8 @@ class Todo extends React.Component {
 Todo.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  done: PropTypes.bool.isRequired
+  done: PropTypes.bool.isRequired,
+  active: PropTypes.bool.isRequired
 }
 
 export default Todo;
