@@ -9,8 +9,7 @@ import {
 } from "react-router-dom";
 import { connect } from "react-redux";
 
-import AuthService from '../service/AuthService';
-
+import AuthService from "../service/AuthService";
 
 class Login extends React.Component {
   state = {
@@ -20,12 +19,13 @@ class Login extends React.Component {
   handleLogin = e => {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
-    AuthService.login_basic_auth(username, password);
-    if (AuthService.isLogged()) {
-      this.setState({ redirectToRefferer: true, loginFailMessage: "" });
-    } else {
-      this.setState({ loginFailMessage: "Username or password is wrong" });
-    }
+    AuthService.login_basic_auth(username, password, () => {
+      if (AuthService.isLogged()) {
+        this.setState({ redirectToRefferer: true, loginFailMessage: "" });
+      } else {
+        this.setState({ loginFailMessage: "Username or password is wrong" });
+      }
+    });
   };
 
   render() {
@@ -36,7 +36,7 @@ class Login extends React.Component {
     }
 
     return (
-      <div className = "common">
+      <div className="common">
         <div>
           <label>
             username:{" "}
@@ -50,7 +50,9 @@ class Login extends React.Component {
           </label>
         </div>
         <div>
-          <button className="green-button" onClick={this.handleLogin}>Login</button>
+          <button className="green-button" onClick={this.handleLogin}>
+            Login
+          </button>
         </div>
         <div>{this.state.loginFailMessage}</div>
       </div>

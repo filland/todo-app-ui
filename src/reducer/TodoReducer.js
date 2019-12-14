@@ -38,8 +38,6 @@ export function todosReducer(state = initialLoadTodosState, action) {
       let todos = newState.todos;
 
       let newTodo = action.payload;
-      // find next id
-      newTodo.id = todos.length + 1;
       todos.unshift(newTodo);
 
       return Object.assign({}, state, {

@@ -12,7 +12,7 @@ const AuthService = {
     and the json in the response contains id and title
     this should be replaces with OAuth authentication !
   */
-  login_basic_auth: (username, password) => {
+  login_basic_auth: (username, password, checkAuthCallback) => {
     const loginPath = API_ROOT_URL + "/todos/1";
     const loginAndPassInBase64 = btoa(username + ":" + password);
     const basicLoginAndPassInBase64 = "Basic " + loginAndPassInBase64;
@@ -32,8 +32,10 @@ const AuthService = {
           localStorage.setItem(authenticated, true);
           localStorage.setItem(BASIC_AUTH_CREDS, basicLoginAndPassInBase64);
         }
+
+        checkAuthCallback();
       })
-      .catch(e => console.log(e));
+      .catch(e => console.error(e));
   },
   login_old: (username, password) => {
     const par1 = localStorage.getItem(authenticated) === null;

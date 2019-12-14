@@ -1,4 +1,4 @@
-Current: 7. Add functionality for deleting todos (soft delete).
+Current: 
 
 TODO: 
 
@@ -7,18 +7,18 @@ https://egghead.io/lessons/javascript-redux-persisting-the-state-to-the-local-st
 
 1. Create components for text, checkbox inputs and button. These components should have two states: view and edit so
 we can easily create edit forms from view when nessecesary.
-
 2. Add prop types to components.
-
 3. Create two tabs: done and not done TODOs. Make checkbox of todo on the main page editable.
-
-4. Implement pagination for todosList 
-
+4. Implement pagination for todosList
 5. Use storybook.js.org ? (I believe that reportportal use this framework)
-
 6. Replace basic authentication with OAuth authentication in the AuthService.js
 
+10. 
+
+Done: 
 7. Add functionality for deleting todos (soft delete).
+8. Check edit page after a few todos deleted. Seems there is a bug.
+9. Make sure that when delete a todo the right one is deleted.
 
 QUESTIONS:
 
