@@ -1,12 +1,11 @@
 import React from "react";
 import "../../App.css";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 class Button extends React.Component {
-
-    handleButtonClick = (e) => {
-        this.props.settings.handler();
-    }
+  handleButtonClick = e => {
+    this.props.settings.handler();
+  };
 
   render() {
     const { settings } = this.props;
@@ -24,13 +23,13 @@ class Button extends React.Component {
   }
 }
 
-Button.propTypes= {
-    settings: PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        text: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired,
-        handler: PropTypes.func.isRequired
-    })
-}
+Button.propTypes = {
+  settings: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    handler: PropTypes.func.isRequired
+  })
+};
 
 export default Button;

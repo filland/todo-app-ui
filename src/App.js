@@ -9,6 +9,7 @@ import PrivateRoute from "./component/base/PrivateRoute";
 import Navbar from "./component/Navbar";
 import Login from "./component/Login";
 import Logout from "./component/Logout";
+import InfobarContainer from "./component/InfobarContainer";
 
 class App extends React.Component {
   todoEdit = ({ match }) => {
@@ -20,6 +21,7 @@ class App extends React.Component {
       <Router>
         <div className="main">
           <PrivateRoute component={Navbar}></PrivateRoute>
+          <PrivateRoute component={InfobarContainer}></PrivateRoute>
           <Route exact path="/login" component={Login}></Route>
           <PrivateRoute path="/logout" component={Logout}></PrivateRoute>
           {/* <BreadcrumbsContainer /> */}

@@ -36,13 +36,15 @@ p {
 .common-menu {
   background: #ffffff;
   padding: 7px;
-  margin-bottom: 12px;
+  margin-bottom: 7px;
+  /* box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 8px 0px; */
 }
 
 .common {
   padding: 7px;
   margin-bottom: 7px;
   background: #ffffff;
+  /* box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 8px 0px; */
 }
 
 .todo {
@@ -96,4 +98,14 @@ p {
 
 .link {
   margin: 3px;
+}
+
+.info-message {
+  background-color: rgb(209, 236, 241);
+  border: 1px solid rgb(190, 229, 235);
+}
+
+.error-message {
+  background-color: rgb(248, 215, 218);
+  border: 1px solid rgb(245, 198, 203);
 }

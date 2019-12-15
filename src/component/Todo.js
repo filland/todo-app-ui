@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 class Todo extends React.Component {
-  handleEditClick = e => {
-    e.stopPropagation();
-    e.nativeEvent.stopImmediatePropagation();
+  // handleEditClick = e => {
+  //   e.stopPropagation();
+  //   e.nativeEvent.stopImmediatePropagation();
 
-    this.props.handleEditLinkClick(this.props.todo.id);
-  };
+  //   this.props.handleEditLinkClick(this.props.todo.id);
+  // };
 
   handleDeleteTodoClick = e => {
     e.stopPropagation();
@@ -34,8 +34,7 @@ class Todo extends React.Component {
           <p>
             Created: <span id="createdDate"></span>
           </p>
-          <p>Tags: tag1, tag2, tag3</p>
-          <Link to={"/todo/" + todo.id} onClick={this.handleEditClick} className="link">
+          <Link to={"/todo/" + todo.id} className="link">
             Edit
           </Link>
           <Link to="#" onClick={this.handleDeleteTodoClick} className="link">Delete</Link>

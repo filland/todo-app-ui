@@ -14,19 +14,24 @@ export const SHOW_FULL_TODO_REQUEST = "SHOW_FULL_TODO_REQUEST";
 export const SHOW_FULL_TODO_SUCCESS = "SHOW_FULL_TODO_SUCCESS";
 export const SHOW_FULL_TODO_FAIL = "SHOW_FULL_TODO_FAIL";
 
-export const SET_TODO_ID_FOR_UPDATE = "SET_TODO_ID_FOR_UPDATE";
-
 export const UPDATE_TODO_REQUEST = "UPDATE_TODO_REQUEST";
 export const UPDATE_TODO_SUCCESS = "UPDATE_TODO_SUCCESS";
 
 export const DELETE_TODO_REQUEST = "DELETE_TODO_REQUEST";
 export const DELETE_TODO_SUCCESS = "DELETE_TODO_SUCCESS";
 
+export const INFOBAR_MESSAGE_UPDATE = "INFOBAR_MESSAGE_UPDATE";
+
 const initialLoadTodosState = {
   todos: [],
   areLoading: false,
   isUpdatingTodo: false,
-  error: null
+  error: null,
+  infobarMessage: {
+    message: null,
+    type: null,
+    show: false
+  }
 };
 
 export function todosReducer(state = initialLoadTodosState, action) {
@@ -92,8 +97,6 @@ export function todosReducer(state = initialLoadTodosState, action) {
       return Object.assign({}, state, {
         error: "Error while opening full todo"
       });
-    case SET_TODO_ID_FOR_UPDATE:
-      return Object.assign({}, state, { editTodoID: action.payload });
     case UPDATE_TODO_REQUEST:
       return Object.assign({}, state, { isUpdating: true });
     case UPDATE_TODO_SUCCESS:
@@ -106,8 +109,8 @@ export function todosReducer(state = initialLoadTodosState, action) {
       stateAfterSuccessTodoUpdate.isUpdating = false;
       return stateAfterSuccessTodoUpdate;
     case DELETE_TODO_REQUEST:
-        let newState3 = Object.assign({}, state);
-        return newState3;
+      let newState3 = Object.assign({}, state);
+      return newState3;
     case DELETE_TODO_SUCCESS:
       let newState4 = Object.assign({}, state);
       newState4.todos.forEach(t => {
@@ -116,9 +119,10 @@ export function todosReducer(state = initialLoadTodosState, action) {
         }
       });
       return newState4;
+    case INFOBAR_MESSAGE_UPDATE:
+      let x = Object.assign({}, state, { infobarMessage: action.payload });
+      return x;
     default:
-      console.log("returning default todos");
-
       return state;
   }
 }

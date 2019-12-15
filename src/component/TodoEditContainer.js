@@ -5,9 +5,11 @@ import Error from "./Error";
 import TodoService from "../service/TodoService";
 import {
   UPDATE_TODO_REQUEST,
-  UPDATE_TODO_SUCCESS
+  UPDATE_TODO_SUCCESS,
+  INFOBAR_MESSAGE_UPDATE
 } from "../reducer/TodoReducer";
 import Loading from "./Loading";
+import { clearInfobar } from "./InfobarContainer";
 
 class TodoEditContainer extends React.Component {
   constructor(props) {
@@ -28,11 +30,20 @@ class TodoEditContainer extends React.Component {
     });
   }
 
+  componentWillUnmount() {
+    this.cleanup();
+  }
+
+  cleanup() {
+    this.props.clearInfobar();
+  }
+
   render() {
+
     const { updateTodo } = this.props;
     const { todo, todoID } = this.state;
 
-    if(this.state.loading == true) {
+    if(this.state.loading === true) {
       return <Loading componentName="todo"></Loading>
     }
 
@@ -56,6 +67,14 @@ const updateTodo = todo => {
         type: UPDATE_TODO_SUCCESS,
         payload: { todo: updatedTodo }
       });
+      dispatch({
+        type: INFOBAR_MESSAGE_UPDATE,
+        payload: {
+          message: "Todo updated.",
+          type: "info",
+          show: true
+        }
+      });
     });
   };
 };
@@ -67,7 +86,8 @@ const mapStateToProps = store => {
 const mapDispatchToProps = dispatch => {
   return {
     updateTodo: todo => dispatch(updateTodo(todo)),
-    getTodos: () => dispatch(TodoService.fetchTodos)
+    getTodos: () => dispatch(TodoService.fetchTodos),
+    clearInfobar: () => dispatch(clearInfobar())
   };
 };
 

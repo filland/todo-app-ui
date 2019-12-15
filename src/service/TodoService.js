@@ -1,4 +1,4 @@
-import { API_ROOT_URL as apiRootUrl, BASIC_AUTH_CREDS } from "./Constants";
+import { API_ROOT_URL as apiRootUrl, BASIC_AUTH_CREDS, FAKE_LATENCY_MILLS } from "./Constants";
 
 class TodoServiceImp {
   addBasicAuthorizationHeader(headers) {
@@ -41,13 +41,16 @@ class TodoServiceImp {
         return response.text();
       })
       .then(json => {
-        // console.log("result = " + json);
         let todos = JSON.parse(json);
         todos.sort(function(a, b) {
           return a.id > b.id ? -1 : b.id > a.id ? 1 : 0;
         });
 
         fetchTodosCallback(todos);
+      })
+      .catch(e => {
+        console.log("error while fetching todods");
+        fetchTodosCallback(null);
       });
   };
 
@@ -65,13 +68,12 @@ class TodoServiceImp {
         return response.text();
       })
       .then(json => {
-        console.log(json);
         let todo = JSON.parse(json);
 
         // add some delay to simulate loading
         setInterval(() => {
           fetchOneTodoCallback(todo);
-        }, 500);
+        }, FAKE_LATENCY_MILLS);
       });
   };
 
@@ -107,7 +109,7 @@ class TodoServiceImp {
       headers: headers
     })
       .then(function(response) {
-        if(response.status == 200) {
+        if(response.status === 200) {
           deleteTodoCallback();
         }
       });

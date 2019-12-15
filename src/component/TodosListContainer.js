@@ -2,18 +2,26 @@ import React from "react";
 import { connect } from "react-redux";
 import Todo from "./Todo";
 import TodoService from "../service/TodoService";
-
+import { clearInfobar } from "./InfobarContainer";
 import {
   GET_TODOS_REQUEST,
   GET_TODOS_SUCCESS,
   SHOW_FULL_TODO_SUCCESS,
   SHOW_FULL_TODO_REQUEST,
-  SET_TODO_ID_FOR_UPDATE,
   DELETE_TODO_REQUEST,
   DELETE_TODO_SUCCESS
 } from "../reducer/TodoReducer";
 
 class TodosListContainer extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      counter: 0
+    };
+  }
+
   componentDidMount() {
     this.props.getTodos();
   }
@@ -24,22 +32,26 @@ class TodosListContainer extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this.cleanup();
+  }
+
   setShowFullTodo = (todoID, isShown) => {
     this.props.setShowFullTodo(todoID, isShown);
-  };
-
-  handleTodoEditLinkClick = todoID => {
-    this.props.setTodoIDForEdit(todoID);
   };
 
   handleDeleteTodoLinkClick = todoID => {
     this.props.deleteTodo(todoID);
   };
 
+  cleanup = () => {
+    this.props.clearInfobar();
+  };
+
   render() {
     const { todos } = this.props.todos;
 
-    if (todos) {
+    if (todos && todos.length !== 0) {
       const todosTemplate = todos
         .filter(todo => todo.active === true)
         .map((todo, index) => {
@@ -48,17 +60,18 @@ class TodosListContainer extends React.Component {
               key={todo.id}
               todo={todo}
               handleSetShowFullTodo={this.setShowFullTodo}
-              handleEditLinkClick={this.handleTodoEditLinkClick}
               handleDeleteTodoLinkClick={this.handleDeleteTodoLinkClick}
             ></Todo>
           );
         });
 
-      // console.log(todosTemplate);
-
       return todosTemplate;
     } else {
-      return <p>You did not add any todos.</p>;
+      return (
+        <div className="common">
+          You did not add any todos or server is not available
+        </div>
+      );
     }
   }
 }
@@ -97,15 +110,6 @@ const setShowFullTodo = (todoID, isShown) => {
   };
 };
 
-const setTodoIDForEdit = todoID => {
-  return dispatch => {
-    dispatch({
-      type: SET_TODO_ID_FOR_UPDATE,
-      payload: todoID
-    });
-  };
-};
-
 const deleteTodo = todoID => {
   return dispatch => {
     dispatch({ type: DELETE_TODO_REQUEST });
@@ -127,8 +131,8 @@ const mapDispatchToProps = dispatch => {
     setShowFullTodo: (todoID, isShown) =>
       dispatch(setShowFullTodo(todoID, isShown)),
     getTodos: () => dispatch(fetchTodos()),
-    setTodoIDForEdit: todoID => dispatch(setTodoIDForEdit(todoID)),
-    deleteTodo: todoID => dispatch(deleteTodo(todoID))
+    deleteTodo: todoID => dispatch(deleteTodo(todoID)),
+    clearInfobar: () => dispatch(clearInfobar())
   };
 };
 
