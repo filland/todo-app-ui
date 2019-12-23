@@ -1,4 +1,4 @@
-export const ROOT_URL = "194.58.104.210:8080";
+export const ROOT_URL = "http://194.58.104.210:8080";
 // export const ROOT_URL = "http://localhost:8080";
 export const API_ROOT_URL = ROOT_URL + "/api/v1";
 
