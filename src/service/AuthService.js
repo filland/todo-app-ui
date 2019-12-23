@@ -24,11 +24,7 @@ const AuthService = {
       }
     })
       .then(response => {
-        return response.text();
-      })
-      .then(data => {
-        let todo = JSON.parse(data);
-        if (todo.id && todo.title) {
+        if (response.status === 200) {
           localStorage.setItem(authenticated, true);
           localStorage.setItem(BASIC_AUTH_CREDS, basicLoginAndPassInBase64);
         }
