@@ -7,4 +7,4 @@ export const BASIC_AUTH_CREDS = "basicAuthCreds";
 
 
 // dev
-export const FAKE_LATENCY_MILLS = 500;
+export const FAKE_LATENCY_MILLS = 0;
