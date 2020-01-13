@@ -24,6 +24,9 @@ class TodoServiceImp {
       .then(function(json) {
         todo.id = json;
         addTodoCallback(todo);
+      })
+      .catch(function(e){
+        
       });
   };
 
@@ -78,7 +81,7 @@ class TodoServiceImp {
   };
 
   updateTodo = (newTodo, updateTodoCallback) => {
-    const url = apiRootUrl + `/todos`;
+    const url = apiRootUrl + `/todos/${newTodo.id}`;
 
     let headers = {
       "Content-Type": "application/json; charset=UTF-8"

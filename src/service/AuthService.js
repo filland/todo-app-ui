@@ -13,7 +13,7 @@ const AuthService = {
     this should be replaces with OAuth authentication !
   */
   login_basic_auth: (username, password, checkAuthCallback) => {
-    const loginPath = API_ROOT_URL + "/todos/1";
+    const loginPath = API_ROOT_URL + "/auth";
     const loginAndPassInBase64 = btoa(username + ":" + password);
     const basicLoginAndPassInBase64 = "Basic " + loginAndPassInBase64;
 

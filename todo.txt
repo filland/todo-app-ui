@@ -19,8 +19,9 @@ to edit only their todos
 14. Sort  todos by creation date
 15. Add tab for Active and Done todos
 16. Add feature for deleted (atchived) todos
-17. Handle the case when user tries to open a todo that does not exist (e.g. todo with id = 9999999)
-18.
+18. Handle exceptions in api services (403, 404, etc.)
+19.
+20.
 
 Done: 
 7. Add functionality for deleting todos (soft delete).
