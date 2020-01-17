@@ -19,7 +19,7 @@ class Login extends React.Component {
   handleLogin = e => {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
-    AuthService.login_basic_auth(username, password, () => {
+    AuthService.login(username, password, () => {
       if (AuthService.isLogged()) {
         this.setState({ redirectToRefferer: true, loginFailMessage: "" });
       } else {

@@ -1,7 +1,20 @@
-import { API_ROOT_URL as apiRootUrl, BASIC_AUTH_CREDS, FAKE_LATENCY_MILLS } from "./Constants";
+import {
+  API_ROOT_URL as apiRootUrl,
+  BASIC_AUTH_CREDS,
+  FAKE_LATENCY_MILLS,
+  JWT_TOKEN
+} from "./Constants";
 
 class TodoServiceImp {
-  addBasicAuthorizationHeader(headers) {
+  addAuthorizationHeader(headers) {
+    this.addJwtTokenAuthHeader(headers);
+  }
+
+  addJwtTokenAuthHeader(headers) {
+    headers["Authorization"] = "Bearer " + localStorage.getItem(JWT_TOKEN);
+  }
+
+  addBasichAuthHeader(headers) {
     headers["Authorization"] = localStorage.getItem(BASIC_AUTH_CREDS);
   }
 
@@ -11,7 +24,7 @@ class TodoServiceImp {
     let headers = {
       "Content-Type": "application/json; charset=UTF-8"
     };
-    this.addBasicAuthorizationHeader(headers);
+    this.addAuthorizationHeader(headers);
 
     fetch(url, {
       method: "POST",
@@ -25,16 +38,14 @@ class TodoServiceImp {
         todo.id = json;
         addTodoCallback(todo);
       })
-      .catch(function(e){
-        
-      });
+      .catch(function(e) {});
   };
 
   fetchTodos = (page, limit, fetchTodosCallback) => {
     const url = apiRootUrl + `/todos/?page=${page}&limit=${limit}`;
 
     let headers = {};
-    this.addBasicAuthorizationHeader(headers);
+    this.addAuthorizationHeader(headers);
 
     fetch(url, {
       method: "GET",
@@ -61,7 +72,7 @@ class TodoServiceImp {
     const url = apiRootUrl + `/todos/${todoID}`;
 
     let headers = {};
-    this.addBasicAuthorizationHeader(headers);
+    this.addAuthorizationHeader(headers);
 
     fetch(url, {
       method: "GET",
@@ -86,7 +97,7 @@ class TodoServiceImp {
     let headers = {
       "Content-Type": "application/json; charset=UTF-8"
     };
-    this.addBasicAuthorizationHeader(headers);
+    this.addAuthorizationHeader(headers);
 
     fetch(url, {
       method: "PUT",
@@ -105,18 +116,17 @@ class TodoServiceImp {
     const url = apiRootUrl + `/todos/${todoID}`;
 
     let headers = {};
-    this.addBasicAuthorizationHeader(headers);
+    this.addAuthorizationHeader(headers);
 
     fetch(url, {
       method: "DELETE",
       headers: headers
-    })
-      .then(function(response) {
-        if(response.status === 200) {
-          deleteTodoCallback();
-        }
-      });
-  }
+    }).then(function(response) {
+      if (response.status === 200) {
+        deleteTodoCallback();
+      }
+    });
+  };
 }
 
 const TodoService = new TodoServiceImp();
