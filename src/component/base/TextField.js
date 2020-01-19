@@ -40,8 +40,8 @@ class TextField extends React.Component {
       <div className="common-input text-input-div">
         <label className="text-input-label">{settings.label}:</label>
         <input
+          type={settings.type || "text"}
           className="text-input"
-          type="text"
           placeholder={settings.placeholder}
           value={this.state.value}
           onChange={this.handleTextFieldChange}

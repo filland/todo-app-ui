@@ -1,13 +1,28 @@
-import {
-  ROOT_URL,
-  API_ROOT_URL,
-  BASIC_AUTH_CREDS,
-  JWT_TOKEN
-} from "./Constants";
+import { API_ROOT_URL, BASIC_AUTH_CREDS, JWT_TOKEN } from "./Constants";
 
 const authenticated = "authenticated";
 
 class AuthServiceImpl {
+  register(user, successCallback, failureCallback) {
+    const url = API_ROOT_URL + "/auth/signup";
+
+    let headers = {
+      "Content-Type": "application/json; charset=UTF-8"
+    };
+
+    fetch(url, {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(user)
+    })
+      .then(function(response) {
+        successCallback();
+      })
+      .catch(function(e) {
+        failureCallback();
+      });
+  }
+
   login(usernameOrEmail, password, authCallback) {
     this.login_jwt(usernameOrEmail, password, authCallback);
   }

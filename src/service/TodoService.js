@@ -1,21 +1,12 @@
 import {
   API_ROOT_URL as apiRootUrl,
-  BASIC_AUTH_CREDS,
   FAKE_LATENCY_MILLS,
-  JWT_TOKEN
 } from "./Constants";
+import {addAuthorizationHeader} from './AuthUtils';
 
 class TodoServiceImp {
   addAuthorizationHeader(headers) {
-    this.addJwtTokenAuthHeader(headers);
-  }
-
-  addJwtTokenAuthHeader(headers) {
-    headers["Authorization"] = "Bearer " + localStorage.getItem(JWT_TOKEN);
-  }
-
-  addBasichAuthHeader(headers) {
-    headers["Authorization"] = localStorage.getItem(BASIC_AUTH_CREDS);
+    addAuthorizationHeader(headers);
   }
 
   addTodo = (todo, addTodoCallback) => {

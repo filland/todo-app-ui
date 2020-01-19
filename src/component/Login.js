@@ -5,7 +5,7 @@ import {
   // Router,
   // Route,
   // Link,
-  Redirect
+  Redirect, Link
 } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -54,6 +54,7 @@ class Login extends React.Component {
             Login
           </button>
         </div>
+        <Link to="/registration">Register</Link>
         <div>{this.state.loginFailMessage}</div>
       </div>
     );

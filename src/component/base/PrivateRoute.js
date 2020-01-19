@@ -8,7 +8,10 @@ function PrivateRoute({ component: Component, ...rest }) {
     <Route
       {...rest}
       render={props => {
-        const flag = AuthService.isLogged();
+        let flag = AuthService.isLogged();
+        if(props.pathname === "/registration") {
+          flag = true;
+        }
         return flag ? (
           <Component {...props}></Component>
         ) : (
