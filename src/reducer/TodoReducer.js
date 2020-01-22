@@ -22,6 +22,9 @@ export const DELETE_TODO_SUCCESS = "DELETE_TODO_SUCCESS";
 
 export const INFOBAR_MESSAGE_UPDATE = "INFOBAR_MESSAGE_UPDATE";
 
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
+
 const initialLoadTodosState = {
   todos: [],
   areLoading: false,
@@ -31,6 +34,9 @@ const initialLoadTodosState = {
     message: null,
     type: null,
     show: false
+  },
+  login: {
+    redirectToRefferer: false
   }
 };
 
@@ -122,6 +128,16 @@ export function todosReducer(state = initialLoadTodosState, action) {
     case INFOBAR_MESSAGE_UPDATE:
       let x = Object.assign({}, state, { infobarMessage: action.payload });
       return x;
+    case LOGIN_SUCCESS:
+      let login1 = {
+        redirectToRefferer: true
+      }
+      return Object.assign({}, state, {login: login1});
+    case LOGOUT_SUCCESS:
+      let login2 = {
+        redirectToRefferer: false
+      }
+      return Object.assign({}, state, {login : login2});
     default:
       return state;
   }

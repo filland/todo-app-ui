@@ -1,4 +1,4 @@
-import { JWT_TOKEN, BASIC_AUTH_CREDS } from "./Constants";
+import { JWT_TOKEN, BASIC_AUTH_CREDS } from "./constants";
 
 export const addAuthorizationHeader = headers => {
   addJwtTokenAuthHeader(headers);

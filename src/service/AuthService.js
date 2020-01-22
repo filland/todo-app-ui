@@ -1,10 +1,10 @@
-import { API_ROOT_URL, BASIC_AUTH_CREDS, JWT_TOKEN } from "./Constants";
+import { API_ROOT_URL, BASIC_AUTH_CREDS, JWT_TOKEN, ROOT_URL } from "./constants";
 
 const authenticated = "authenticated";
 
 class AuthServiceImpl {
   register(user, successCallback, failureCallback) {
-    const url = API_ROOT_URL + "/auth/signup";
+    const url = ROOT_URL + "/auth/signup";
 
     let headers = {
       "Content-Type": "application/json; charset=UTF-8"
@@ -16,19 +16,23 @@ class AuthServiceImpl {
       body: JSON.stringify(user)
     })
       .then(function(response) {
-        successCallback();
+        if(response.status === 201) {
+          successCallback();
+        } else {
+          failureCallback();
+        }
       })
       .catch(function(e) {
         failureCallback();
       });
   }
 
-  login(usernameOrEmail, password, authCallback) {
-    this.login_jwt(usernameOrEmail, password, authCallback);
+  login(usernameOrEmail, password, successCallback, failureCallback) {
+    this.login_jwt(usernameOrEmail, password, successCallback, failureCallback);
   }
 
-  login_jwt(usernameOrEmail, password, authCallback) {
-    const loginPath = API_ROOT_URL + "/auth/signin";
+  login_jwt(usernameOrEmail, password, successCallback, failureCallback) {
+    const loginPath = ROOT_URL + "/auth/signin";
 
     let headers = {
       "Content-Type": "application/json; charset=UTF-8"
@@ -47,15 +51,17 @@ class AuthServiceImpl {
         return response.json();
       })
       .then(response => {
-        console.log(response);
         if (response.accessToken != null) {
           localStorage.setItem(authenticated, true);
           localStorage.setItem(JWT_TOKEN, response.accessToken);
         }
 
-        authCallback();
+        successCallback();
       })
-      .catch(e => console.error(e));
+      .catch(e => {
+        console.error(e);
+        failureCallback();
+      });
   }
 
   /* This method is a kind of stub for authenticating using 

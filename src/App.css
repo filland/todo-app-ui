@@ -1,5 +1,6 @@
 body {
   background: #f5f5f5;
+  font-size: 17px;
 }
 
 p {
@@ -52,6 +53,7 @@ p {
 
 .todo-title {
   font-weight: 500;
+  font-size: 17px;
 }
 
 .todo-full {

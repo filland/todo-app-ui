@@ -1,7 +1,7 @@
 import {
   API_ROOT_URL as apiRootUrl,
   FAKE_LATENCY_MILLS,
-} from "./Constants";
+} from "./constants";
 import {addAuthorizationHeader} from './AuthUtils';
 
 class TodoServiceImp {
@@ -76,9 +76,9 @@ class TodoServiceImp {
         let todo = JSON.parse(json);
 
         // add some delay to simulate loading
-        setInterval(() => {
+        // setInterval(() => {
           fetchOneTodoCallback(todo);
-        }, FAKE_LATENCY_MILLS);
+        // }, FAKE_LATENCY_MILLS);
       });
   };
 

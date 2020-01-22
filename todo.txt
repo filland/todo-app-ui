@@ -20,7 +20,7 @@ to edit only their todos
 15. Add tab for Active and Done todos
 16. Add feature for deleted (atchived) todos
 18. Handle exceptions in api services (403, 404, etc.)
-19.
+19. Why Login component is rendered twice ?
 20.
 
 Done: 

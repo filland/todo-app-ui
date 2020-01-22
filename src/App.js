@@ -8,9 +8,9 @@ import TodoAddContainer from "./component/TodoAddContainer";
 import PrivateRoute from "./component/base/PrivateRoute";
 import Navbar from "./component/Navbar";
 import Registration from "./component/Registration";
-import Login from "./component/Login";
 import Logout from "./component/Logout";
 import InfobarContainer from "./component/InfobarContainer";
+import LoginContainer from "./component/LoginContainer";
 
 class App extends React.Component {
   todoEdit = ({ match }) => {
@@ -22,8 +22,8 @@ class App extends React.Component {
       <Router>
         <div className="main">
           <PrivateRoute component={Navbar}></PrivateRoute>
-          <Route exact path="/login" component={Login}></Route>
           <Route component={InfobarContainer}></Route>
+          <Route exact path="/login" component={LoginContainer}></Route>
           <Route exact path="/registration" component={Registration}></Route>
           <PrivateRoute path="/logout" component={Logout}></PrivateRoute>
           {/* <BreadcrumbsContainer /> */}
