@@ -1,15 +1,13 @@
 import React from "react";
 import {
   Link,
-  // BrowserRouter
-  // Router,
-  // Route,
-  // Link,
   Redirect
 } from "react-router-dom";
-import "../App.css";
-import Button from "./base/Button";
-import TextField from "./base/TextField";
+import Button from "../base/Button";
+import TextField from "../base/TextField";
+import "../../App.css";
+import "./Login.css";
+import { GITHUB_AUTH_URL} from "../../service/constants";
 
 class Login extends React.Component {
   constructor(props) {
@@ -38,7 +36,7 @@ class Login extends React.Component {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
     this.props.handleLogin(username, password);
-  }
+  };
 
   render() {
     // const { from } = this.props.location.state || { from: { pathname: "/" } };
@@ -75,30 +73,26 @@ class Login extends React.Component {
     };
 
     return (
-      <div className="common">
-        <TextField settings={usernameSettings} />
-        <TextField settings={passwordSettings} />
-        <Button settings={loginButtonSettings} />
-
-        {/* <div>
-          <label>
-            Username:
-            <input type="text" id="username" defaultValue="user"></input>
-          </label>
+      <div className="login-component">
+        <div className="common login-basic">
+          <TextField settings={usernameSettings} />
+          <TextField settings={passwordSettings} />
+          <Button settings={loginButtonSettings} />
+          <p className="register-link">
+            Do not have an account? <Link to="/registration">Register</Link>
+          </p>
         </div>
-        <div>
-          <label>
-            Password:
-            <input type="text" id="password" defaultValue="123123"></input>
-          </label>
+        <div className="common login-social">
+          <h2>Social login</h2>
+          <div className="login-social-item">
+            <div>
+              <i className="fab fa-github"></i>
+              <a href={GITHUB_AUTH_URL}>
+                 GitHub
+              </a>
+            </div>
+          </div>
         </div>
-        <div>
-          <button className="green-button" onClick={this.handleLogin}>
-            Login
-          </button>
-        </div> */}
-        <Link to="/registration">Register</Link>
-        {/* <div>{this.state.loginFailMessage}</div> */}
       </div>
     );
   }

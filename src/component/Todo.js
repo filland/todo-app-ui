@@ -31,9 +31,9 @@ class Todo extends React.Component {
           <p className="todo-title">{todo.title}</p>
           <p>{todo.description}</p>
           <p>This todo is done: {todo.done ? "yes" : "no"}</p>
-          <p>
-            Created: <span id="createdDate"></span>
-          </p>
+          {/* <p> */}
+            {/* Created: <span id="createdDate"></span> */}
+          {/* </p> */}
           <Link to={"/todo/" + todo.id} className="link">
             Edit
           </Link>

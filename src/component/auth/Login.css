@@ -1,0 +1,18 @@
+.login-basic .register-link {
+    padding-top: 5px;
+    font-size: 0.8rem;
+}
+
+
+.login-social-item {
+    border: 1px solid gainsboro;
+    padding: 10px;
+}
+
+.login-social-item div {
+    text-align: center;
+}
+
+.login-social-item i {
+    font-size: 2rem;
+}

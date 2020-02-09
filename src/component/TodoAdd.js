@@ -30,7 +30,7 @@ class TodoAdd extends React.Component {
   render() {
     return (
       <div className="common todo">
-        <div className="common-input">
+        {/* <div className="common-input"> */}
           <label>
             Title:
             <input
@@ -39,7 +39,7 @@ class TodoAdd extends React.Component {
               onChange={this.todoTitleChange}
             ></input>
           </label>
-        </div>
+        {/* </div> */}
         <div className="common-input">
           <label>
             Description:

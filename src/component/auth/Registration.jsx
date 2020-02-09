@@ -1,21 +1,21 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "../App.css";
-import TextField from "./base/TextField";
-import Button from "./base/Button";
-import AuthService from "../service/AuthService";
+import "../../App.css";
+import TextField from "../base/TextField";
+import Button from "../base/Button";
+import AuthService from "../../service/AuthService";
 import { Redirect } from "react-router-dom";
-import { clearInfobar } from "./InfobarContainer";
-import { INFOBAR_MESSAGE_UPDATE } from "../reducer/TodoReducer";
+import { clearInfobar } from "../InfobarContainer";
+import { INFOBAR_MESSAGE_UPDATE } from "../../reducer/TodoReducer";
 
 class Registraction extends Component {
   constructor(props) {
     super(props);
     this.state = {
       user: {
-          "username": null,
-          "email": null,
-          "password": null
+        username: null,
+        email: null,
+        password: null
       },
       isRegistered: false
     };
@@ -24,7 +24,7 @@ class Registraction extends Component {
   }
 
   usernameChangeHandler = username => {
-      console.log(this.state);
+    console.log(this.state);
     this.setState({
       user: Object.assign({}, this.state.user, { username: username })
     });
@@ -44,7 +44,7 @@ class Registraction extends Component {
   };
 
   registerUserButtonHandler() {
-      console.log(this.state);
+    console.log(this.state);
     AuthService.register(
       this.state.user,
       // success
@@ -104,26 +104,30 @@ class Registraction extends Component {
     }
 
     return (
-      <div className="common">
-        <TextField settings={usernameSettings}></TextField>
-        <TextField settings={emailSettings}></TextField>
-        <TextField settings={passwordSettings}></TextField>
-        <Button settings={registerButtonSettings}></Button>
-      </div>
+      <>
+        <div className="common">
+          <div>
+            <TextField settings={usernameSettings}></TextField>
+            <TextField settings={emailSettings}></TextField>
+            <TextField settings={passwordSettings}></TextField>
+            <Button settings={registerButtonSettings}></Button>
+          </div>
+        </div>
+      </>
     );
   }
 }
 
-const setInfoMessage = (message) => {
+const setInfoMessage = message => {
   return (dispatch, getState) => {
     dispatch({
-        type: INFOBAR_MESSAGE_UPDATE,
-        payload: {
-          message: message,
-          type: "error",
-          show: true
-        }
-      });
+      type: INFOBAR_MESSAGE_UPDATE,
+      payload: {
+        message: message,
+        type: "error",
+        show: true
+      }
+    });
   };
 };
 

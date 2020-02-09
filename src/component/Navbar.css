@@ -1,0 +1,12 @@
+.navbar {
+}
+
+.navbar-link {
+  padding: 3px;
+  margin-right: 5px;
+  float: left;
+}
+
+.navbar-user-account {
+    float: right;
+}

@@ -1,4 +1,5 @@
-Current: 
+Current: 20. User can login using Github (handle the part with issuing a jwt token for
+the user who signed in with his/her github account)
 
 TODO: 
 
@@ -18,10 +19,12 @@ to edit only their todos
 13. Show creation date for todo on UI 
 14. Sort  todos by creation date
 15. Add tab for Active and Done todos
-16. Add feature for deleted (atchived) todos
+16. Add a separate tab for deleted (archived) todos
 18. Handle exceptions in api services (403, 404, etc.)
 19. Why Login component is rendered twice ?
-20.
+21. Handle email confirmation (user clicks a link from the email backend sent to him and frontend sends the
+confirmation key to complete the registration. User sees a waiting screen and then see the result - message about
+successed or failed completion)
 
 Done: 
 7. Add functionality for deleting todos (soft delete).

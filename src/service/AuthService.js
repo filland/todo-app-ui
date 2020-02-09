@@ -1,14 +1,16 @@
-import { API_ROOT_URL, BASIC_AUTH_CREDS, JWT_TOKEN, ROOT_URL } from "./constants";
+import { API_ROOT_URL, BASIC_AUTH_CREDS, JWT_TOKEN, SERVER_ROOT_URL, WEB_UI_ROOT_URL } from "./constants";
 
 const authenticated = "authenticated";
 
 class AuthServiceImpl {
   register(user, successCallback, failureCallback) {
-    const url = ROOT_URL + "/auth/signup";
+    const url = SERVER_ROOT_URL + "/auth/signup";
 
     let headers = {
       "Content-Type": "application/json; charset=UTF-8"
     };
+
+    user["emailConfirmationBrowserUrl"] = WEB_UI_ROOT_URL;
 
     fetch(url, {
       method: "POST",
@@ -32,7 +34,7 @@ class AuthServiceImpl {
   }
 
   login_jwt(usernameOrEmail, password, successCallback, failureCallback) {
-    const loginPath = ROOT_URL + "/auth/signin";
+    const loginPath = SERVER_ROOT_URL + "/auth/signin";
 
     let headers = {
       "Content-Type": "application/json; charset=UTF-8"
@@ -90,6 +92,16 @@ class AuthServiceImpl {
         checkAuthCallback();
       })
       .catch(e => console.error(e));
+  }
+
+  /**
+   * This method is used in case of OAuth2 login.
+   * In this case we skip the login/password login
+   * step and get a JWT right away.
+   **/
+  setJwtToken(jwtToken) {
+    localStorage.setItem(authenticated, true);
+    localStorage.setItem(JWT_TOKEN, jwtToken);
   }
 
   login_stub(username, password) {

@@ -44,7 +44,7 @@ class TodoEditContainer extends React.Component {
     const { todo, todoID } = this.state;
 
     if(this.state.loading === true) {
-      return <Loading componentName="todo"></Loading>
+      return <Loading message="Todo is loading..."></Loading>
     }
 
     if (todo) {

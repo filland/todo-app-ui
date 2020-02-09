@@ -35,8 +35,7 @@ const addTodo = (title, desc) => {
       title: title,
       description: desc,
       done: false,
-      active: true,
-      shouldShowFullTodo: false
+      active: true
     };
 
     TodoService.addTodo(todo, todo => {

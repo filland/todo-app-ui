@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.1",
+    "bootstrap": "^4.4.1",
     "express-favicon": "^2.0.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",

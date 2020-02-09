@@ -1,9 +1,9 @@
 import React from "react";
-import "../App.css";
+import "../../App.css";
 import { Redirect } from "react-router-dom";
-import AuthService from "../service/AuthService";
+import AuthService from "../../service/AuthService";
 import { connect } from "react-redux";
-import { LOGOUT_SUCCESS } from "../reducer/TodoReducer";
+import { LOGOUT_SUCCESS } from "../../reducer/TodoReducer";
 
 class Logout extends React.Component {
  

@@ -1,5 +1,6 @@
 import React from "react";
 import "../App.css";
+import "./Navbar.css";
 import {
   // BrowserRouter as Router,
   // Route,
@@ -13,7 +14,7 @@ import AuthService from "../service/AuthService";
 class Navbar extends React.Component {
   render() {
     return (
-      <div className="common-menu navbar">
+      <div className="common-menu navbar clearfix">
         <Link className="navbar-link" to="/">
           Main
         </Link>
@@ -23,6 +24,11 @@ class Navbar extends React.Component {
             Logout
           </Link>
         ) : null}
+        <div className="navbar-user-account">
+        <Link className="navbar-link" to="/account">
+            User account
+          </Link>
+        </div>
       </div>
     );
   }

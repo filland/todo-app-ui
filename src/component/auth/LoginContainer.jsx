@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { INFOBAR_MESSAGE_UPDATE, LOGIN_SUCCESS } from "../reducer/TodoReducer";
-import AuthService from "../service/AuthService";
-import { clearInfobar } from "./InfobarContainer";
+import { INFOBAR_MESSAGE_UPDATE, LOGIN_SUCCESS } from "../../reducer/TodoReducer";
+import AuthService from "../../service/AuthService";
+import { clearInfobar } from "../InfobarContainer";
 import Login from "./Login";
 
 class LoginContainer extends Component {

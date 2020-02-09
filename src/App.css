@@ -1,11 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration:none;
+  font-weight: 400;
+  color: blue;
+}
+
 body {
   background: #f5f5f5;
   font-size: 17px;
 }
 
-p {
-  margin: 0;
-  padding: 0;
+h1,h2 {
+  padding-bottom: 1rem;
+}
+
+.clearfix:before, 
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
 }
 
 .error {
@@ -20,17 +40,6 @@ p {
   margin-right: auto;
   /* padding: 10px; */
   width: 500px;
-}
-  
-.navbar {
-}
-
-.navbar-link {
-  padding: 3px;
-  margin-right: 5px;
-}
-
-#breadcrumbs {
 }
 
 
@@ -53,7 +62,8 @@ p {
 
 .todo-title {
   font-weight: 500;
-  font-size: 17px;
+  font-size: 18px;
+  margin-bottom: 5px;
 }
 
 .todo-full {
