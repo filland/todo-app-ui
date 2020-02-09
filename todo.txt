@@ -1,5 +1,4 @@
-Current: 20. User can login using Github (handle the part with issuing a jwt token for
-the user who signed in with his/her github account)
+Current: 
 
 TODO: 
 
@@ -27,6 +26,8 @@ confirmation key to complete the registration. User sees a waiting screen and th
 successed or failed completion)
 
 Done: 
+20. User can login using Github (handle the part with issuing a jwt token for
+the user who signed in with his/her github account)
 7. Add functionality for deleting todos (soft delete).
 8. Check edit page after a few todos deleted. Seems there is a bug.
 9. Make sure that when delete a todo the right one is deleted.
