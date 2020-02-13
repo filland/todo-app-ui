@@ -94,30 +94,22 @@ h1,h2 {
 }
 
 .green-button {
-  background-color: #4caf50; /* Green */
+  
+  background-color: #34b17d;
   border: none;
   color: white;
   padding: 4px 8px;
   text-align: center;
   text-decoration: none;
+  border-radius: 4px;
   display: inline-block;
   font-size: 16px;
 }
 
 .green-button:hover {
-  background-color: #149b4c; /* Green */
+  background-color: #149b4c;
 }
 
 .link {
   margin: 3px;
-}
-
-.info-message {
-  background-color: rgb(209, 236, 241);
-  border: 1px solid rgb(190, 229, 235);
-}
-
-.error-message {
-  background-color: rgb(248, 215, 218);
-  border: 1px solid rgb(245, 198, 203);
 }

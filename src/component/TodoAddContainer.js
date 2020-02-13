@@ -46,7 +46,7 @@ const addTodo = (title, desc) => {
       dispatch({
         type: INFOBAR_MESSAGE_UPDATE,
         payload: {
-          message: "Todo was added.",
+          message: "Todo was added",
           type: "info",
           show: true
         }

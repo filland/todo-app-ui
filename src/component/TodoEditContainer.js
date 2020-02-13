@@ -70,7 +70,7 @@ const updateTodo = todo => {
       dispatch({
         type: INFOBAR_MESSAGE_UPDATE,
         payload: {
-          message: "Todo updated.",
+          message: "Todo updated",
           type: "info",
           show: true
         }

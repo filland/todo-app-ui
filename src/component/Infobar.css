@@ -1,0 +1,33 @@
+.infobar {
+    position: relative;
+}
+
+.infobar a {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    font-weight: 600;
+    font-size: 1.5rem;
+    display: block;
+    height: 30px;
+    width: 30px;
+}
+
+.info-message {
+    background-color: rgb(209, 236, 241);
+    border: 1px solid rgb(190, 229, 235);
+}
+
+.infobar-close-info {
+    color: rgb(115, 197, 209);   
+}
+  
+.error-message {
+    background-color: rgb(248, 215, 218);
+    border: 1px solid rgb(245, 198, 203);
+}
+
+.infobar-close-error {
+    color: rgb(243, 89, 102);
+}

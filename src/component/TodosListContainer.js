@@ -65,7 +65,9 @@ class TodosListContainer extends React.Component {
           );
         });
 
-      return todosTemplate;
+      return (<div>
+        {todosTemplate}
+      </div>);
     } else {
       return (
         <div className="common">

@@ -4,9 +4,10 @@ import "../../App.css";
 import TextField from "../base/TextField";
 import Button from "../base/Button";
 import AuthService from "../../service/AuthService";
-import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { clearInfobar } from "../InfobarContainer";
 import { INFOBAR_MESSAGE_UPDATE } from "../../reducer/TodoReducer";
+import "./Registration.css";
 
 class Registraction extends Component {
   constructor(props) {
@@ -16,8 +17,7 @@ class Registraction extends Component {
         username: null,
         email: null,
         password: null
-      },
-      isRegistered: false
+      }
     };
 
     this.registerUserButtonHandler = this.registerUserButtonHandler.bind(this);
@@ -49,19 +49,24 @@ class Registraction extends Component {
       this.state.user,
       // success
       () => {
-        this.setState({
-          isRegistered: true
-        });
+        this.props.history.push("/login");
+        this.props.showInfoMessage(
+          "Account was successfully created. An email was sent to your email to complete the registration",
+          "info"
+        );
       },
       // failure
       message => {
-        this.props.registerUser(message);
+        this.props.showInfoMessage(
+          "Please, verify that you provided valid information",
+          "error"
+        );
       }
     );
   }
 
   componentWillUnmount() {
-    this.props.clearInfobar();
+    // this.props.clearInfobar();
   }
 
   render() {
@@ -99,32 +104,29 @@ class Registraction extends Component {
       handler: this.registerUserButtonHandler
     };
 
-    if (this.state.isRegistered) {
-      return <Redirect to="/login"></Redirect>;
-    }
-
     return (
-      <>
-        <div className="common">
-          <div>
-            <TextField settings={usernameSettings}></TextField>
-            <TextField settings={emailSettings}></TextField>
-            <TextField settings={passwordSettings}></TextField>
-            <Button settings={registerButtonSettings}></Button>
-          </div>
+      <div className="common">
+        <div>
+          <TextField settings={usernameSettings}></TextField>
+          <TextField settings={emailSettings}></TextField>
+          <TextField settings={passwordSettings}></TextField>
+          <Button settings={registerButtonSettings}></Button>
         </div>
-      </>
+        <span className="login-link">
+          Already have an account? <Link to="/login">Back to login page</Link>
+        </span>
+      </div>
     );
   }
 }
 
-const setInfoMessage = message => {
+const showInfobarMessage = (message, type) => {
   return (dispatch, getState) => {
     dispatch({
       type: INFOBAR_MESSAGE_UPDATE,
       payload: {
         message: message,
-        type: "error",
+        type: type,
         show: true
       }
     });
@@ -137,7 +139,7 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    registerUser: () => dispatch(setInfoMessage),
+    showInfoMessage: (message, type) => dispatch(showInfobarMessage(message, type)),
     clearInfobar: () => dispatch(clearInfobar)
   };
 };

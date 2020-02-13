@@ -1,23 +1,28 @@
 import React from "react";
+import "./Infobar.css";
+import { Link } from "react-router-dom";
 
 function Infobar(props) {
-  const { message, type, show } = props.settings;
+  const { message, type, show } = props.settings.message;
 
   if (show === true) {
-    let messageTypeClass;
 
     switch (type) {
       case "info":
-        messageTypeClass = "info-message";
-        break;
+        return (
+          <div className={"common infobar info-message"}>
+            <Link className="infobar-close-info" onClick={props.settings.close}>x</Link> 
+            <span>{message}</span>
+          </div>
+        )
       case "error":
-        messageTypeClass = "error-message";
-        break;
-      default:
-        messageTypeClass = "error-message";
+        return (
+          <div className={"common infobar error-message"}>
+            <Link href="#" className="infobar-close-error" onClick={props.settings.close}>x</Link> 
+            <span>{message}</span>
+          </div>
+        )
     }
-
-    return <div className={"common " + messageTypeClass}>{message}</div>;
   } else {
     return null;
   }

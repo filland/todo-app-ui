@@ -1,6 +1,5 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
 import AuthService from "../../service/AuthService";
 
 function PrivateRoute({ component: Component, ...rest }) {
@@ -9,9 +8,6 @@ function PrivateRoute({ component: Component, ...rest }) {
       {...rest}
       render={props => {
         let flag = AuthService.isLogged();
-        if (props.pathname === "/registration") {
-          flag = true;
-        }
         return flag ? (
           <Component {...props}></Component>
         ) : (
@@ -27,4 +23,4 @@ function PrivateRoute({ component: Component, ...rest }) {
   );
 }
 
-export default connect()(PrivateRoute);
+export default PrivateRoute;

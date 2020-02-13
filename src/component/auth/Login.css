@@ -3,7 +3,6 @@
     font-size: 0.8rem;
 }
 
-
 .login-social-item {
     border: 1px solid gainsboro;
     padding: 10px;
@@ -13,6 +12,15 @@
     text-align: center;
 }
 
+.login-social-item * {
+    vertical-align: middle;
+}
+
 .login-social-item i {
     font-size: 2rem;
+    margin-right: 5px;
+}
+
+.login-social-item a {
+    font-weight: bold;
 }

@@ -1,12 +1,7 @@
 import React from "react";
 import "../App.css";
 import "./Navbar.css";
-import {
-  // BrowserRouter as Router,
-  // Route,
-  Link,
-  // Redirect
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import AuthService from "../service/AuthService";
@@ -15,20 +10,24 @@ class Navbar extends React.Component {
   render() {
     return (
       <div className="common-menu navbar clearfix">
-        <Link className="navbar-link" to="/">
-          Main
+        <Link className="navbar-logo" to="/">
+          <i className="fas fa-check-square"></i>
+          <span>TodoApp</span>
         </Link>
         {/* <Link className="navbar-link" to="/login">Log in</Link> */}
         {AuthService.isLogged() ? (
-          <Link className="navbar-link" to="/logout">
-            Logout
-          </Link>
+          <>
+            <Link className="navbar-link profile" to="/profile">
+              <i className="far fa-user-circle"></i>
+            </Link>
+            <Link className="navbar-link" to="/logout">
+              Logout
+            </Link>
+            <Link className="navbar-link" to="/">
+              Main
+            </Link>
+          </>
         ) : null}
-        <div className="navbar-user-account">
-        <Link className="navbar-link" to="/account">
-            User account
-          </Link>
-        </div>
       </div>
     );
   }

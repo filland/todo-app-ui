@@ -1,16 +1,16 @@
-import { API_ROOT_URL, BASIC_AUTH_CREDS, JWT_TOKEN, SERVER_ROOT_URL, WEB_UI_ROOT_URL } from "./constants";
+import { API_ROOT_URL, BASIC_AUTH_CREDS, JWT_TOKEN, SERVER_ROOT_URL, REGISTRATION_CONFIRMATION_URL } from "./constants";
 
 const authenticated = "authenticated";
 
 class AuthServiceImpl {
   register(user, successCallback, failureCallback) {
-    const url = SERVER_ROOT_URL + "/auth/signup";
+    const url = SERVER_ROOT_URL + "/auth/register";
 
     let headers = {
       "Content-Type": "application/json; charset=UTF-8"
     };
 
-    user["emailConfirmationBrowserUrl"] = WEB_UI_ROOT_URL;
+    user["emailConfirmationBrowserUrl"] = REGISTRATION_CONFIRMATION_URL;
 
     fetch(url, {
       method: "POST",
@@ -29,12 +29,41 @@ class AuthServiceImpl {
       });
   }
 
+  confirmRegistration(confirmationToken, successCallback, failureCallback) {
+    
+    const url = SERVER_ROOT_URL + "/auth/complete-registration";
+
+    let headers = {
+      "Content-Type": "application/json; charset=UTF-8"
+    };
+
+    let body = {
+      token: confirmationToken
+    }
+    
+    fetch(url, {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(body)
+    })
+    .then(function(response) {
+      if(response.status == 200) {
+        successCallback();
+      } else {
+        failureCallback();
+      }
+    })
+    .catch(function(e) {
+      failureCallback();
+    });
+  }
+
   login(usernameOrEmail, password, successCallback, failureCallback) {
     this.login_jwt(usernameOrEmail, password, successCallback, failureCallback);
   }
 
   login_jwt(usernameOrEmail, password, successCallback, failureCallback) {
-    const loginPath = SERVER_ROOT_URL + "/auth/signin";
+    const loginPath = SERVER_ROOT_URL + "/auth/login";
 
     let headers = {
       "Content-Type": "application/json; charset=UTF-8"
@@ -97,7 +126,7 @@ class AuthServiceImpl {
   /**
    * This method is used in case of OAuth2 login.
    * In this case we skip the login/password login
-   * step and get a JWT right away.
+   * step and set a JWT right away.
    **/
   setJwtToken(jwtToken) {
     localStorage.setItem(authenticated, true);

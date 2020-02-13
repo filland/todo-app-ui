@@ -1,12 +1,39 @@
 .navbar {
+  min-height: 1rem;
+}
+
+.navbar i {
+  font-size: 1.4em;
+  color: #34b17d;
+  margin-right: 3px;
+  vertical-align: middle;
+}
+
+.navbar-logo {
+  float: left;
+}
+
+.navbar-logo:hover i, .navbar-logo:hover span {
+  color: #149b4c;
+}
+
+.navbar-logo span {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #34b17d;
+  vertical-align: middle;
 }
 
 .navbar-link {
   padding: 3px;
   margin-right: 5px;
-  float: left;
+  float: right;
 }
 
-.navbar-user-account {
-    float: right;
+.profile i {
+  font-size: 1.6em;
+}
+
+.profile i:hover {
+  color: #149b4c;
 }

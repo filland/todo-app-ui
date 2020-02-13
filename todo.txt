@@ -1,4 +1,4 @@
-Current: 
+Current:  15. Add tab for All, Active and Done todos
 
 TODO: 
 
@@ -8,24 +8,30 @@ https://egghead.io/lessons/javascript-redux-persisting-the-state-to-the-local-st
 1. Create components for text, checkbox inputs and button. These components should have two states: view and edit so
 we can easily create edit forms from view when nessecesary.
 2. Add prop types to components.
-3. Create two tabs: done and not done TODOs. Make checkbox of todo on the main page editable.
+3. Make checkbox of todo on the main page editable.
 4. Implement pagination for todosList
 5. Use storybook.js.org ? (I believe that reportportal use this framework)
-6. Replace basic authentication with OAuth authentication in the AuthService.js
 11. Add feature so multiple users can register, login and see only their todos and being able
 to edit only their todos
-12. Add registration page
 13. Show creation date for todo on UI 
 14. Sort  todos by creation date
-15. Add tab for Active and Done todos
 16. Add a separate tab for deleted (archived) todos
 18. Handle exceptions in api services (403, 404, etc.)
 19. Why Login component is rendered twice ?
-21. Handle email confirmation (user clicks a link from the email backend sent to him and frontend sends the
-confirmation key to complete the registration. User sees a waiting screen and then see the result - message about
-successed or failed completion)
+23. Add login using VK
+24. Impelement Profile page (name, username, email, picture if available, )
+25.
+26.
 
 Done: 
+6. Replace basic authentication with OAuth authentication in the AuthService.js
+12. Add registration page
+!!! 22. Cannot navigate to registration page when use browser url field (works fine with router Link) 
+    I could not open /registration page because there was a generic private route that was breaking all
+    the public routes when user not logged in.
+21. Handle email confirmation (user clicks a link from the email backend sent to 
+him and frontend sends the confirmation key to complete the registration. User sees a waiting 
+screen and then see the result - message about successed or failed completion)
 20. User can login using Github (handle the part with issuing a jwt token for
 the user who signed in with his/her github account)
 7. Add functionality for deleting todos (soft delete).
