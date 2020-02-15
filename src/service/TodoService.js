@@ -59,8 +59,8 @@ class TodoServiceImp {
       });
   };
 
-  fetchOneTodo = (todoID, fetchOneTodoCallback) => {
-    const url = apiRootUrl + `/todos/${todoID}`;
+  fetchOneTodo = (todoId, fetchOneTodoCallback) => {
+    const url = apiRootUrl + `/todos/${todoId}`;
 
     let headers = {};
     this.addAuthorizationHeader(headers);
@@ -103,8 +103,8 @@ class TodoServiceImp {
       });
   };
 
-  deleteTodo = (todoID, deleteTodoCallback) => {
-    const url = apiRootUrl + `/todos/${todoID}`;
+  deleteTodo = (todoId, deleteTodoCallback) => {
+    const url = apiRootUrl + `/todos/${todoId}`;
 
     let headers = {};
     this.addAuthorizationHeader(headers);

@@ -16,13 +16,13 @@ class TodoEditContainer extends React.Component {
     super(props);
     this.state = {
       todo: null,
-      todoID: props.match.params.id,
+      todoId: props.match.params.id,
       loading: true
     };
   }
 
   componentDidMount() {
-    TodoService.fetchOneTodo(this.state.todoID, todo => {
+    TodoService.fetchOneTodo(this.state.todoId, todo => {
       this.setState({
         todo: todo,
         loading: false
@@ -41,7 +41,7 @@ class TodoEditContainer extends React.Component {
   render() {
 
     const { updateTodo } = this.props;
-    const { todo, todoID } = this.state;
+    const { todo, todoId } = this.state;
 
     if(this.state.loading === true) {
       return <Loading message="Todo is loading..."></Loading>
@@ -50,7 +50,7 @@ class TodoEditContainer extends React.Component {
     if (todo) {
       return <TodoEdit todo={todo} updateTodo={updateTodo} />;
     } else {
-      let message = "No todo with id " + todoID + " found";
+      let message = "No todo with id " + todoId + " found";
       return <Error message={message} />;
     }
   }

@@ -36,12 +36,12 @@ class TodosListContainer extends React.Component {
     this.cleanup();
   }
 
-  setShowFullTodo = (todoID, isShown) => {
-    this.props.setShowFullTodo(todoID, isShown);
+  setShowFullTodo = (todoId, isShown) => {
+    this.props.setShowFullTodo(todoId, isShown);
   };
 
-  handleDeleteTodoLinkClick = todoID => {
-    this.props.deleteTodo(todoID);
+  handleDeleteTodoLinkClick = todoId => {
+    this.props.deleteTodo(todoId);
   };
 
   cleanup = () => {
@@ -93,7 +93,7 @@ const fetchTodos = () => {
   };
 };
 
-const setShowFullTodo = (todoID, isShown) => {
+const setShowFullTodo = (todoId, isShown) => {
   return (dispatch, getState) => {
     dispatch({ type: SHOW_FULL_TODO_REQUEST });
 
@@ -103,7 +103,7 @@ const setShowFullTodo = (todoID, isShown) => {
       // only one todo can be fully shown at the time
       todo.shouldShowFullTodo = false;
 
-      if (todo.id === todoID) {
+      if (todo.id === todoId) {
         todo.shouldShowFullTodo = isShown;
       }
     });
@@ -112,12 +112,12 @@ const setShowFullTodo = (todoID, isShown) => {
   };
 };
 
-const deleteTodo = todoID => {
+const deleteTodo = todoId => {
   return dispatch => {
     dispatch({ type: DELETE_TODO_REQUEST });
 
-    TodoService.deleteTodo(todoID, () => {
-      dispatch({ type: DELETE_TODO_SUCCESS, payload: todoID });
+    TodoService.deleteTodo(todoId, () => {
+      dispatch({ type: DELETE_TODO_SUCCESS, payload: todoId });
     });
   };
 };
@@ -130,10 +130,10 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setShowFullTodo: (todoID, isShown) =>
-      dispatch(setShowFullTodo(todoID, isShown)),
+    setShowFullTodo: (todoId, isShown) =>
+      dispatch(setShowFullTodo(todoId, isShown)),
     getTodos: () => dispatch(fetchTodos()),
-    deleteTodo: todoID => dispatch(deleteTodo(todoID)),
+    deleteTodo: todoId => dispatch(deleteTodo(todoId)),
     clearInfobar: () => dispatch(clearInfobar())
   };
 };

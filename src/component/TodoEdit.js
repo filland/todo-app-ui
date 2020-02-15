@@ -39,9 +39,9 @@ class TodoEdit extends React.Component {
   render() {
     const { todo } = this.props;
 
-    // const todoIDFieldSettings = {
+    // const todoIdFieldSettings = {
     //   id: "todo-id" + todo.id,
-    //   label: "Todo ID",
+    //   label: "Todo Id",
     //   value: todo.id,
     //   isView: true
     // };
@@ -79,7 +79,7 @@ class TodoEdit extends React.Component {
 
     return (
       <div className="common todo-edit">
-        {/* <TextField settings={todoIDFieldSettings}></TextField> */}
+        {/* <TextField settings={todoIdFieldSettings}></TextField> */}
         <TextField settings={titleFieldSettings}></TextField>
         <TextField settings={descFieldSettings}></TextField>
         <CheckboxField settings={doneFieldSettings}></CheckboxField>
