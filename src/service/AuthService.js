@@ -1,4 +1,10 @@
-import { API_ROOT_URL, BASIC_AUTH_CREDS, JWT_TOKEN, SERVER_ROOT_URL, REGISTRATION_CONFIRMATION_URL } from "./constants";
+import {
+  API_ROOT_URL,
+  BASIC_AUTH_CREDS,
+  JWT_TOKEN,
+  SERVER_ROOT_URL,
+  REGISTRATION_CONFIRMATION_URL
+} from "./constants";
 
 const authenticated = "authenticated";
 
@@ -18,7 +24,7 @@ class AuthServiceImpl {
       body: JSON.stringify(user)
     })
       .then(function(response) {
-        if(response.status === 201) {
+        if (response.status === 201) {
           successCallback();
         } else {
           failureCallback();
@@ -30,7 +36,6 @@ class AuthServiceImpl {
   }
 
   confirmRegistration(confirmationToken, successCallback, failureCallback) {
-    
     const url = SERVER_ROOT_URL + "/auth/complete-registration";
 
     let headers = {
@@ -39,23 +44,23 @@ class AuthServiceImpl {
 
     let body = {
       token: confirmationToken
-    }
-    
+    };
+
     fetch(url, {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify(body)
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(body)
     })
-    .then(function(response) {
-      if(response.status == 200) {
-        successCallback();
-      } else {
+      .then(function(response) {
+        if (response.status == 200) {
+          successCallback();
+        } else {
+          failureCallback();
+        }
+      })
+      .catch(function(e) {
         failureCallback();
-      }
-    })
-    .catch(function(e) {
-      failureCallback();
-    });
+      });
   }
 
   login(usernameOrEmail, password, successCallback, failureCallback) {

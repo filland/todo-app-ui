@@ -1,8 +1,5 @@
-import {
-  API_ROOT_URL as apiRootUrl,
-  FAKE_LATENCY_MILLS,
-} from "./constants";
-import {addAuthorizationHeader} from './AuthUtils';
+import { API_ROOT_URL as apiRootUrl } from "./constants";
+import { addAuthorizationHeader } from "./AuthUtils";
 
 class TodoServiceImp {
   addAuthorizationHeader(headers) {
@@ -77,7 +74,7 @@ class TodoServiceImp {
 
         // add some delay to simulate loading
         // setInterval(() => {
-          fetchOneTodoCallback(todo);
+        fetchOneTodoCallback(todo);
         // }, FAKE_LATENCY_MILLS);
       });
   };
