@@ -2,6 +2,7 @@
   "name": "react-redux-router-todo-app",
   "version": "0.1.0",
   "private": true,
+  "engines" : { "node" : "=8.10.0" },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.1",
     "bootstrap": "^4.4.1",
