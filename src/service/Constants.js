@@ -5,9 +5,9 @@ export const REGISTRATION_CONFIRMATION_URL = WEB_UI_ROOT_URL + "/registration-co
 export const OAUTH2_REDIRECT_URI = WEB_UI_ROOT_URL+"/oauth2/redirect"
 
 // application API urls
-// export const ROOT_URL = "http://194.58.104.210:8080";
+export const SERVER_ROOT_URL = "http://194.58.104.210:8080";
 
-export const SERVER_ROOT_URL = "http://localhost:8080";
+// export const SERVER_ROOT_URL = "http://localhost:8080";
 export const API_ROOT_URL = SERVER_ROOT_URL + "/api/v1";
 export const GITHUB_AUTH_URL = SERVER_ROOT_URL + "/oauth2/authorize/github?redirect_uri=" + OAUTH2_REDIRECT_URI;
 
