@@ -1,8 +1,8 @@
 
 // frontend URL
-export const WEB_UI_ROOT_URL = "http://localhost:3000"
-export const REGISTRATION_CONFIRMATION_URL = WEB_UI_ROOT_URL + "/registration-confirmation"
-export const OAUTH2_REDIRECT_URI = WEB_UI_ROOT_URL+"/oauth2/redirect"
+export const WEB_UI_ROOT_URL = "http://localhost:3000";
+export const REGISTRATION_CONFIRMATION_URL = WEB_UI_ROOT_URL + "/registration-confirmation";
+export const OAUTH2_REDIRECT_URI = WEB_UI_ROOT_URL+"/oauth2/redirect";
 
 // application API urls
 export const SERVER_ROOT_URL = "http://194.58.104.210:8080";
