@@ -14,7 +14,7 @@ export const GITHUB_AUTH_URL = SERVER_ROOT_URL + "/oauth2/authorize/github?redir
 
 // key for retreiving value for the Authorization header for basic authentication
 export const BASIC_AUTH_CREDS = "basicAuthCreds";
-export const JWT_TOKEN = "jwtToken"
+export const JWT_TOKEN = "jwtToken";
 
 // dev
 export const FAKE_LATENCY_MILLS = 0;
