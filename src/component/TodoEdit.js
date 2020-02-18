@@ -4,6 +4,7 @@ import TextField from "./base/TextField";
 import CheckboxField from "./base/CheckboxField";
 import Button from "./base/Button";
 import "../App.css";
+import "./TodoEdit.css";
 
 class TodoEdit extends React.Component {
   constructor(props) {
@@ -22,15 +23,15 @@ class TodoEdit extends React.Component {
 
   handleDescChange = desc => {
     this.setState({
-        newTodo: Object.assign({}, this.state.newTodo, {description: desc})
-      });
+      newTodo: Object.assign({}, this.state.newTodo, { description: desc })
+    });
   };
 
   handleDoneChange = done => {
     this.setState({
-      newTodo: Object.assign({}, this.state.newTodo, {done: done})
+      newTodo: Object.assign({}, this.state.newTodo, { done: done })
     });
-  }
+  };
 
   saveTodo = () => {
     this.props.updateTodo(this.state.newTodo);
@@ -38,13 +39,6 @@ class TodoEdit extends React.Component {
 
   render() {
     const { todo } = this.props;
-
-    // const todoIdFieldSettings = {
-    //   id: "todo-id" + todo.id,
-    //   label: "Todo Id",
-    //   value: todo.id,
-    //   isView: true
-    // };
 
     const titleFieldSettings = {
       id: "todo-title" + todo.id,
@@ -79,11 +73,14 @@ class TodoEdit extends React.Component {
 
     return (
       <div className="common todo-edit">
-        {/* <TextField settings={todoIdFieldSettings}></TextField> */}
         <TextField settings={titleFieldSettings}></TextField>
         <TextField settings={descFieldSettings}></TextField>
-        <CheckboxField settings={doneFieldSettings}></CheckboxField>
-        <Button settings={saveButtonSettings}></Button>
+        <div className="checkbox-and-button">
+          <CheckboxField settings={doneFieldSettings}></CheckboxField>
+          <div>
+            <Button settings={saveButtonSettings}></Button>
+          </div>
+        </div>
       </div>
     );
   }

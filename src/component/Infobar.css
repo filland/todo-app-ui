@@ -1,17 +1,13 @@
 .infobar {
-    position: relative;
+    display: flex;
+    justify-content: space-between;
 }
 
 .infobar a {
-    position: absolute;
-    top: 0;
-    right: 0;
-
     font-weight: 600;
     font-size: 1.5rem;
-    display: block;
-    height: 30px;
-    width: 30px;
+    line-height: 1rem;
+    padding-right: 5px;
 }
 
 .info-message {

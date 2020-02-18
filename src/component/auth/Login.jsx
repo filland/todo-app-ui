@@ -83,7 +83,7 @@ class Login extends React.Component {
           </p>
         </div>
         <div className="common login-social">
-          <h2>Social login</h2>
+          <h3>Social login</h3>
           <div className="login-social-item">
             <div>
               <i className="fab fa-github"></i>

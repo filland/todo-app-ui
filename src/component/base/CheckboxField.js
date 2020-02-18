@@ -1,5 +1,6 @@
 import React from "react";
 import "../../App.css";
+import "./CheckboxField.css";
 
 class CheckboxField extends React.Component {
   constructor(props) {
@@ -24,10 +25,10 @@ class CheckboxField extends React.Component {
   prepareTemplate = editable => {
     const { settings } = this.props;
     return (
-      <div className="common-input text-input-div">
-        <label className="text-input-label">{settings.label}:</label>
+      <div className="common-input checkbox">
+        <label className="text-input-label">{settings.label}</label>
         <input
-          className="text-input"
+          className="input"
           type="checkbox"
           placeholder={settings.placeholder}
           checked={this.state.checked}

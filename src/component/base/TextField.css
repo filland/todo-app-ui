@@ -1,0 +1,25 @@
+/* 
+EDIT text field
+*/
+.edit-input-div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 7px;
+}
+
+.edit-input-div label {
+  flex: 0 0 100px;
+  padding-right: 5px;
+}
+
+.edit-input-div input {
+  flex: 1;
+}
+
+
+
+/* 
+VIEW text field
+*/
+
+

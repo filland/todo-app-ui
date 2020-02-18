@@ -1,0 +1,16 @@
+.checkbox {
+    display: flex;
+}
+
+.checkbox label {
+    flex: 1;
+}
+
+.checkbox input {
+    flex: 1;
+}
+
+.checkbox .input {
+    width: 17px;
+    height: 17px;
+}

@@ -1,0 +1,38 @@
+/* 
+    the media query will be used when width is 
+    less then specified 
+*/
+@media(max-width: 568px) {
+    .todo-add .flex-container label {
+        display:none;
+    }
+  }
+
+.todo-add .flex-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 7px;
+    align-items: center;
+}
+
+.todo-add .flex-container:last-child { 
+    margin-bottom: 0;
+}
+
+.todo-add .flex-container label {
+    flex: 0 0 100px;
+    font-size: 1rem;
+    
+}
+
+.todo-add .flex-container input, textarea {
+    flex: 8;
+
+    padding-top: 4px;
+    padding-left: 4px;
+}
+
+.todo-add .flex-container button {
+    margin-left: auto;
+}
+

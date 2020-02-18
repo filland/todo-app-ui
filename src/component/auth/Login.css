@@ -1,26 +1,77 @@
-.login-basic .register-link {
-    padding-top: 5px;
-    font-size: 0.8rem;
+@media (max-width: 768px) {
+  .login-component {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .login-basic {
+  }
+
+  .login-basic button {
+    float: right;
+  }
+
+  /* start override css for TextField */
+  .login-basic .edit-input-div {
+    justify-content: space-around !important;
+  }
+
+  .login-basic .edit-input-div label {
+    flex: 1 !important;
+  }
+
+  .login-basic .edit-input-div input {
+    flex: 3 !important;
+  }
+  /* end override css for TextField */
+}
+
+.login-component {
+  display: flex;
+}
+
+.login-basic {
+  flex: 3;
+}
+
+.login-social {
+  flex: 2;
+}
+
+.register-link {
+  padding-top: 5px;
+  font-size: 0.8rem;
 }
 
 .login-social-item {
-    border: 1px solid gainsboro;
-    padding: 10px;
+  border: 1px solid gainsboro;
+  padding: 10px;
 }
 
 .login-social-item div {
-    text-align: center;
+  text-align: center;
 }
 
 .login-social-item * {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
 .login-social-item i {
-    font-size: 2rem;
-    margin-right: 5px;
+  font-size: 1.8rem;
+  margin-right: 5px;
 }
 
 .login-social-item a {
-    font-weight: bold;
+  font-weight: bold;
 }
+
+/* 
+start override css for TextField 
+*/
+.login-basic .edit-input-div label {
+  flex: 1;
+}
+
+/* 
+end override css for TextField 
+*/

@@ -1,0 +1,17 @@
+
+.todo-edit .checkbox-and-button {
+    display: flex;
+    justify-content: space-between;
+}
+
+.todo-edit .checkbox-and-button .checkbox {
+    flex: 0 0 190px;
+}
+
+.todo-edit .checkbox-and-button div:last-child {
+    flex: 1;
+}
+
+.todo-edit .checkbox-and-button div:last-child {
+    text-align: end;
+}

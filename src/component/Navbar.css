@@ -1,8 +1,19 @@
 .navbar {
-  min-height: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
-.navbar i {
+.navbar {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.navbar-link {
+  margin-right: 7px;
+}
+
+.navbar-logo i {
   font-size: 1.4em;
   color: #34b17d;
   margin-right: 3px;
@@ -10,11 +21,7 @@
 }
 
 .navbar-logo {
-  float: left;
-}
-
-.navbar-logo:hover i, .navbar-logo:hover span {
-  color: #149b4c;
+  margin-right: auto;
 }
 
 .navbar-logo span {
@@ -24,16 +31,13 @@
   vertical-align: middle;
 }
 
-.navbar-link {
-  padding: 3px;
-  margin-right: 5px;
-  float: right;
-}
-
 .profile i {
+  color: #34b17d;
   font-size: 1.6em;
 }
 
+.navbar-logo:hover i, 
+.navbar-logo:hover span,
 .profile i:hover {
   color: #149b4c;
 }

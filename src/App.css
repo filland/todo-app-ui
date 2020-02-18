@@ -3,7 +3,7 @@
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
-    width: 500px !important;
+    width: 550px !important;
   }
 }
 
@@ -21,6 +21,23 @@ a {
 body {
   background: #f5f5f5;
   font-size: 17px;
+  font-family: Helvetica, sans-serif !important;
+}
+
+label, input, textarea {
+  font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+input, textarea {
+  padding: 2px;
+  border-radius: 3px;
+  border: solid 1px rgb(206, 206, 206);
+}
+
+textarea {  
+  min-height: 30px;
+  height: 100%;
 }
 
 h1,h2 {
@@ -49,23 +66,21 @@ h1,h2 {
 
 .common-menu {
   background: #ffffff;
-  padding: 7px;
+  padding: 10px;
   margin-bottom: 7px;
-  /* box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 8px 0px; */
 }
 
 .common {
-  padding: 7px;
+  padding: 10px;
   margin-bottom: 7px;
   background: #ffffff;
-  /* box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 8px 0px; */
 }
 
 .todo {
 }
 
 .todo-title {
-  font-weight: 500;
+  font-weight: bold;
   font-size: 18px;
   margin-bottom: 5px;
 }
@@ -81,32 +96,22 @@ h1,h2 {
 .common-input {
   padding-top: 3px;
   padding-bottom: 3px;
-  /* margin-bottom: 3px; */
-}
-
-.text-input-div {
-}
-
-.text-input {
-}
-
-.text-input-label {
-  padding-right: 5px;
-}
-
-.text-input-value {
 }
 
 .green-button {
   
+  display: inline-block;
+  
   background-color: #34b17d;
-  border: none;
   color: white;
-  padding: 4px 8px;
+  
+  border: none;
+  border-radius: 4px;
+  padding: 5px 25px;
+  margin-bottom: 0;
+  
   text-align: center;
   text-decoration: none;
-  border-radius: 4px;
-  display: inline-block;
   font-size: 16px;
 }
 
