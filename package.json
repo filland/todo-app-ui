@@ -2,10 +2,13 @@
   "name": "react-redux-router-todo-app",
   "version": "0.1.0",
   "private": true,
-  "engines" : { "node" : "=8.10.0" },
+  "engines": {
+    "node": "=8.10.0"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.1",
     "bootstrap": "^4.4.1",
+    "dotenv": "^8.2.0",
     "express-favicon": "^2.0.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
