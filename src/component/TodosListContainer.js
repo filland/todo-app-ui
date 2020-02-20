@@ -23,7 +23,6 @@ class TodosListContainer extends React.Component {
   }
 
   componentDidMount() {
-    console.log("REACT_APP_ENV " + process.env.REACT_APP_WEB_ROOT_URL);
     this.props.getTodos();
   }
 

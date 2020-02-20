@@ -2,14 +2,14 @@ let UI_ROOT_URL;
 let SERVER_ROOT_URL_LOCAL;
 if (process.env.NODE_ENV === 'production') {
     // application API URLs
-    SERVER_ROOT_URL_LOCAL = process.env.SERVER_ROOT_URL;
+    SERVER_ROOT_URL_LOCAL = process.env.REACT_APP_SERVER_ROOT_URL;
     // frontend URLs
-    UI_ROOT_URL = process.env.UI_ROOL_URL;
+    UI_ROOT_URL = process.env.REACT_APP_UI_ROOT_URL;
 } else {
     // application API URLs
     SERVER_ROOT_URL_LOCAL = "http://localhost:8080";
     // frontend URLs
-    UI_ROOT_URL = "http://localhost:3000"
+    UI_ROOT_URL = "http://localhost:3000";
 }
 export const SERVER_ROOT_URL = SERVER_ROOT_URL_LOCAL;
 export const WEB_UI_ROOT_URL = UI_ROOT_URL;
