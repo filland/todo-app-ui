@@ -20,8 +20,8 @@ to edit only their todos
 19. Why Login component is rendered twice ?
 23. Add login using VK
 24. Impelement Profile page (name, username, email, picture if available, )
-25.
-26.
+!25. Move constants to .env file
+26. Add config for dev and prod envs like here (https://github.com/arcanar7/todo-vue-backend-rest-/tree/master/src/config)
 
 Done: 
 6. Replace basic authentication with OAuth authentication in the AuthService.js

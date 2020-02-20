@@ -12,14 +12,14 @@ function Infobar(props) {
         return (
           <div className={"common infobar info-message"}>
             <span>{message}</span>
-            <Link className="infobar-close-info" onClick={props.settings.close}>x</Link> 
+            <Link className="infobar-close-info" to="#" onClick={props.settings.close}>x</Link> 
           </div>
         )
       case "error":
         return (
           <div className={"common infobar error-message"}>
             <span>{message}</span>
-            <Link href="#" className="infobar-close-error" onClick={props.settings.close}>x</Link> 
+            <Link className="infobar-close-error" to="#" onClick={props.settings.close}>x</Link> 
           </div>
         )
     }
