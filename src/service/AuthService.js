@@ -52,7 +52,7 @@ class AuthServiceImpl {
       body: JSON.stringify(body)
     })
       .then(function(response) {
-        if (response.status == 200) {
+        if (response.status === 200) {
           successCallback();
         } else {
           failureCallback();

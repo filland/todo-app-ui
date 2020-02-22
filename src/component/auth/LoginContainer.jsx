@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { INFOBAR_MESSAGE_UPDATE, LOGIN_SUCCESS } from "../../reducer/TodoReducer";
+import { LOGIN_SUCCESS } from "../../reducer/AuthReducer";
+import { INFOBAR_MESSAGE_UPDATE } from "../../reducer/InfobarReducer";
 import AuthService from "../../service/AuthService";
 import { clearInfobar } from "../InfobarContainer";
 import Login from "./Login";
@@ -16,13 +17,12 @@ class LoginContainer extends Component {
 
   render() {
     const redirectToRefferer = this.props.redirectToRefferer;
-    const redirectTo = "/";
-
+    const { from } = this.props.location.state || { from: { pathname: "/" } };
     const handleLogin = this.props.loginUser;
 
     return (
       <Login
-        redirectTo={redirectTo}
+        redirectTo={from}
         handleLogin={handleLogin}
         redirectToRefferer={redirectToRefferer}
       />
@@ -68,7 +68,7 @@ const handleLoginUser = (username, password) => {
 
 const mapStateToProps = store => {
   return {
-    redirectToRefferer: store.todos.login.redirectToRefferer
+    redirectToRefferer: store.auth.login.redirectToRefferer
   };
 };
 

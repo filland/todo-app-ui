@@ -16,8 +16,6 @@ class Login extends React.Component {
       username: "",
       password: ""
     };
-
-    // this.loginUser = this.loginUser.bind(this);
   }
 
   handleUsernameChange = username => {
@@ -39,13 +37,10 @@ class Login extends React.Component {
   };
 
   render() {
-    // const { from } = this.props.location.state || { from: { pathname: "/" } };
-    const { from } = { from: { pathname: this.props.redirectTo } } || {
-      from: { pathname: "/" }
-    };
-
+    const redirectTo = this.props.redirectTo;
+    
     if (this.props.redirectToRefferer) {
-      return <Redirect to={from}></Redirect>;
+      return <Redirect to={redirectTo}></Redirect>;
     }
 
     const usernameSettings = {

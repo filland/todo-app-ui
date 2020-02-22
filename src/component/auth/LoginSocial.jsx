@@ -6,10 +6,12 @@ import { getQueryParamValueFromLocationSearch } from "../../util/UrlUtils";
 class LoginSocial extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      isLogged: false
+    };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { location } = this.props;
 
     let token = getQueryParamValueFromLocationSearch(
@@ -17,11 +19,14 @@ class LoginSocial extends Component {
       location.search
     );
     AuthService.setJwtToken(token);
+    if (AuthService.isLogged()) {
+      this.setState({isLogged: true});
+    }
   }
 
   render() {
 
-    if (AuthService.isLogged()) {
+    if (this.state.isLogged) {
       return <Redirect to="/"></Redirect>;
     }
 

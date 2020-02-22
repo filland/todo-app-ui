@@ -6,7 +6,7 @@ import Button from "../base/Button";
 import AuthService from "../../service/AuthService";
 import { Link } from "react-router-dom";
 import { clearInfobar } from "../InfobarContainer";
-import { INFOBAR_MESSAGE_UPDATE } from "../../reducer/TodoReducer";
+import { INFOBAR_MESSAGE_UPDATE } from "../../reducer/InfobarReducer";
 import "./Registration.css";
 
 class Registraction extends Component {
@@ -17,18 +17,20 @@ class Registraction extends Component {
         username: null,
         email: null,
         password: null
-      }
+      },
+      // true after the registed button clicked and backend did not response yet
+      isLoading: false
     };
 
     this.registerUserButtonHandler = this.registerUserButtonHandler.bind(this);
   }
 
   usernameChangeHandler = username => {
-    console.log(this.state);
+    // console.log(this.state);
     this.setState({
       user: Object.assign({}, this.state.user, { username: username })
     });
-    console.log(this.state);
+    // console.log(this.state);
   };
 
   emailChangeHandler = email => {
@@ -42,9 +44,9 @@ class Registraction extends Component {
       user: Object.assign({}, this.state.user, { password: password })
     });
   };
-
-  registerUserButtonHandler() {
-    console.log(this.state);
+  
+  registerUserButtonHandler(e) {
+    this.setState({isLoading: true});
     AuthService.register(
       this.state.user,
       // success
@@ -61,12 +63,13 @@ class Registraction extends Component {
           "Please, verify that you provided valid information",
           "error"
         );
+        this.setState({isLoading: false});
       }
     );
   }
 
   componentWillUnmount() {
-    // this.props.clearInfobar();
+    this.props.clearInfobar();
   }
 
   render() {
@@ -101,6 +104,7 @@ class Registraction extends Component {
       id: "register-button",
       text: "Register",
       type: "submit",
+      disabled: this.state.isLoading,
       handler: this.registerUserButtonHandler
     };
 

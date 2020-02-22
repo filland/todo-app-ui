@@ -6,8 +6,8 @@ import TodoService from "../service/TodoService";
 import {
   UPDATE_TODO_REQUEST,
   UPDATE_TODO_SUCCESS,
-  INFOBAR_MESSAGE_UPDATE
 } from "../reducer/TodoReducer";
+import { INFOBAR_MESSAGE_UPDATE } from "../reducer/InfobarReducer";
 import Loading from "./Loading";
 import { clearInfobar } from "./InfobarContainer";
 
@@ -39,12 +39,11 @@ class TodoEditContainer extends React.Component {
   }
 
   render() {
-
     const { updateTodo } = this.props;
     const { todo, todoId } = this.state;
 
-    if(this.state.loading === true) {
-      return <Loading message="Todo is loading..."></Loading>
+    if (this.state.loading === true) {
+      return <Loading message="Todo is loading..."></Loading>;
     }
 
     if (todo) {
@@ -91,7 +90,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TodoEditContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(TodoEditContainer);

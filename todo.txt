@@ -5,7 +5,8 @@ TODO:
 0. Preserve the state between page reloadings. See - 
 https://egghead.io/lessons/javascript-redux-persisting-the-state-to-the-local-storage
 
-1. Create components for text, checkbox inputs and button. These components should have two states: view and edit so
+1. Create components for text, checkbox inputs and button. These components should have two 
+states: view and edit so
 we can easily create edit forms from view when nessecesary.
 2. Add prop types to components.
 3. Make checkbox of todo on the main page editable.
@@ -17,13 +18,19 @@ to edit only their todos
 14. Sort  todos by creation date
 16. Add a separate tab for deleted (archived) todos
 18. Handle exceptions in api services (403, 404, etc.)
-19. Why Login component is rendered twice ?
 23. Add login using VK
 24. Impelement Profile page (name, username, email, picture if available, )
-!25. Move constants to .env file
-26. Add config for dev and prod envs like here (https://github.com/arcanar7/todo-vue-backend-rest-/tree/master/src/config)
+28. How to freeze buttons when submitting a form (especially when using component and its container)
+29.
+30.
 
 Done: 
+!25. Move constants to .env file
+26. Add config for dev and prod envs like 
+here (https://github.com/arcanar7/todo-vue-backend-rest-/tree/master/src/config)
+27. Fix redirect to page after successful login
+19. Why Login component is rendered twice ? - because there where several routes that triggered login page 
+several times
 6. Replace basic authentication with OAuth authentication in the AuthService.js
 12. Add registration page
 !!! 22. Cannot navigate to registration page when use browser url field (works fine with router Link) 
@@ -45,8 +52,8 @@ QUESTIONS:
 a mode props and show either View or Edit inputs.
 What I found on the internet that people using conditioning to do this. So one conponent for new and edit
 
-2. How to create breadcrumbs component? When I am using react-router I need to import components that are on the
-page specified in the breadcrumbs (it looks really hard to overcome and definitely not the best way
+2. How to create breadcrumbs component? When I am using react-router I need to import components that are 
+on the page specified in the breadcrumbs (it looks really hard to overcome and definitely not the best way
 to solve this problem).
 
 3. How to stop opening new page when clicking a link ?

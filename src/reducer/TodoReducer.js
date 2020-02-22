@@ -20,24 +20,12 @@ export const UPDATE_TODO_SUCCESS = "UPDATE_TODO_SUCCESS";
 export const DELETE_TODO_REQUEST = "DELETE_TODO_REQUEST";
 export const DELETE_TODO_SUCCESS = "DELETE_TODO_SUCCESS";
 
-export const INFOBAR_MESSAGE_UPDATE = "INFOBAR_MESSAGE_UPDATE";
-
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
-
 const initialLoadTodosState = {
   todos: [],
   areLoading: false,
+  isLoadingFullTodo: false,
   isUpdatingTodo: false,
-  error: null,
-  infobarMessage: {
-    message: null,
-    type: null,
-    show: false
-  },
-  login: {
-    redirectToRefferer: false
-  }
+  // error: null
 };
 
 export function todosReducer(state = initialLoadTodosState, action) {
@@ -57,8 +45,9 @@ export function todosReducer(state = initialLoadTodosState, action) {
       });
     case ADD_TODO_FAIL:
       return Object.assign({}, state, {
-        isAdding: false,
-        error: "Error. This todo was not added."
+        isAdding: false
+        // ,
+        // error: "Error. This todo was not added."
       });
     case GET_ONE_TODO_REQUEST:
       return Object.assign({}, state, { areLoading: true });
@@ -89,8 +78,9 @@ export function todosReducer(state = initialLoadTodosState, action) {
       });
     case GET_TODOS_FAIL:
       return Object.assign({}, state, {
-        areLoading: false,
-        error: "Error while loading todos."
+        areLoading: false
+        // ,
+        // error: "Error while loading todos."
       });
     case SHOW_FULL_TODO_REQUEST:
       return Object.assign({}, state, { isLoadingFullTodo: true });
@@ -125,65 +115,7 @@ export function todosReducer(state = initialLoadTodosState, action) {
         }
       });
       return newState4;
-    case INFOBAR_MESSAGE_UPDATE:
-      let x = Object.assign({}, state, { infobarMessage: action.payload });
-      return x;
-    case LOGIN_SUCCESS:
-      let login1 = {
-        redirectToRefferer: true
-      }
-      return Object.assign({}, state, {login: login1});
-    case LOGOUT_SUCCESS:
-      let login2 = {
-        redirectToRefferer: false
-      }
-      return Object.assign({}, state, {login : login2});
     default:
       return state;
   }
 }
-
-// const initialShowFullTodo = {
-//   todos: [],
-//   isLoadingFullTodo: false
-// };
-
-// export function showFullTodo(state = initialShowFullTodo, action) {
-//   switch (action.type) {
-//     case SHOW_FULL_TODO_REQUEST:
-//       return Object.assign({}, state, { isLoadingFullTodo: true })
-//     case SHOW_FULL_TODO_SUCCESS:
-//       return Object.assign({}, state, { todos: action.payload, isLoadingFullTodo: false })
-//     case SHOW_FULL_TODO_FAIL:
-//       return Object.assign({}, state, { error: "Error while opening full todo" })
-//     default: return state;
-//   }
-// }
-
-// export const ADD_TODO_REQUEST = "ADD_TODO";
-// export const ADD_TODO_SUCCESS = "ADD_TODO_SUCCESS";
-// export const ADD_TODO_FAIL = "ADD_TODO_FAIL";
-
-// const initialAddTodoState = {
-//   todo: null,
-//   isAdding: false
-// };
-
-// export function addTodoReducer(state = initialAddTodoState, action) {
-//   switch (action.type) {
-//     case ADD_TODO_REQUEST:
-//       return Object.assign({}, state, { isAdding: true });
-//     case ADD_TODO_SUCCESS:
-//       return Object.assign({}, state, {
-//         isAdding: false,
-//         todo: action.payload
-//       });
-//     case ADD_TODO_FAIL:
-//       return Object.assign({}, state, {
-//         isAdding: false,
-//         error: "Error. This todo was not added."
-//       });
-//     default:
-//       return state;
-//   }
-// }

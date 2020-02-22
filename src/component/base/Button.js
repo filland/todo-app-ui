@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 class Button extends React.Component {
   handleButtonClick = e => {
-    this.props.settings.handler();
+    this.props.settings.handler(e);
   };
 
   render() {
@@ -15,7 +15,8 @@ class Button extends React.Component {
         type={settings.type}
         id={settings.id}
         className="green-button"
-        onClick={this.handleButtonClick}
+        onClick={e => this.handleButtonClick(e)}
+        disabled={settings.disabled || false}
       >
         {settings.text}
       </button>

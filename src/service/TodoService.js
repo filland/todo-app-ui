@@ -26,7 +26,9 @@ class TodoServiceImp {
         todo.id = json;
         addTodoCallback(todo);
       })
-      .catch(function(e) {});
+      .catch(function(e) {
+        console.error(e);
+      });
   };
 
   fetchTodos = (page, limit, fetchTodosCallback) => {
@@ -51,7 +53,7 @@ class TodoServiceImp {
         fetchTodosCallback(todos);
       })
       .catch(e => {
-        console.log("error while fetching todods");
+        console.error("error while fetching todods");
         fetchTodosCallback(null);
       });
   };
@@ -76,6 +78,9 @@ class TodoServiceImp {
         // setInterval(() => {
         fetchOneTodoCallback(todo);
         // }, FAKE_LATENCY_MILLS);
+      })
+      .catch(function(e) {
+        console.error(e);
       });
   };
 
@@ -97,6 +102,9 @@ class TodoServiceImp {
       })
       .then(function(updatedTodo) {
         updateTodoCallback(updatedTodo);
+      })
+      .catch(function(e) {
+        console.error(e);
       });
   };
 
@@ -113,6 +121,9 @@ class TodoServiceImp {
       if (response.status === 200) {
         deleteTodoCallback();
       }
+    })
+    .catch(function(e) {
+      console.error(e);
     });
   };
 }

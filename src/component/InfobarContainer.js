@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Infobar from "./Infobar";
-import { INFOBAR_MESSAGE_UPDATE } from "../reducer/TodoReducer";
+import { INFOBAR_MESSAGE_UPDATE } from "../reducer/InfobarReducer";
 
 class InfobarContainer extends React.Component {
   render() {
@@ -25,7 +25,7 @@ export const clearInfobar = () => {
 
 const mapStateToProps = store => {
   return {
-    infobarMessage: store.todos.infobarMessage
+    infobarMessage: store.infobar
   };
 };
 

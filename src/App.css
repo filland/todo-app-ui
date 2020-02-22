@@ -119,6 +119,10 @@ h1,h2 {
   background-color: #149b4c;
 }
 
+.green-button:disabled {
+  background-color: #759c86;
+}
+
 .link {
   margin: 3px;
 }

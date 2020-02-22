@@ -2,22 +2,21 @@ import React from "react";
 import TodoAdd from "./TodoAdd";
 import "../App.css";
 import { connect } from "react-redux";
-import { ADD_TODO_REQUEST, ADD_TODO_SUCCESS, INFOBAR_MESSAGE_UPDATE } from "../reducer/TodoReducer";
+import { ADD_TODO_REQUEST, ADD_TODO_SUCCESS } from "../reducer/TodoReducer";
+import { INFOBAR_MESSAGE_UPDATE } from "../reducer/InfobarReducer";
 import TodoService from "../service/TodoService";
 import { clearInfobar } from "./InfobarContainer";
 
 class TodoAddContainer extends React.Component {
-
   addTodo = (title, desc) => {
     this.props.addTodo(title, desc);
   };
 
   clearInfobar = () => {
     this.props.clearInfobar();
-  }
+  };
 
   render() {
-
     this.clearInfobar();
 
     return <TodoAdd addTodo={this.addTodo}></TodoAdd>;
@@ -66,7 +65,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TodoAddContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(TodoAddContainer);
