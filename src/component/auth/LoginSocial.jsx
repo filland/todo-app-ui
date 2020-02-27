@@ -3,6 +3,10 @@ import { Redirect, withRouter } from "react-router-dom";
 import AuthService from "../../service/AuthService";
 import { getQueryParamValueFromLocationSearch } from "../../util/UrlUtils";
 
+/**
+ * this component is used for catching the token provided by the
+ * authentication server (github, vk, etc.)
+ */
 class LoginSocial extends Component {
   constructor(props) {
     super(props);
@@ -14,18 +18,14 @@ class LoginSocial extends Component {
   componentDidMount() {
     const { location } = this.props;
 
-    let token = getQueryParamValueFromLocationSearch(
-      "token",
-      location.search
-    );
+    let token = getQueryParamValueFromLocationSearch("token", location.search);
     AuthService.setJwtToken(token);
     if (AuthService.isLogged()) {
-      this.setState({isLogged: true});
+      this.setState({ isLogged: true });
     }
   }
 
   render() {
-
     if (this.state.isLogged) {
       return <Redirect to="/"></Redirect>;
     }

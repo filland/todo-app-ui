@@ -1,4 +1,9 @@
+.registration button {
+    margin-bottom: 5px;
+}
+
 .login-link {
     padding-top: 5px;
     font-size: 0.8rem;
 }
+

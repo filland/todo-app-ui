@@ -48,6 +48,7 @@ class Login extends React.Component {
       label: "Username",
       value: "user",
       isView: false,
+      placeholder: "Username",
       handler: this.handleUsernameChange
     };
 
@@ -56,6 +57,7 @@ class Login extends React.Component {
       label: "Password",
       value: "123123",
       isView: false,
+      placeholder: "Password",
       handler: this.handlePasswordChange,
       type: "password"
     };
@@ -70,6 +72,7 @@ class Login extends React.Component {
     return (
       <div className="login-component">
         <div className="common login-basic">
+          <h3>Login to access your todos</h3>
           <TextField settings={usernameSettings} />
           <TextField settings={passwordSettings} />
           <Button settings={loginButtonSettings} />
@@ -78,12 +81,12 @@ class Login extends React.Component {
           </p>
         </div>
         <div className="common login-social">
-          <h3>Social login</h3>
+          {/* <h3>Social login  </h3> */}
           <div className="login-social-item">
             <div>
               <i className="fab fa-github"></i>
               <a href={GITHUB_AUTH_URL}>
-                 GitHub
+                 Login with GitHub
               </a>
             </div>
           </div>

@@ -96,6 +96,7 @@ class Registraction extends Component {
       label: "Password",
       value: "123123",
       isView: false,
+      placeholder: "password",
       handler: this.passwordChangeHandler,
       type: "password"
     };
@@ -110,7 +111,8 @@ class Registraction extends Component {
 
     return (
       <div className="common">
-        <div>
+        <div className="registration">
+          <h3>Register a new account</h3>
           <TextField settings={usernameSettings}></TextField>
           <TextField settings={emailSettings}></TextField>
           <TextField settings={passwordSettings}></TextField>
