@@ -1,0 +1,35 @@
+/* for small screens */
+@media (max-width: 768px) {
+    .todo-control-panel {
+        opacity: 100 !important;
+    }    
+}
+
+
+.todo-control-panel {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    margin-top: 5px;
+    opacity: 0;
+}
+
+.todo-control-panel:hover {
+    opacity: 100;
+}
+
+.todo-control-panel .control-item {
+    padding: 6px;
+    margin-right: 7px;
+    font-size: 16px;
+}
+
+.todo-control-panel .control-item:hover{ 
+    background-color: #9dd8bf;
+    border-radius: 15px;
+}
+
+.todo-control-panel .control-item  a { 
+    color: black;
+}

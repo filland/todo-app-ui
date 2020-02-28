@@ -22,12 +22,11 @@
 .todo-add .flex-container label {
     flex: 0 0 100px;
     font-size: 1rem;
-    
+    display: none;
 }
 
 .todo-add .flex-container input, textarea {
     flex: 8;
-
     padding-top: 4px;
     padding-left: 4px;
 }

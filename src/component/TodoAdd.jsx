@@ -33,27 +33,38 @@ class TodoAdd extends React.Component {
     });
   };
 
+  componentDidMount() {
+    let descElement = document.getElementById("todo-add-description-id");
+    let titleElement = document.getElementById("todo-add-title-id");
+    let buttonElement = document.getElementById("todo-add-button-id");
+    descElement.style.display="none";
+    buttonElement.style.display="none";
+    titleElement.addEventListener("click", (e) => {
+      titleElement.firstChild.placeholder = "title";
+      descElement.style.display="flex";
+      buttonElement.style.display="flex";
+    });
+  }
+
   render() {
     return (
       <div className="common todo-add">
-        <div className="flex-container">
-          <label>Title</label>
+        <div className="flex-container" id="todo-add-title-id">
           <input
             type="text"
             defaultValue={this.state.title}
             onChange={this.todoTitleChange}
-            placeholder="title"
+            placeholder="add new todo..."
           ></input>
         </div>
-        <div className="flex-container">
-          <label>Description</label>
+        <div className="flex-container" id="todo-add-description-id">
           <textarea
             defaultValue={this.state.description}
             onChange={this.todoDescriptionChange}
             placeholder="description"
           ></textarea>
         </div>
-        <div className="flex-container">
+        <div className="flex-container" id="todo-add-button-id">
           <button className="green-button" onClick={this.addButtonClick}>
             Add todo
           </button>

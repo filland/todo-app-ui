@@ -10,10 +10,6 @@ export const GET_TODOS_REQUEST = "GET_TODOS_REQUEST";
 export const GET_TODOS_SUCCESS = "GET_TODOS_SUCCESS";
 export const GET_TODOS_FAIL = "GET_TODOS_FAIL";
 
-export const SHOW_FULL_TODO_REQUEST = "SHOW_FULL_TODO_REQUEST";
-export const SHOW_FULL_TODO_SUCCESS = "SHOW_FULL_TODO_SUCCESS";
-export const SHOW_FULL_TODO_FAIL = "SHOW_FULL_TODO_FAIL";
-
 export const UPDATE_TODO_REQUEST = "UPDATE_TODO_REQUEST";
 export const UPDATE_TODO_SUCCESS = "UPDATE_TODO_SUCCESS";
 
@@ -81,17 +77,6 @@ export function todosReducer(state = initialLoadTodosState, action) {
         areLoading: false
         // ,
         // error: "Error while loading todos."
-      });
-    case SHOW_FULL_TODO_REQUEST:
-      return Object.assign({}, state, { isLoadingFullTodo: true });
-    case SHOW_FULL_TODO_SUCCESS:
-      return Object.assign({}, state, {
-        todos: action.payload,
-        isLoadingFullTodo: false
-      });
-    case SHOW_FULL_TODO_FAIL:
-      return Object.assign({}, state, {
-        error: "Error while opening full todo"
       });
     case UPDATE_TODO_REQUEST:
       return Object.assign({}, state, { isUpdating: true });

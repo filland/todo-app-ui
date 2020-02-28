@@ -6,8 +6,6 @@ import { clearInfobar } from "./InfobarContainer";
 import {
   GET_TODOS_REQUEST,
   GET_TODOS_SUCCESS,
-  SHOW_FULL_TODO_SUCCESS,
-  SHOW_FULL_TODO_REQUEST,
   DELETE_TODO_REQUEST,
   DELETE_TODO_SUCCESS
 } from "../reducer/TodoReducer";
@@ -36,10 +34,6 @@ class TodosListContainer extends React.Component {
     this.cleanup();
   }
 
-  setShowFullTodo = (todoId, isShown) => {
-    this.props.setShowFullTodo(todoId, isShown);
-  };
-
   handleDeleteTodoLinkClick = todoId => {
     this.props.deleteTodo(todoId);
   };
@@ -59,7 +53,6 @@ class TodosListContainer extends React.Component {
             <Todo
               key={todo.id}
               todo={todo}
-              handleSetShowFullTodo={this.setShowFullTodo}
               handleDeleteTodoLinkClick={this.handleDeleteTodoLinkClick}
             ></Todo>
           );
@@ -93,25 +86,6 @@ const fetchTodos = () => {
   };
 };
 
-const setShowFullTodo = (todoId, isShown) => {
-  return (dispatch, getState) => {
-    dispatch({ type: SHOW_FULL_TODO_REQUEST });
-
-    let todos = getState().todos.todos;
-
-    todos.forEach(todo => {
-      // only one todo can be fully shown at the time
-      todo.shouldShowFullTodo = false;
-
-      if (todo.id === todoId) {
-        todo.shouldShowFullTodo = isShown;
-      }
-    });
-
-    dispatch({ type: SHOW_FULL_TODO_SUCCESS, payload: todos });
-  };
-};
-
 const deleteTodo = todoId => {
   return dispatch => {
     dispatch({ type: DELETE_TODO_REQUEST });
@@ -130,8 +104,6 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setShowFullTodo: (todoId, isShown) =>
-      dispatch(setShowFullTodo(todoId, isShown)),
     getTodos: () => dispatch(fetchTodos()),
     deleteTodo: todoId => dispatch(deleteTodo(todoId)),
     clearInfobar: () => dispatch(clearInfobar())

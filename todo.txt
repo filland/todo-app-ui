@@ -1,4 +1,4 @@
-Current:  
+Current:  34. Implement todo control panel
 
 TODO: 
 
@@ -16,7 +16,7 @@ we can easily create edit forms from view when nessecesary.
 to edit only their todos
 13. Show creation date for todo on UI 
 14. Sort  todos by creation date
-15. Add tab for All, Active and Done todos
+15. Add tab for Active and Done todos (or not tabs but a way to see Done todos somehow)
 16. Add a separate tab for deleted (archived) todos
 18. Handle exceptions in api services (403, 404, etc.)
 23. Add login using VK
@@ -24,11 +24,13 @@ to edit only their todos
 28. How to freeze buttons when submitting a form (especially when using component and its container)
 29. Consider replacing services to actions (see https://habr.com/ru/company/hh/blog/310524/)
 30. Implement Profile page
-31. Validation for the registration page
-32. Validation for the login page
-33.
+35.
+36.
 
 Done: 
+33. Refactor Todo styles
+31. Validation for the registration page
+32. Validation for the login page
 !25. Move constants to .env file
 26. Add config for dev and prod envs like 
 here (https://github.com/arcanar7/todo-vue-backend-rest-/tree/master/src/config)

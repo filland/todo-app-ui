@@ -1,51 +1,30 @@
 import React from "react";
-import "../App.css";
-import { Link } from "react-router-dom";
+import "./Todo.css";
 import PropTypes from "prop-types";
+import TodoControlPanel from "./TodoControlPanel";
 
 class Todo extends React.Component {
-
   handleDeleteTodoClick = e => {
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();
 
     this.props.handleDeleteTodoLinkClick(this.props.todo.id);
-  }
+  };
 
   todoTemplate = () => {
-    const { todo, handleSetShowFullTodo } = this.props;
-
-    if (todo.shouldShowFullTodo) {
-      return (
-        <div
-          className="common todo-full"
-          id={todo.id}
-          onClick={() => handleSetShowFullTodo(todo.id, false)}
-        >
-          <p className="todo-title">{todo.title}</p>
-          <p>{todo.description}</p>
-          <p>This todo is done: {todo.done ? "yes" : "no"}</p>
-          <Link to={"/todo/" + todo.id} className="link">
-            Edit
-          </Link>
-          <Link to="#" onClick={this.handleDeleteTodoClick} className="link">Delete</Link>
-        </div>
-      );
-    } else {
-      return (
-        <div
-          className="common todo"
-          id={todo.id}
-          onClick={() => {
-            handleSetShowFullTodo(todo.id, true);
-          }}
-        >
-          <p className="todo-title">{todo.title}</p>
-          <p>{todo.description}</p>
-          <p>This todo is done: {todo.done ? "yes" : "no"}</p>
-        </div>
-      );
-    }
+    const { todo } = this.props;
+    let settings = {
+      id: todo.id,
+      handleDeleteTodo: this.handleDeleteTodoClick
+    };
+    return (
+      <div className="common todo" id={todo.id}>
+        <p className="todo-title">{todo.title}</p>
+        <p>{todo.description}</p>
+        {/* <p>This todo is done: {todo.done ? "yes" : "no"}</p> */}
+        <TodoControlPanel settings={settings}></TodoControlPanel>
+      </div>
+    );
   };
 
   render() {
@@ -58,6 +37,6 @@ Todo.propTypes = {
   description: PropTypes.string.isRequired,
   done: PropTypes.bool.isRequired,
   active: PropTypes.bool.isRequired
-}
+};
 
 export default Todo;
