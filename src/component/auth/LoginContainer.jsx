@@ -35,28 +35,28 @@ const handleLoginUser = (username, password) => {
     AuthService.login(
       username,
       password,
-      () => {
+      response => {
         if (AuthService.isLogged()) {
           dispatch(clearInfobar());
           dispatch({
             type: LOGIN_SUCCESS
           });
-        } else {
+        } else if (response.status === 403 || response.status === 400) {
           dispatch({
             type: INFOBAR_MESSAGE_UPDATE,
             payload: {
-              message: "Not managed to login for some reason",
+              message: "Username or password is wrong",
               type: "error",
               show: true
             }
           });
         }
       },
-      () => {
+      e => {
         dispatch({
           type: INFOBAR_MESSAGE_UPDATE,
           payload: {
-            message: "Username or password is wrong",
+            message: "Server is not available. Please, try later",
             type: "error",
             show: true
           }

@@ -23,15 +23,12 @@ class AuthServiceImpl {
       headers: headers,
       body: JSON.stringify(user)
     })
-      .then(function(response) {
-        if (response.status === 201) {
-          successCallback();
-        } else {
-          failureCallback();
-        }
+      .then(r => r.json().then(data => ({ status: r.status, body: data })))
+      .then(function(statusAndBody) {
+        successCallback(statusAndBody);
       })
       .catch(function(e) {
-        failureCallback();
+        failureCallback(e);
       });
   }
 
@@ -63,11 +60,11 @@ class AuthServiceImpl {
       });
   }
 
-  login(usernameOrEmail, password, successCallback, failureCallback) {
-    this.login_jwt(usernameOrEmail, password, successCallback, failureCallback);
+  login(username, password, successCallback, failureCallback) {
+    this.login_jwt(username, password, successCallback, failureCallback);
   }
 
-  login_jwt(usernameOrEmail, password, successCallback, failureCallback) {
+  login_jwt(username, password, successCallback, failureCallback) {
     const loginPath = SERVER_ROOT_URL + "/auth/login";
 
     let headers = {
@@ -75,7 +72,7 @@ class AuthServiceImpl {
     };
 
     let loginRequest = {};
-    loginRequest.usernameOrEmail = usernameOrEmail;
+    loginRequest.username = username;
     loginRequest.password = password;
 
     fetch(loginPath, {
@@ -83,20 +80,16 @@ class AuthServiceImpl {
       headers: headers,
       body: JSON.stringify(loginRequest)
     })
-      .then(function(response) {
-        return response.json();
-      })
+      .then(r => r.json().then(data => ({ status: r.status, body: data })))
       .then(response => {
-        if (response.accessToken != null) {
+        if (response.status === 200 && response.body.accessToken != null) {
           localStorage.setItem(authenticated, true);
-          localStorage.setItem(JWT_TOKEN, response.accessToken);
+          localStorage.setItem(JWT_TOKEN, response.body.accessToken);
         }
-
-        successCallback();
+        successCallback(response);
       })
       .catch(e => {
-        console.error(e);
-        failureCallback();
+        failureCallback(e);
       });
   }
 

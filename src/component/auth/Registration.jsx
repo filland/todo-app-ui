@@ -18,6 +18,9 @@ class Registraction extends Component {
         email: null,
         password: null
       },
+      usernameRed: {},
+      emailRed: {},
+      passwordRed: {},
       // true after the registed button clicked and backend did not response yet
       isLoading: false
     };
@@ -26,11 +29,9 @@ class Registraction extends Component {
   }
 
   usernameChangeHandler = username => {
-    // console.log(this.state);
     this.setState({
       user: Object.assign({}, this.state.user, { username: username })
     });
-    // console.log(this.state);
   };
 
   emailChangeHandler = email => {
@@ -44,26 +45,76 @@ class Registraction extends Component {
       user: Object.assign({}, this.state.user, { password: password })
     });
   };
-  
+
   registerUserButtonHandler(e) {
-    this.setState({isLoading: true});
+    this.setState({ 
+      isLoading: true,
+      usernameRed: {},
+      emailRed: {},
+      passwordRed: {}
+    });
     AuthService.register(
       this.state.user,
       // success
-      () => {
-        this.props.history.push("/login");
-        this.props.showInfoMessage(
-          "Account was successfully created. An email was sent to your email to complete the registration",
-          "info"
-        );
+      response => {
+        let {code, errors} = response.body;
+        if (response.status === 201) {
+          this.props.history.push("/login");
+          this.props.showInfoMessage(
+            "Account was successfully created. An email was sent to your email to complete the registration",
+            "info"
+          );
+        } else if (code === 4002) {
+          this.props.showInfoMessage(
+            "User with such email already exists",
+            "error"
+          );
+          this.setState({
+            isLoading: false,
+            emailRed: { "border-color": "red" }
+          });
+        } else if (code === 4003) {
+          this.props.showInfoMessage(
+            "User with such username already exists",
+            "error"
+          );
+          this.setState({
+            isLoading: false,
+            usernameRed: { "border-color": "red" }
+          });
+        } else if (code === 4006) {
+          this.props.showInfoMessage(
+            "Please, verify that you provided valid information",
+            "error"
+          );
+          this.setState({
+            isLoading: false,
+            usernameRed: errors.hasOwnProperty("username")
+              ? { "border-color": "red" }
+              : {},
+              emailRed: errors.hasOwnProperty("email")
+              ? { "border-color": "red" }
+              : {},
+              passwordRed: errors.hasOwnProperty("password")
+              ? { "border-color": "red" }
+              : {}
+          });
+        } else {
+          this.props.showInfoMessage(
+            "Please, verify that you provided valid information",
+            "error"
+          );
+          this.setState({ isLoading: false });
+        }
       },
       // failure
       message => {
+        console.log(message);
         this.props.showInfoMessage(
-          "Please, verify that you provided valid information",
+          "Server is not available. Please, try later",
           "error"
         );
-        this.setState({isLoading: false});
+        this.setState({ isLoading: false });
       }
     );
   }
@@ -79,6 +130,7 @@ class Registraction extends Component {
       value: "user5",
       placeholder: "username",
       isView: false,
+      styles: this.state.usernameRed,
       handler: this.usernameChangeHandler
     };
 
@@ -88,6 +140,7 @@ class Registraction extends Component {
       value: "user5@mail.cc",
       placeholder: "email",
       isView: false,
+      styles: this.state.emailRed,
       handler: this.emailChangeHandler
     };
 
@@ -97,6 +150,7 @@ class Registraction extends Component {
       value: "123123",
       isView: false,
       placeholder: "password",
+      styles: this.state.passwordRed,
       handler: this.passwordChangeHandler,
       type: "password"
     };
@@ -145,7 +199,8 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    showInfoMessage: (message, type) => dispatch(showInfobarMessage(message, type)),
+    showInfoMessage: (message, type) =>
+      dispatch(showInfobarMessage(message, type)),
     clearInfobar: () => dispatch(clearInfobar)
   };
 };

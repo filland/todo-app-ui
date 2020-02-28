@@ -43,6 +43,7 @@ class TextField extends React.Component {
         <input
           type={settings.type || "text"}
           className="input"
+          style={settings.styles ? settings.styles : {}}
           placeholder={settings.placeholder}
           value={this.state.value}
           onChange={this.handleTextFieldChange}
