@@ -1,4 +1,4 @@
-Current:  34. Implement todo control panel
+Current: 
 
 TODO: 
 
@@ -24,10 +24,11 @@ to edit only their todos
 28. How to freeze buttons when submitting a form (especially when using component and its container)
 29. Consider replacing services to actions (see https://habr.com/ru/company/hh/blog/310524/)
 30. Implement Profile page
-35.
-36.
+35. Implement todo control panel - add tag
+36. Implement todo tag panel
 
 Done: 
+34. Implement todo control panel - Mark todo as done AND Delete todo
 33. Refactor Todo styles
 31. Validation for the registration page
 32. Validation for the login page

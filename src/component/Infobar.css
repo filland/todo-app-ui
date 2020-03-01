@@ -11,7 +11,7 @@
 }
 
 .info-message {
-    background-color: rgb(209, 236, 241);
+    background-color: rgb(209, 236, 241) !important;
     border: 1px solid rgb(190, 229, 235);
 }
 
@@ -20,7 +20,7 @@
 }
   
 .error-message {
-    background-color: rgb(248, 215, 218);
+    background-color: rgb(248, 215, 218) !important;
     border: 1px solid rgb(245, 198, 203);
 }
 

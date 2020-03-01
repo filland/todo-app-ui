@@ -84,7 +84,7 @@ class Registraction extends Component {
           });
         } else if (code === 4006) {
           this.props.showInfoMessage(
-            "Please, verify that you provided valid information",
+            "Please, make sure that you provided valid information",
             "error"
           );
           this.setState({
@@ -101,7 +101,7 @@ class Registraction extends Component {
           });
         } else {
           this.props.showInfoMessage(
-            "Please, verify that you provided valid information",
+            "Please, make sure that you provided valid information",
             "error"
           );
           this.setState({ isLoading: false });

@@ -1,18 +1,9 @@
-/* for small screens */
-@media (max-width: 768px) {
-    .todo-control-panel {
-        opacity: 100 !important;
-    }    
-}
-
-
 .todo-control-panel {
     display: flex;
     justify-content: flex-start;
     align-items: center;
 
     margin-top: 5px;
-    opacity: 0;
 }
 
 .todo-control-panel:hover {

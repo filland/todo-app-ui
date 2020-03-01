@@ -126,6 +126,33 @@ class TodoServiceImp {
       console.error(e);
     });
   };
+
+  markTodoAsDone = (todoId, successCallback, failCallback) => {
+    const url = apiRootUrl + `/todos/${todoId}/done`
+
+    let headers = {
+      "Content-Type": "application/json; charset=UTF-8"
+    };
+    this.addAuthorizationHeader(headers);
+
+    fetch(url, {
+      method: "PUT",
+      headers: headers,
+    })
+      .then(function(response) {
+
+        if(response.status === 200) {
+          successCallback();
+        } else {
+          failCallback()
+        }
+
+      })
+      .catch(function(e) {
+        console.error(e);
+        failCallback();
+      });
+  }
 }
 
 const TodoService = new TodoServiceImp();

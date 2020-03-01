@@ -7,11 +7,12 @@ import {
   GET_TODOS_REQUEST,
   GET_TODOS_SUCCESS,
   DELETE_TODO_REQUEST,
-  DELETE_TODO_SUCCESS
+  DELETE_TODO_SUCCESS,
+  MARK_TODO_AS_DONE_REQUEST,
+  MARK_TODO_AS_DONE_SUCCESS
 } from "../reducer/TodoReducer";
 
 class TodosListContainer extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -38,6 +39,10 @@ class TodosListContainer extends React.Component {
     this.props.deleteTodo(todoId);
   };
 
+  handleTodoMarkAsDone = todoId => {
+    this.props.markTodoAsDone(todoId);
+  };
+
   cleanup = () => {
     this.props.clearInfobar();
   };
@@ -54,13 +59,12 @@ class TodosListContainer extends React.Component {
               key={todo.id}
               todo={todo}
               handleDeleteTodoLinkClick={this.handleDeleteTodoLinkClick}
+              handleMarkAsDone = {this.handleTodoMarkAsDone}
             ></Todo>
           );
         });
 
-      return (<div>
-        {todosTemplate}
-      </div>);
+      return <div>{todosTemplate}</div>;
     } else {
       return (
         <div className="common">
@@ -89,9 +93,17 @@ const fetchTodos = () => {
 const deleteTodo = todoId => {
   return dispatch => {
     dispatch({ type: DELETE_TODO_REQUEST });
-
     TodoService.deleteTodo(todoId, () => {
       dispatch({ type: DELETE_TODO_SUCCESS, payload: todoId });
+    });
+  };
+};
+
+const markTodoAsDone = todoId => {
+  return dispatch => {
+    dispatch({ type: MARK_TODO_AS_DONE_REQUEST });
+    TodoService.markTodoAsDone(todoId, () => {
+      dispatch({ type: MARK_TODO_AS_DONE_SUCCESS, payload: todoId });
     });
   };
 };
@@ -106,6 +118,7 @@ const mapDispatchToProps = dispatch => {
   return {
     getTodos: () => dispatch(fetchTodos()),
     deleteTodo: todoId => dispatch(deleteTodo(todoId)),
+    markTodoAsDone: todoId => dispatch(markTodoAsDone(todoId)),
     clearInfobar: () => dispatch(clearInfobar())
   };
 };

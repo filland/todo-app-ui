@@ -16,11 +16,15 @@ export const UPDATE_TODO_SUCCESS = "UPDATE_TODO_SUCCESS";
 export const DELETE_TODO_REQUEST = "DELETE_TODO_REQUEST";
 export const DELETE_TODO_SUCCESS = "DELETE_TODO_SUCCESS";
 
+export const MARK_TODO_AS_DONE_REQUEST = "MARK_TODO_AS_DONE_REQUEST";
+export const MARK_TODO_AS_DONE_SUCCESS = "MARK_TODO_AS_DONE_SUCCESS";
+
 const initialLoadTodosState = {
   todos: [],
   areLoading: false,
   isLoadingFullTodo: false,
   isUpdatingTodo: false,
+  isMarkingTodoAsDone: false,
   // error: null
 };
 
@@ -100,6 +104,15 @@ export function todosReducer(state = initialLoadTodosState, action) {
         }
       });
       return newState4;
+    case MARK_TODO_AS_DONE_REQUEST:
+      return Object.assign({}, state, { isMarkingTodoAsDone: true });
+    case MARK_TODO_AS_DONE_SUCCESS:
+      let markTodoAsDoneState = Object.assign({}, state);
+      markTodoAsDoneState.todos.forEach(todo => {
+        if(todo.id === action.payload) {
+          todo.done = true;
+        }
+      })
     default:
       return state;
   }

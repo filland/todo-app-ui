@@ -11,11 +11,19 @@ class Todo extends React.Component {
     this.props.handleDeleteTodoLinkClick(this.props.todo.id);
   };
 
+  handleMarkAsDone = e => {
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
+
+    this.props.handleMarkAsDone(this.props.todo.id);
+  }
+
   todoTemplate = () => {
     const { todo } = this.props;
     let settings = {
       id: todo.id,
-      handleDeleteTodo: this.handleDeleteTodoClick
+      handleDeleteTodo: this.handleDeleteTodoClick,
+      handleMarkAsDone: this.handleMarkAsDone
     };
     return (
       <div className="common todo" id={todo.id}>
