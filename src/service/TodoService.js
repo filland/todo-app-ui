@@ -31,8 +31,8 @@ class TodoServiceImp {
       });
   };
 
-  fetchTodos = (page, limit, fetchTodosCallback) => {
-    const url = apiRootUrl + `/todos/?page=${page}&limit=${limit}`;
+  fetchTodos = (page = 0, limit = 5, fetchTodosCallback) => {
+    const url = apiRootUrl + `/todos/?page=${page}&size=${limit}`;
 
     let headers = {};
     this.addAuthorizationHeader(headers);
@@ -45,12 +45,12 @@ class TodoServiceImp {
         return response.text();
       })
       .then(json => {
-        let todos = JSON.parse(json);
-        todos.sort(function(a, b) {
-          return a.id > b.id ? -1 : b.id > a.id ? 1 : 0;
-        });
+        let fetchTodosRS = JSON.parse(json);
+        // fetchTodosRS.list.sort(function(a, b) {
+        //   return a.id > b.id ? -1 : b.id > a.id ? 1 : 0;
+        // });
 
-        fetchTodosCallback(todos);
+        fetchTodosCallback(fetchTodosRS);
       })
       .catch(e => {
         console.error("error while fetching todods");

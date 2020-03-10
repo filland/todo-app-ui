@@ -1,13 +1,3 @@
-/* 
-    the media query will be used when width is 
-    less then specified 
-*/
-@media(max-width: 568px) {
-    .todo-add .flex-container label {
-        display:none;
-    }
-  }
-
 .todo-add .flex-container {
     display: flex;
     justify-content: space-around;

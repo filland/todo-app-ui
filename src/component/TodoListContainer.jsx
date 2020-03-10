@@ -9,26 +9,23 @@ import {
   DELETE_TODO_REQUEST,
   DELETE_TODO_SUCCESS,
   MARK_TODO_AS_DONE_REQUEST,
-  MARK_TODO_AS_DONE_SUCCESS
+  MARK_TODO_AS_DONE_SUCCESS,
+  SET_TODOS_PAGENATION_SUCCESS
 } from "../reducer/TodoReducer";
+import Pagination from "./base/Pagination";
 
-class TodosListContainer extends React.Component {
+/**
+ * Pageable todo list
+ */
+class TodoListContainer extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      counter: 0
-    };
+    this.state = {};
   }
 
   componentDidMount() {
-    this.props.getTodos();
-  }
-
-  componentDidUpdate() {
-    if (this.props.todos.length === 0) {
-      this.props.getTodos();
-    }
+    // use default page and page size
+    this.props.fetchTodos();
   }
 
   componentWillUnmount() {
@@ -59,12 +56,25 @@ class TodosListContainer extends React.Component {
               key={todo.id}
               todo={todo}
               handleDeleteTodoLinkClick={this.handleDeleteTodoLinkClick}
-              handleMarkAsDone = {this.handleTodoMarkAsDone}
+              handleMarkAsDone={this.handleTodoMarkAsDone}
             ></Todo>
           );
         });
 
-      return <div>{todosTemplate}</div>;
+      let settings = {
+        current: this.props.todos.pagination.current,
+        total: this.props.todos.pagination.total,
+        updateCurrentPageHandler: page => {
+          this.props.fetchTodos(page);
+        }
+      };
+
+      return (
+        <>
+          <div>{todosTemplate}</div>
+          <Pagination settings={settings}></Pagination>
+        </>
+      );
     } else {
       return (
         <div className="common">
@@ -75,16 +85,28 @@ class TodosListContainer extends React.Component {
   }
 }
 
-const fetchTodos = () => {
+const fetchTodos = (page, size) => {
   return dispatch => {
     dispatch({
       type: GET_TODOS_REQUEST
     });
 
-    TodoService.fetchTodos(1, 40, todos => {
+    TodoService.fetchTodos(page, size, fetchTodosRS => {
+      fetchTodosRS.list.sort(function(a, b) {
+        return a.id > b.id ? -1 : b.id > a.id ? 1 : 0;
+      });
+
       dispatch({
         type: GET_TODOS_SUCCESS,
-        payload: todos
+        payload: fetchTodosRS.list
+      });
+
+      dispatch({
+        type: SET_TODOS_PAGENATION_SUCCESS,
+        payload: {
+          current: fetchTodosRS.page,
+          total: fetchTodosRS.total
+        }
       });
     });
   };
@@ -116,11 +138,12 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getTodos: () => dispatch(fetchTodos()),
+    fetchTodos: (pageNumber, pageSize) =>
+      dispatch(fetchTodos(pageNumber, pageSize)),
     deleteTodo: todoId => dispatch(deleteTodo(todoId)),
     markTodoAsDone: todoId => dispatch(markTodoAsDone(todoId)),
     clearInfobar: () => dispatch(clearInfobar())
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TodosListContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(TodoListContainer);

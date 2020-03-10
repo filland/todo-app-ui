@@ -19,12 +19,19 @@ export const DELETE_TODO_SUCCESS = "DELETE_TODO_SUCCESS";
 export const MARK_TODO_AS_DONE_REQUEST = "MARK_TODO_AS_DONE_REQUEST";
 export const MARK_TODO_AS_DONE_SUCCESS = "MARK_TODO_AS_DONE_SUCCESS";
 
+export const SET_TODOS_PAGENATION_SUCCESS = "SET_TODOS_PAGENATION_SUCCESS";
+
 const initialLoadTodosState = {
   todos: [],
   areLoading: false,
   isLoadingFullTodo: false,
   isUpdatingTodo: false,
   isMarkingTodoAsDone: false,
+  pagination: {
+    current: 0,
+    size: 10,
+    total: null
+  }
   // error: null
 };
 
@@ -113,6 +120,17 @@ export function todosReducer(state = initialLoadTodosState, action) {
           todo.done = true;
         }
       })
+      return markTodoAsDoneState;
+    case SET_TODOS_PAGENATION_SUCCESS:
+      let setTodosPageState = Object.assign({}, state);
+      setTodosPageState.pagination.current = action.payload.current;
+      if(action.payload.size) {
+        setTodosPageState.pagination.size = action.payload.size;
+      }
+      if(action.payload.total) {
+        setTodosPageState.pagination.total = action.payload.total;
+      }
+      return setTodosPageState;
     default:
       return state;
   }

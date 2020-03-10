@@ -85,7 +85,6 @@ const mapStateToProps = store => {
 const mapDispatchToProps = dispatch => {
   return {
     updateTodo: todo => dispatch(updateTodo(todo)),
-    getTodos: () => dispatch(TodoService.fetchTodos),
     clearInfobar: () => dispatch(clearInfobar())
   };
 };

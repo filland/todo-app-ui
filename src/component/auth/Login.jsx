@@ -46,7 +46,7 @@ class Login extends React.Component {
     const usernameSettings = {
       id: "username",
       label: "Username",
-      value: "user",
+      value: "user1",
       isView: false,
       placeholder: "Username",
       handler: this.handleUsernameChange

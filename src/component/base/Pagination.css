@@ -1,0 +1,39 @@
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 1px solid rgb(222, 226, 230);
+    background-color: #ffffff;
+}
+
+.pagination__page {
+    border-right: 1px solid rgb(222, 226, 230);
+    /* margin-right: 3px; */
+}
+
+.pagination__page span {
+    display: block;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.pagination__current {
+    padding: 10px;
+    background-color: #e9ecef;
+}
+
+.pagination__page:hover, 
+.pagination__page span:hover {
+    background-color: #e9ecef;
+}
+
+.pagination__page:last-child {
+    border-right: none;
+}

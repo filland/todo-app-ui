@@ -10,10 +10,7 @@ states: view and edit so
 we can easily create edit forms from view when nessecesary.
 2. Add prop types to components.
 3. Make checkbox of todo on the main page editable.
-4. Implement pagination for todosList
 5. Use storybook.js.org ? (I believe that reportportal use this framework)
-11. Add feature so multiple users can register, login and see only their todos and being able
-to edit only their todos
 13. Show creation date for todo on UI 
 14. Sort  todos by creation date
 15. Add tab for Active and Done todos (or not tabs but a way to see Done todos somehow)
@@ -26,8 +23,18 @@ to edit only their todos
 30. Implement Profile page
 35. Implement todo control panel - add tag
 36. Implement todo tag panel
+37. Consider putting containers in pages (Page represents a screen)
+38. 
+39.
+
+Bugs:
+- empty page when deleted all todos on the page. Should keep the page full if there are todos on the next page
+- can open empty page when deleted todos on the first page
 
 Done: 
+4. Implement pagination for todosList
+11. Add feature so multiple users can register, login and see only their todos and being able
+to edit only their todos
 34. Implement todo control panel - Mark todo as done AND Delete todo
 33. Refactor Todo styles
 31. Validation for the registration page

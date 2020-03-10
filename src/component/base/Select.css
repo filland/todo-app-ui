@@ -2,6 +2,10 @@
     position: relative;
 }
 
+.select-container .select-icon {
+    cursor: pointer;
+}
+
 .select {
     display: none;
     position: absolute;
@@ -16,6 +20,7 @@
 .select-item {
     padding: 3px 7px;
     margin: 7px 0;
+    cursor: pointer;
 }
 
 .select-item:hover {

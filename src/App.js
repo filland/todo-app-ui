@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import TodosListContainer from "./component/TodosListContainer";
+import TodoListContainer from "./component/TodoListContainer";
 import TodoEditContainer from "./component/TodoEditContainer";
 import TodoAddContainer from "./component/TodoAddContainer";
 import PrivateRoute from "./component/base/PrivateRoute";
@@ -37,7 +37,7 @@ class App extends React.Component {
           <PrivateRoute
             exact
             path="/"
-            component={TodosListContainer}
+            component={TodoListContainer}
           ></PrivateRoute>
           <PrivateRoute path="/profile" component={Profile} />
           <PrivateRoute

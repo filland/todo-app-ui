@@ -5,9 +5,7 @@ import Select from "./base/Select";
 import "./base/Select.css";
 
 class TodoControlPanel extends Component {
-  constructor(props) {
-    super(props);
-  }
+
   render() {
     let id = this.props.settings.id;
     let handleDeleteTodo = this.props.settings.handleDeleteTodo;
@@ -26,19 +24,19 @@ class TodoControlPanel extends Component {
         </div>
         <div className="control-item">
           <Link to="#">
-            <i class="fas fa-tag"></i>
+            <i className="fas fa-tag"></i>
           </Link>
         </div>
         <div className="control-item">
           <Link to="#" onClick={handleDeleteTodo}>
-            <i class="far fa-trash-alt"></i>
+            <i className="far fa-trash-alt"></i>
           </Link>
         </div>
-        <div className="control-item select-container">
-          <i id={"more-todo-actions-id-" + id} class="fas fa-ellipsis-v"></i>
+        <div className="control-item">
           <Select
-            id={"more-todo-actions-select-id-" + id}
-            parentId={"more-todo-actions-id-" + id}
+            selectId={"more-todo-actions-select-id-" + id}
+            selectIcon={<i id={"more-todo-actions-id-" + id} className="fas fa-ellipsis-v"></i>}
+            selectIconId={"more-todo-actions-id-" + id}
             items={items}
           ></Select>
         </div>
