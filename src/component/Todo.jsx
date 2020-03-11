@@ -25,10 +25,21 @@ class Todo extends React.Component {
       handleDeleteTodo: this.handleDeleteTodoClick,
       handleMarkAsDone: this.handleMarkAsDone
     };
+
+    let renderedDesc = todo.description
+      .split("\n")
+      .map(line => {
+        return (
+          <>
+            {line}
+            <br></br>
+          </>
+        )});
+
     return (
       <div className="common todo" id={todo.id}>
         <p className="todo-title">{todo.title}</p>
-        <p>{todo.description}</p>
+        <div className="todo-desc">{renderedDesc}</div>
         {/* <p>This todo is done: {todo.done ? "yes" : "no"}</p> */}
         <TodoControlPanel settings={settings}></TodoControlPanel>
       </div>

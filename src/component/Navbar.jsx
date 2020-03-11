@@ -10,10 +10,10 @@ class Navbar extends React.Component {
   render() {
     return (
       <div className="common-menu navbar">
-        <Link className="navbar-logo" to="/">
+        <a className="navbar-logo" href="/">
           <i className="fas fa-check-square"></i>
           <span>TodoApp</span>
-        </Link>
+        </a>
         {/* <Link className="navbar-link" to="/login">Log in</Link> */}
         {AuthService.isLogged() ? (
           <>

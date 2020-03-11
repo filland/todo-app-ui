@@ -5,7 +5,6 @@ import Select from "./base/Select";
 import "./base/Select.css";
 
 class TodoControlPanel extends Component {
-
   render() {
     let id = this.props.settings.id;
     let handleDeleteTodo = this.props.settings.handleDeleteTodo;
@@ -16,6 +15,16 @@ class TodoControlPanel extends Component {
         handler: handleMarkAsDone
       }
     ];
+
+    let selectSettings = {
+      selectId: "more-todo-actions-select-id-" + id,
+      selectIcon: (
+        <i id={"more-todo-actions-id-" + id} className="fas fa-ellipsis-v"></i>
+      ),
+      selectIconId: "more-todo-actions-id-" + id,
+      items: items,
+      onHoverColor: "#9dd8bf"
+    };
 
     return (
       <div className="todo-control-panel">
@@ -33,12 +42,7 @@ class TodoControlPanel extends Component {
           </Link>
         </div>
         <div className="control-item">
-          <Select
-            selectId={"more-todo-actions-select-id-" + id}
-            selectIcon={<i id={"more-todo-actions-id-" + id} className="fas fa-ellipsis-v"></i>}
-            selectIconId={"more-todo-actions-id-" + id}
-            items={items}
-          ></Select>
+          <Select settings={selectSettings}></Select>
         </div>
       </div>
     );

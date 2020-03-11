@@ -17,8 +17,6 @@
 
 .todo-add .flex-container input, textarea {
     flex: 8;
-    padding-top: 4px;
-    padding-left: 4px;
 }
 
 .todo-add .flex-container button {

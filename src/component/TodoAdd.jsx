@@ -7,7 +7,7 @@ class TodoAdd extends React.Component {
     super(props);
 
     this.state = {
-      titile: "",
+      title: "",
       description: ""
     };
   }
@@ -28,9 +28,12 @@ class TodoAdd extends React.Component {
     this.props.addTodo(this.state.title, this.state.description);
 
     this.setState({
-      titile: "",
+      title: "",
       description: ""
     });
+
+    document.getElementById("todo-add-title-id").firstChild.value = '';
+    document.getElementById("todo-add-description-id").firstChild.value = '';
   };
 
   componentDidMount() {

@@ -5,6 +5,7 @@ import CheckboxField from "./base/CheckboxField";
 import Button from "./base/Button";
 import "../App.css";
 import "./TodoEdit.css";
+import Textarea from "./base/Textarea";
 
 class TodoEdit extends React.Component {
   constructor(props) {
@@ -74,7 +75,8 @@ class TodoEdit extends React.Component {
     return (
       <div className="common todo-edit">
         <TextField settings={titleFieldSettings}></TextField>
-        <TextField settings={descFieldSettings}></TextField>
+        {/* <TextField settings={descFieldSettings}></TextField> */}
+        <Textarea settings={descFieldSettings}></Textarea>
         <div className="checkbox-and-button">
           <CheckboxField settings={doneFieldSettings}></CheckboxField>
           <div>

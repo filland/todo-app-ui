@@ -1,14 +1,15 @@
-@media(min-width: 568px) {
+@media (min-width: 768px) {
   .main {
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 20px;
     width: 550px !important;
   }
 }
 
 * {
-  margin: 0;
+  margin: 0;  
   padding: 0;
 }
 
@@ -30,8 +31,8 @@ label, input, textarea {
 }
 
 input, textarea {
-  padding: 2px;
-  border-radius: 3px;
+  padding: 7px;
+  border-radius: 5px;
   border: solid 1px rgb(206, 206, 206);
 }
 
@@ -62,6 +63,7 @@ h1,h2, h3 {
 
 .main {
   width: 100%;
+  margin-bottom: 20px;
 }
 
 .common-menu {

@@ -1,31 +1,29 @@
 Current: 
 
-TODO: 
+TODO: 38. Todo support desc with multiple lines
 
 0. Preserve the state between page reloadings. See - 
 https://egghead.io/lessons/javascript-redux-persisting-the-state-to-the-local-storage
-
-1. Create components for text, checkbox inputs and button. These components should have two 
-states: view and edit so
-we can easily create edit forms from view when nessecesary.
 2. Add prop types to components.
-3. Make checkbox of todo on the main page editable.
 5. Use storybook.js.org ? (I believe that reportportal use this framework)
 13. Show creation date for todo on UI 
-14. Sort  todos by creation date
+14. Feature for sorting todos
 15. Add tab for Active and Done todos (or not tabs but a way to see Done todos somehow)
 16. Add a separate tab for deleted (archived) todos
 18. Handle exceptions in api services (403, 404, etc.)
 23. Add login using VK
-24. Impelement Profile page (name, username, email, picture if available, )
 28. How to freeze buttons when submitting a form (especially when using component and its container)
 29. Consider replacing services to actions (see https://habr.com/ru/company/hh/blog/310524/)
+24. Impelement Profile page (name, username, email, picture if available, )
 30. Implement Profile page
 35. Implement todo control panel - add tag
 36. Implement todo tag panel
-37. Consider putting containers in pages (Page represents a screen)
-38. 
-39.
+37. Consider putting containers in pages (basically Page represents a screen)
+39. 
+40.
+41.
+42.
+43.
 
 Bugs:
 - empty page when deleted all todos on the page. Should keep the page full if there are todos on the next page
@@ -60,19 +58,14 @@ the user who signed in with his/her github account)
 9. Make sure that when delete a todo the right one is deleted.
 10. Add message panel below navbar (show that todo added there)
 
+
+Other:
+1. Create components for text, checkbox inputs and button. These components should have two 
+states: view and edit so we can easily create edit forms from view when nessecesary.
+
+
 QUESTIONS:
 
 1. Do I need to create View and Edit components or create generic component that takes
 a mode props and show either View or Edit inputs.
 What I found on the internet that people using conditioning to do this. So one conponent for new and edit
-
-2. How to create breadcrumbs component? When I am using react-router I need to import components that are 
-on the page specified in the breadcrumbs (it looks really hard to overcome and definitely not the best way
-to solve this problem).
-
-3. How to stop opening new page when clicking a link ?
-I used to use <a> tag for links. To stop opening new pages I just replaced
-<a> with <Link>
-
-4. Is it possible to keep all the code for the interaction with REST API in one separate file ?
-If you use callbacks then YES.

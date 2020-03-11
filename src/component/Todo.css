@@ -8,6 +8,10 @@
   margin-bottom: 5px;
 }
 
+.todo-desc {
+  overflow-wrap: break-word;
+}
+
 .todo-edit {
   background: #ffffff;
 }

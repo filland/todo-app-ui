@@ -1,0 +1,16 @@
+.textarea-container {
+    width: 100%;
+    margin-bottom: 7px;
+}
+
+.textarea-label {
+    display: block;
+    padding-bottom: 5px;
+}
+
+.textarea-input {
+    box-sizing: border-box;
+    min-height: 150px;
+    width: 100%;
+    resize: vertical;
+}

@@ -2,44 +2,55 @@ import React, { Component } from "react";
 import "./Select.css";
 
 class Select extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   handleClickOnSelectIcon = e => {
-    document.getElementById(this.props.selectId).style.display = "block";
+    this.selectElement.style.display = "block";
+    this.selectIcon.firstChild.style.backgroundColor=this.props.settings.onHoverColor;
   };
 
   handleCloseSelect = e => {
     if (
-      !document
-        .getElementById(this.props.selectIconId)
-        .parentElement.contains(e.target)
+      !this.selectIcon.parentElement.contains(e.target)
     ) {
-      document.getElementById(this.props.selectId).style.display = "none";
+      this.selectElement.style.display = "none";
+      this.selectIcon.firstChild.style.backgroundColor="";
     }
   };
 
-  componentDidMount() {
-    // listen to clicks on the select
-    document
-      .getElementById(this.props.selectIconId)
-      .parentElement.addEventListener("click", this.handleClickOnSelectIcon);
+  handleItemClick = e => {
+    this.selectElement.style.display = "none";
+    this.selectIcon.style.backgroundColor="";
+  }
 
+  componentDidMount() {
+
+    this.selectElement = document.getElementById(this.props.settings.selectId);
+    this.selectIcon = document.getElementById(this.props.settings.selectIconId);
+
+    // listen to clicks on the select
+    this.selectIcon.parentElement.addEventListener("click", this.handleClickOnSelectIcon);
     // listen to clicks not on the select to close it
     document.addEventListener("click", this.handleCloseSelect);
   }
 
   componentWillUnmount() {
     // remove listeners
-    document
-      .getElementById(this.props.selectIconId)
-      .parentElement.removeEventListener("click", this.handleClickOnSelectIcon);
+    this.selectIcon.parentElement.removeEventListener("click", this.handleClickOnSelectIcon);
     document.removeEventListener("click", this.handleCloseSelect);
   }
 
   render() {
-    let { items } = this.props;
+    let { settings } = this.props;
 
-    let selectTemplate = items.map((item, index) => {
+    let selectTemplate = settings.items.map((item, index) => {
       return (
-        <div key={index} className="select-item" onClick={item.handler}>
+        <div key={index} className="select-item" onClick={(e) => {
+          item.handler(e);
+          this.handleItemClick(e);
+          }}>
           {item.text}
         </div>
       );
@@ -47,10 +58,10 @@ class Select extends Component {
 
     return (
       <div className="select-container">
-        <div className="select-icon" id={this.props.selectIconId}>
-          {this.props.selectIcon}
+        <div className="select-icon" id={settings.selectIconId}>
+          {settings.selectIcon}
         </div>
-        <div className="select" id={this.props.selectId}>
+        <div className="select" id={settings.selectId}>
           {selectTemplate}
         </div>
       </div>

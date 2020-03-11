@@ -2,27 +2,16 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-
     margin-top: 5px;
 }
 
-.todo-control-panel:hover {
-    opacity: 100;
-}
-
 .todo-control-panel .control-item {
-    padding: 6px;
     margin-right: 7px;
-    font-size: 14px;
 }
 
-.todo-control-panel .control-item:last-child {
-    padding: 0;
-    margin-right: 0;
-}
-
-.todo-control-panel .control-item:last-child i {
-    padding: 6px 8px;
+.todo-control-panel .control-item a {
+    display: block;
+    padding: 6px;
     font-size: 14px;
 }
 
@@ -31,15 +20,38 @@
     border-radius: 15px;
 }
 
+.todo-control-panel .control-item a, i { 
+    color: rgb(73, 73, 73);
+}
+
+/* add style to the Select component */
+.todo-control-panel .control-item:last-child {
+    padding: 0;
+    margin-right: 0;
+}
+.todo-control-panel .control-item:last-child i {
+    padding: 6px 8px;
+    font-size: 14px;
+}
 .todo-control-panel .control-item:last-child {
     border-radius: none;
 }
-
-.todo-control-panel .control-item:last-child i :hover{ 
+.todo-control-panel .control-item:last-child i:hover{ 
     background-color: #9dd8bf;
     border-radius: 15px;
 }
+/* add style to the Select component */
 
-.todo-control-panel .control-item  a, i { 
-    color: rgb(73, 73, 73);
+
+@media (max-width: 768px) { 
+    .todo-control-panel .control-item {
+        margin-right: 20px;
+    }
+    .todo-control-panel .control-item a {
+        font-size: 18px;
+    }
+
+    .todo-control-panel .control-item .select-icon i {
+        font-size: 18px;
+    }
 }
