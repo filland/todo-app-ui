@@ -1,6 +1,7 @@
 import React from "react";
-import "../../App.css";
 import PropTypes from "prop-types";
+import "../../App.css";
+import "./Button.css";
 
 class Button extends React.Component {
   handleButtonClick = e => {
@@ -14,7 +15,7 @@ class Button extends React.Component {
       <button
         type={settings.type}
         id={settings.id}
-        className="green-button"
+        className="todo-button green-button"
         onClick={e => this.handleButtonClick(e)}
         disabled={settings.disabled || false}
       >

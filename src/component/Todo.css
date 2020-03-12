@@ -15,3 +15,11 @@
 .todo-edit {
   background: #ffffff;
 }
+
+/* for small screens */
+@media (max-width: 768px) {
+  .todo {
+    border-radius: 15px;
+    margin: 5px;
+  }
+}

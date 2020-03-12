@@ -17,9 +17,6 @@ class Navbar extends React.Component {
         {/* <Link className="navbar-link" to="/login">Log in</Link> */}
         {AuthService.isLogged() ? (
           <>
-            <Link className="navbar-link" to="/">
-              Main
-            </Link>
             <Link className="navbar-link" to="/logout">
               Logout
             </Link>

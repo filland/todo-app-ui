@@ -1,8 +1,11 @@
+.todo-add {
+}
+
 .todo-add .flex-container {
     display: flex;
     justify-content: space-around;
-    margin-bottom: 7px;
     align-items: center;
+    margin-bottom: 7px;
 }
 
 .todo-add .flex-container:last-child { 

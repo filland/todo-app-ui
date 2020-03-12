@@ -23,6 +23,7 @@ class Select extends Component {
   handleItemClick = e => {
     this.selectElement.style.display = "none";
     this.selectIcon.style.backgroundColor="";
+    this.selectIcon.firstChild.style.backgroundColor="";
   }
 
   componentDidMount() {

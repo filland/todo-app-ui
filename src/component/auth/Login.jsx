@@ -1,13 +1,10 @@
 import React from "react";
-import {
-  Link,
-  Redirect
-} from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import Button from "../base/Button";
 import TextField from "../base/TextField";
 import "../../App.css";
 import "./Login.css";
-import { GITHUB_AUTH_URL} from "../../service/constants";
+import { GITHUB_AUTH_URL } from "../../service/constants";
 
 class Login extends React.Component {
   constructor(props) {
@@ -38,7 +35,7 @@ class Login extends React.Component {
 
   render() {
     const redirectTo = this.props.redirectTo;
-    
+
     if (this.props.redirectToRefferer) {
       return <Redirect to={redirectTo}></Redirect>;
     }
@@ -70,27 +67,26 @@ class Login extends React.Component {
     };
 
     return (
-      <div className="login-component">
-        <div className="common login-basic">
+      <div className="login-component common">
+        <div className="login-basic">
           <h3>Login to access your todos</h3>
           <TextField settings={usernameSettings} />
           <TextField settings={passwordSettings} />
           <Button settings={loginButtonSettings} />
-          <p className="register-link">
-            Do not have an account? <Link to="/registration">Register</Link>
-          </p>
         </div>
-        <div className="common login-social">
-          {/* <h3>Social login  </h3> */}
-          <div className="login-social-item">
-            <div>
-              <i className="fab fa-github"></i>
-              <a href={GITHUB_AUTH_URL}>
-                 Login with GitHub
-              </a>
-            </div>
-          </div>
+        <div className="login-component__or">
+          <span>OR</span>
+          <hr />
         </div>
+        <div className="login-social">
+          <a className="login-social-item github" href={GITHUB_AUTH_URL}>
+            <i class="fab fa-github"></i>
+            <span>Login with GitHub</span>
+          </a>
+        </div>
+        <p className="register-link">
+          Do not have an account? <Link to="/registration">Register</Link>
+        </p>
       </div>
     );
   }

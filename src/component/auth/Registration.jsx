@@ -164,7 +164,7 @@ class Registraction extends Component {
     };
 
     return (
-      <div className="common">
+      <div className="common registration-container">
         <div className="registration">
           <h3>Register a new account</h3>
           <TextField settings={usernameSettings}></TextField>

@@ -1,7 +1,6 @@
-Current: 
+Current:  35. Implement todo control panel - add tag
 
-TODO: 38. Todo support desc with multiple lines
-
+TODO:
 0. Preserve the state between page reloadings. See - 
 https://egghead.io/lessons/javascript-redux-persisting-the-state-to-the-local-storage
 2. Add prop types to components.
@@ -16,10 +15,10 @@ https://egghead.io/lessons/javascript-redux-persisting-the-state-to-the-local-st
 29. Consider replacing services to actions (see https://habr.com/ru/company/hh/blog/310524/)
 24. Impelement Profile page (name, username, email, picture if available, )
 30. Implement Profile page
-35. Implement todo control panel - add tag
 36. Implement todo tag panel
 37. Consider putting containers in pages (basically Page represents a screen)
-39. 
+39. Now site logo is a <a> not <Link>. It was changed to <a> to force update of the todos in the pageable todo list.
+There should be added a feature for forcing the pageable todo list to refresh itself
 40.
 41.
 42.
@@ -29,7 +28,8 @@ Bugs:
 - empty page when deleted all todos on the page. Should keep the page full if there are todos on the next page
 - can open empty page when deleted todos on the first page
 
-Done: 
+Done:
+38. Todo support desc with multiple lines 
 4. Implement pagination for todosList
 11. Add feature so multiple users can register, login and see only their todos and being able
 to edit only their todos
