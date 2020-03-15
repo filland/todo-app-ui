@@ -80,7 +80,7 @@ class Login extends React.Component {
         </div>
         <div className="login-social">
           <a className="login-social-item github" href={GITHUB_AUTH_URL}>
-            <i class="fab fa-github"></i>
+            <i className="fab fa-github"></i>
             <span>Login with GitHub</span>
           </a>
         </div>

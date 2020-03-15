@@ -22,8 +22,7 @@ class TodoServiceImp {
       .then(function(response) {
         return response.json();
       })
-      .then(function(json) {
-        todo.id = json;
+      .then(function(todo) {
         addTodoCallback(todo);
       })
       .catch(function(e) {
