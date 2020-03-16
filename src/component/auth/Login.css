@@ -1,9 +1,3 @@
-/* for small screens */
-@media (max-width: 768px) {
-  .login-component {
-    padding: 5% 10%;
-  }
-}
 
 .login-component {
   padding: 5% 20%;
@@ -61,13 +55,13 @@
 }
 
 .login-social-item i {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   margin-right: 10px;
 }
 
 /* github */
 .login-social .github {
-  height: 40px;
+  height: 35px;
   background-color: #494949;
 }
 .login-social .github span {
@@ -82,3 +76,11 @@
   padding-top: 5px;
   font-size: 0.8rem;
 }
+
+/* for small screens */
+@media (max-width: 768px) {
+  .login-component {
+    padding: 15% 10% 5% 10%;
+  }
+}
+

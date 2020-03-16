@@ -45,15 +45,11 @@ class TodoServiceImp {
       })
       .then(json => {
         let fetchTodosRS = JSON.parse(json);
-        // fetchTodosRS.list.sort(function(a, b) {
-        //   return a.id > b.id ? -1 : b.id > a.id ? 1 : 0;
-        // });
-
         fetchTodosCallback(fetchTodosRS);
       })
       .catch(e => {
         console.error("error while fetching todods");
-        fetchTodosCallback(null);
+        console.error(e);
       });
   };
 
