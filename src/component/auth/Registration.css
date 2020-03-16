@@ -1,5 +1,9 @@
 .registration-container {
-  padding: 5% 20%;
+  padding: 7% 20% 5% 20%;
+}
+
+.registration h3 {
+  margin-bottom: 7%;
 }
 
 .registration button {

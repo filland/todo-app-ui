@@ -1,14 +1,18 @@
 
 .login-component {
-  padding: 5% 20%;
+  padding: 7% 20% 5% 20%;
 }
 
-.login-basic input {
-  margin-bottom: 5px;
+.login-basic .edit-input-div input {
+  margin-bottom: 15px;
 }
 
 .login-basic {
   margin-bottom: 20px;
+}
+
+.login-basic h3 {
+  margin-bottom: 7%;
 }
 
 .login-basic button {
