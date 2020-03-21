@@ -19,8 +19,8 @@ https://egghead.io/lessons/javascript-redux-persisting-the-state-to-the-local-st
 37. Consider putting containers in pages (basically Page represents a screen)
 39. Now site logo is a <a> not <Link>. It was changed to <a> to force update of the todos in the pageable todo list.
 There should be added a feature for forcing the pageable todo list to refresh itself
-40. 
-41.
+40. Add landing page
+41. Consider changing app name
 42.
 43.
 

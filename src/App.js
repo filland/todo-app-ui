@@ -11,7 +11,7 @@ import InfobarContainer from "./component/InfobarContainer";
 import LoginContainer from "./component/auth/LoginContainer";
 import LoginSocial from "./component/auth/LoginSocial";
 import Profile from "./component/Profile";
-import RegistrationConfirmation from "./component/auth/RegistrationConfirmation";
+import EmailConfirmation from "./component/auth/EmailConfirmation";
 
 class App extends React.Component {
   todoEdit = ({ match }) => {
@@ -25,7 +25,7 @@ class App extends React.Component {
           <Route path="/" component={Navbar}></Route>
           <Route component={InfobarContainer}></Route>
           <Route exact path="/registration" component={Registration}></Route>
-          <Route exact path="/registration-confirmation" component={RegistrationConfirmation}></Route>
+          <Route exact path="/confirm-email" component={EmailConfirmation}></Route>
           <Route exact path="/login" component={LoginContainer}></Route>
           <Route path="/oauth2/redirect" component={LoginSocial}></Route>
           <PrivateRoute path="/logout" component={Logout}></PrivateRoute>

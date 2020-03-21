@@ -3,7 +3,7 @@ import AuthService from "../../service/AuthService";
 import { withRouter } from "react-router-dom";
 import { getQueryParamValueFromLocationSearch } from "../../util/UrlUtils";
 
-class RegistrationConfirmation extends Component {
+class EmailConfirmation extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -58,4 +58,4 @@ class RegistrationConfirmation extends Component {
   }
 }
 
-export default withRouter(RegistrationConfirmation);
+export default withRouter(EmailConfirmation);

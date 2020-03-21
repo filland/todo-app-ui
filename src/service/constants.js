@@ -1,7 +1,6 @@
 
 // frontend URLs
 export const WEB_UI_ROOT_URL = process.env.REACT_APP_UI_ROOT_URL;
-export const REGISTRATION_CONFIRMATION_URL = WEB_UI_ROOT_URL + "/registration-confirmation";
 export const OAUTH2_REDIRECT_URI = WEB_UI_ROOT_URL+"/oauth2/redirect";
 
 // application API URLs

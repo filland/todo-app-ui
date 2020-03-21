@@ -2,8 +2,7 @@ import {
   API_ROOT_URL,
   BASIC_AUTH_CREDS,
   JWT_TOKEN,
-  SERVER_ROOT_URL,
-  REGISTRATION_CONFIRMATION_URL
+  SERVER_ROOT_URL
 } from "./constants";
 
 const authenticated = "authenticated";
@@ -15,8 +14,6 @@ class AuthServiceImpl {
     let headers = {
       "Content-Type": "application/json; charset=UTF-8"
     };
-
-    user["emailConfirmationBrowserUrl"] = REGISTRATION_CONFIRMATION_URL;
 
     fetch(url, {
       method: "POST",
@@ -33,7 +30,7 @@ class AuthServiceImpl {
   }
 
   confirmRegistration(confirmationToken, successCallback, failureCallback) {
-    const url = SERVER_ROOT_URL + "/auth/complete-registration";
+    const url = SERVER_ROOT_URL + "/auth/confirm-email";
 
     let headers = {
       "Content-Type": "application/json; charset=UTF-8"

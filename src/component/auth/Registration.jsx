@@ -61,7 +61,7 @@ class Registraction extends Component {
         if (response.status === 201) {
           this.props.history.push("/login");
           this.props.showInfoMessage(
-            "Account was successfully created. An email was sent to your email to complete the registration",
+            "Account was successfully created. A mail was sent to your email address to complete the registration",
             "info"
           );
         } else if (code === 4002) {
